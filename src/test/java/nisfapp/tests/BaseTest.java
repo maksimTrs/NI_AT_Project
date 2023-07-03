@@ -24,11 +24,8 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.UUID;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static nisfapp.utils.PropertyReader.getTestDataFromBundle;
 
@@ -77,25 +74,21 @@ public abstract class BaseTest {
     NGeniusOnlinePartitionPage nGeniusOnlinePartitionPage;
 
 
-    private List<Path> listOfVideoRecords = new ArrayList<>();
-
     @BeforeSuite(alwaysRun = true)
-    private static void executePreConditions() {
-
+    public static void executePreConditions() {
         try {
-            FileUtils.deleteDirectory(new File("videos"));
             FileUtils.deleteDirectory(new File("traces"));
-            FileUtils.deleteDirectory(new File("build/allure-results"));
+            FileUtils.deleteDirectory(new File("videos"));
+            FileUtils.deleteDirectory(new File("target/allure-results"));
             logger.debug("Folders [videos, traces, allure-results] were deleted successfully");
         } catch (IOException e) {
-            System.err.println("Failed to delete folder: " + e.getMessage());
+            logger.debug("Failed to delete folder: " + e.getMessage());
         }
     }
 
 
     @BeforeClass()
     public void setUp() {
-        //.launch(new BrowserType.LaunchOptions().setHeadless(Boolean.getBoolean("HEADLESS_MODE")).setChannel("chrome"));
         SALES_OFFICER_USER = UserCreator.withCredentialsFromPropertyFile();
         INCORRECT_SF_USER = UserCreator.withWrongCredentialsFromPropertyFile();
     }
@@ -115,15 +108,10 @@ public abstract class BaseTest {
         int width = (int) screenSize.getWidth();
         int height = (int) screenSize.getHeight();
 
-
-        // browserContext.setDefaultTimeout(40000);
-        //  page.setDefaultTimeout(40000);
-
         if (isTraceEnabled) {
             browserContext = browser.newContext(new Browser.NewContextOptions()
                     .setViewportSize(width, height)
-                    //  .setGeolocation(new Geolocation(-33.8571197, 151.2138464))
-                    .setPermissions(List.of("geolocation"))
+                    .setPermissions(Arrays.asList("notifications", "geolocation"))
                     .setRecordVideoDir(Paths.get("videos/"))
                     .setRecordVideoSize(1280, 720));
 
@@ -131,37 +119,21 @@ public abstract class BaseTest {
                     .setScreenshots(true)
                     .setSnapshots(true)
                     .setSources(false));
-
-            try (Stream<Path> pathStream = Files.walk(Paths.get("videos/"))) {
-                listOfVideoRecords = pathStream
-                        .filter(Files::isRegularFile)
-                        .collect(Collectors.toList());
-                // Process the list of video records
-            } catch (Exception e) {
-                System.err.println("Failed to walk through the directory: " + e.getMessage());
-            }
-
         } else {
             browserContext = browser.newContext(new Browser.NewContextOptions()
                     .setViewportSize(width, height)
-                    .setPermissions(List.of("geolocation")));
+                    .setPermissions(Arrays.asList("notifications", "geolocation")));
         }
-
+        // browserContext.setDefaultTimeout(40000);
+        //page.setDefaultTimeout(40000);
         page = browserContext.newPage();
-
         initPages(this, page);
     }
 
 
-/*    @AfterClass()
-    public void tearDown() {
-        *//*browserContext.close();
-        browser.close();*//*
-    }*/
-
-
     @AfterMethod(alwaysRun = true)
     public void attachFilesToFailedTest(ITestContext testInfo, ITestResult result, Method method) throws IOException {
+
         if (!result.isSuccess()) {
             String uuid = UUID.randomUUID().toString();
             byte[] screenshot = page.screenshot(new Page.ScreenshotOptions()
@@ -169,9 +141,9 @@ public abstract class BaseTest {
                     .setFullPage(true));
 
             Allure.addAttachment(uuid, new ByteArrayInputStream(screenshot));
-            Allure.addAttachment("source.html", "text/html", page.content());
 
             if (isTraceEnabled) {
+                logger.debug("<<<<< For test [" + method.getName() + "] was created a video: " + page.video().path() + " >>>>>");
                 /*String traceFileName = String.format("build/%s_trace.zip", uuid);
                 Path tracePath = Paths.get(traceFileName);*/
                 Path tracePath = Paths.get("traces/" + result.getMethod().getMethodName().replace("()", "") + ".zip");
@@ -180,24 +152,8 @@ public abstract class BaseTest {
                                 .setPath(tracePath));
                 // Allure.addAttachment("trace.zip", new ByteArrayInputStream(Files.readAllBytes(tracePath)));
                 Allure.addAttachment(tracePath.getFileName().toString(), new ByteArrayInputStream(Files.readAllBytes(tracePath)));
-
-
-                List<Path> fullListOfVideoRecords;
-                try (Stream<Path> pathStream = Files.walk(Paths.get("videos/"))) {
-                    fullListOfVideoRecords = pathStream
-                            .filter(Files::isRegularFile)
-                            .filter(s1 -> !listOfVideoRecords.contains(s1))
-                            .collect(Collectors.toList());
-
-                    for (Path path : fullListOfVideoRecords) {
-                        Files.deleteIfExists(path);
-                    }
-                } catch (IOException e) {
-                    System.err.println("Failed to walk through the directory2: " + e.getMessage());
-                }
             }
         }
-
         logger.info("********************************************************************************");
         logger.info("<<< Test method: " + method.getName() + " was finished >>>");
         logger.info("********************************************************************************");

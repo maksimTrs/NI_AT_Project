@@ -14,6 +14,7 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestSuccess(ITestResult iTestResult) {
+        //deleteTraceInfo(iTestResult);
     }
 
     public void onTestFailure(ITestResult iTestResult) {

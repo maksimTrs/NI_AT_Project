@@ -5,7 +5,7 @@ import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Playwright;
 
 public class BrowserFactory {
-
+    //.launch(new BrowserType.LaunchOptions().setHeadless(Boolean.getBoolean("HEADLESS_MODE")).setChannel("chrome"));
     public static Browser launchBrowser(Playwright playwright, String browserType, boolean isHeadlessMode) {
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions().setHeadless(isHeadlessMode);
 

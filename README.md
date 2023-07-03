@@ -38,17 +38,20 @@ OR
 
 #### --->>>*
 
-*_To run PlayWright trace report zip archive (where zipFileName= trace .zip file prop + file name) - run command:_**
+*_To run PlayWright trace report zip archive - run command:_**
 
-`./gradlew runPlaywrightCLI -PzipFileName=custom-trace.zip`
+`mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="show-trace traces/createSoftPosApplicationTest.zip"`
 
 =================================================================================================================
-
 
 mvn clean test -Dsuite=yourSuiteName
 
 mvn clean test -Dsuitepath=path/to/yourSuite.xml
 
-mvn -DBROWSER=firefox -DsuiteXmlFile=src/test/resources/mail-ru-regression.xml -DENVIRONMENT=qa clean test
+mvn -DBROWSER_TYPE=firefox -DTRACE_FLAG=false -DsuiteXmlFile="src/test/resources/posNgeniousAppCreationSmoke.xml"  clean
+test
+
+mvn -DBROWSER_TYPE=firefox -DTRACE_FLAG=true -DsuiteXmlFile="src/test/resources/posNgeniousAppCreationSmoke.xml"  clean
+test
 
 mvn allure:serve

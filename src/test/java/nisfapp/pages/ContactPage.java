@@ -42,5 +42,4 @@ public class ContactPage {
         //page.bringToFront();
         page.close();
     }
-
 }
