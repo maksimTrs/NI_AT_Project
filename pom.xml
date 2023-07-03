@@ -95,7 +95,7 @@
 
     <profiles>
         <profile>
-            <id>default-properties</id>
+            <id>bundle-type-property</id>
             <activation>
                 <property>
                     <name>!BUNDLE_TYPE</name>
@@ -106,7 +106,7 @@
             </properties>
         </profile>
         <profile>
-            <id>default-properties</id>
+            <id>browser-type-property</id>
             <activation>
                 <property>
                     <name>!BROWSER_TYPE</name>
@@ -117,7 +117,7 @@
             </properties>
         </profile>
         <profile>
-            <id>default-properties</id>
+            <id>trace-type-property</id>
             <activation>
                 <property>
                     <name>!TRACE_FLAG</name>
@@ -128,7 +128,7 @@
             </properties>
         </profile>
         <profile>
-            <id>default-properties</id>
+            <id>headless-type-property</id>
             <activation>
                 <property>
                     <name>!HEADLESS_MODE</name>
