@@ -3,7 +3,7 @@ package nisfapp.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.LocatorAssertions;
-import nisfapp.utils.MethodActionForPO;
+import nisfapp.utils.MethodActionsForPO;
 
 import java.util.regex.Pattern;
 
@@ -11,7 +11,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 import static nisfapp.tests.BaseTest.logger;
 
-public class ApplicationPage extends MethodActionForPO {
+public class ApplicationPage extends MethodActionsForPO {
 
     private static final String MAIN_WINDOW = "//div[contains(@class,'windowViewMode-maximized active')]";
     private static final String PRIMARY_APP_ID = "(//slot[@name='primaryField']/lightning-formatted-text)[last()]";
@@ -90,20 +90,20 @@ public class ApplicationPage extends MethodActionForPO {
         appSFID = page.locator(PRIMARY_APP_ID).innerText();
         // page.locator(CONTACT_NAME).click();
         //page.waitForTimeout(3000);
-        Page contactPage = page.waitForPopup(() -> page.locator(CONTACT_NAME).click());
+        Page contactPage = page.waitForPopup(() -> doClickOnElement(page.locator(CONTACT_NAME)));
         return new ContactPage(contactPage);
     }
 
 
     public void submitToNextStage() {
         page.reload();
-        page.locator(SUBMIT_TO_NEXT_STAGE_BTN).click();
-        page.locator(SUBMIT_TO_NEXT_STAGE_PROCESS_BTN).click();
+        doClickOnElement(page.locator(SUBMIT_TO_NEXT_STAGE_BTN));
+        doClickOnElement(page.locator(SUBMIT_TO_NEXT_STAGE_PROCESS_BTN));
     }
 
     public void openAppGenericDocument() {
         page.waitForTimeout(5000);
-        page.locator(MAIN_WINDOW + APP_GENERIC_DOCUMENT).click();
+        doClickOnElement(page.locator(MAIN_WINDOW + APP_GENERIC_DOCUMENT));
     }
 
 

@@ -1,9 +1,9 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
-import nisfapp.utils.MethodActionForPO;
+import nisfapp.utils.MethodActionsForPO;
 
-public class NewApplicationPaymentSettlementDetailsPartitionPage extends MethodActionForPO {
+public class NewApplicationPaymentSettlementDetailsPartitionPage extends MethodActionsForPO {
 
 
     private static final String BANK_NAME = "//input[@Placeholder='Search Banks...']";

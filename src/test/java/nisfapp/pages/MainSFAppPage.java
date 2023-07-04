@@ -1,12 +1,12 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
-import nisfapp.utils.MethodActionForPO;
+import nisfapp.utils.MethodActionsForPO;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 
-public class MainSFAppPage extends MethodActionForPO {
+public class MainSFAppPage extends MethodActionsForPO {
 
     private static final String VIEW_PROFILE = "//img[@title='User']/ancestor::button[@data-aura-class='forceHeaderButton']";
     private static final String LOGOUT_BTN = "//div/a[contains(@href, '/logout.')][@dir='ltr']";

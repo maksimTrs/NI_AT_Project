@@ -1,8 +1,9 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
+import nisfapp.utils.MethodActionsForPO;
 
-public class ContactPage {
+public class ContactPage extends MethodActionsForPO {
 
     private static final String MAIN_WINDOW = "//div[contains(@class,'windowViewMode-maximized active')]";
 
@@ -21,20 +22,21 @@ public class ContactPage {
 
 
     public ContactPage editContact() {
-        page.locator(EDIT_BTN).click();
+        doClickOnElement(page.locator(EDIT_BTN));
         return this;
     }
 
     public ContactPage editPepField(boolean yesNo) {
         String pepTypeYesOrNo = yesNo ? PEP_YES : PEP_NO;
-        page.locator(PEP_FIELD).click();
-        page.locator(pepTypeYesOrNo).click();
+
+        doClickOnElement(page.locator(PEP_FIELD));
+        doClickOnElement(page.locator(pepTypeYesOrNo));
         return this;
     }
 
     public ContactPage saveContact() {
         page.waitForTimeout(3000);
-        page.locator(SAVE_BTN).click();
+        doClickOnElement(page.locator(SAVE_BTN));
         return this;
     }
 

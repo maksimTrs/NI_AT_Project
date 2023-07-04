@@ -1,10 +1,9 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
+import nisfapp.utils.MethodActionsForPO;
 
-import java.nio.file.Paths;
-
-public class DocumentPage {
+public class DocumentPage extends MethodActionsForPO {
 
     private static final String MAIN_WINDOW = "//div[contains(@class,'windowViewMode-maximized active')]";
     private static final String APP_DOCUMENT_UPLOAD_BTN = "(//button[@name='Document__c.UploadFiles'])[last()]";
@@ -21,21 +20,20 @@ public class DocumentPage {
 
 
     public DocumentPage clickOnUploadDocFilesBtn() {
-        page.waitForTimeout(15000);
-        page.locator(APP_DOCUMENT_UPLOAD_BTN).click();
+        page.waitForTimeout(5000);
+        doClickOnElement(page.locator(APP_DOCUMENT_UPLOAD_BTN));
         return this;
     }
 
     public DocumentPage uploadDocFileViaPopUp(String filePath) {
-        page.setInputFiles(APP_DOCUMENT_FILE_UPLOADER_FIELD, Paths.get(filePath));
-        page.locator(APP_DOCUMENT_FILE_UPLOADER_DONE_BTN).click();
+        //page.setInputFiles(APP_DOCUMENT_FILE_UPLOADER_FIELD, Paths.get(filePath));
+        setFile(page, APP_DOCUMENT_FILE_UPLOADER_FIELD, filePath);
+        doClickOnElement(page.locator(APP_DOCUMENT_FILE_UPLOADER_DONE_BTN));
         return this;
     }
 
 
     public void closeDocPartitionAndMoveToAppPage() {
-        //page.bringToFront();
-        //page.close();
-        page.locator(APP_DOCUMENT_CLOSE_BTN).click();
+        doClickOnElement(page.locator(APP_DOCUMENT_CLOSE_BTN));
     }
 }

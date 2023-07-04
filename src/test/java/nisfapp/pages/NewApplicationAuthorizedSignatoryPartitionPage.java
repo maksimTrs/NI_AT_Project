@@ -1,9 +1,9 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
-import nisfapp.utils.MethodActionForPO;
+import nisfapp.utils.MethodActionsForPO;
 
-public class NewApplicationAuthorizedSignatoryPartitionPage extends MethodActionForPO {
+public class NewApplicationAuthorizedSignatoryPartitionPage extends MethodActionsForPO {
 
     private static final String FIRST_NAME = "//label[text()='First Name']//..//input[contains(@name, 'Contact_FirstName')]";
     private static final String LAST_NAME = "//label[text()='Last Name']//..//input[contains(@name, 'Contact_LastName')]";

@@ -1,9 +1,9 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
-import nisfapp.utils.MethodActionForPO;
+import nisfapp.utils.MethodActionsForPO;
 
-public class NewApplicationSalesOfficerInspectionPartitionPage extends MethodActionForPO {
+public class NewApplicationSalesOfficerInspectionPartitionPage extends MethodActionsForPO {
 
     private static String originalDocumentImageVerifiedCheckBox = "//div[contains(@class,'maximized active')]//span[text()='* Original document image verified']";
 

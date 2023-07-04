@@ -3,7 +3,7 @@ package nisfapp.pages;
 import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import nisfapp.utils.MethodActionForPO;
+import nisfapp.utils.MethodActionsForPO;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import static nisfapp.tests.BaseTest.logger;
 import static nisfapp.utils.AppDataFaker.getRandomIntValue;
 
 
-public class MerchantInitialCreationPage extends MethodActionForPO {
+public class MerchantInitialCreationPage extends MethodActionsForPO {
 
     private static final String TRADE_NAME = "//input[@placeholder='Merchant inc.']";
     private static final String MERCHANT_EMAIL = "//input[@inputmode='email']";

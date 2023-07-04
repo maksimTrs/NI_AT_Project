@@ -111,6 +111,5 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
 
 
         //applicationPage.submitToNextStage();
-
     }
 }

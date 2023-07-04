@@ -3,12 +3,12 @@ package nisfapp.pages;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.LocatorAssertions;
 import nisfapp.model.User;
-import nisfapp.utils.MethodActionForPO;
+import nisfapp.utils.MethodActionsForPO;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 
-public class LogInPage extends MethodActionForPO {
+public class LogInPage extends MethodActionsForPO {
 
     private static final String USER_NAME_FIELD = "input#username";
     private static final String PASSWORD_FIELD = "input#password";

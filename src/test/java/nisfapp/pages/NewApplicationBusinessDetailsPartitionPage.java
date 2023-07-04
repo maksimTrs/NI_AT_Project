@@ -1,9 +1,9 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
-import nisfapp.utils.MethodActionForPO;
+import nisfapp.utils.MethodActionsForPO;
 
-public class NewApplicationBusinessDetailsPartitionPage extends MethodActionForPO {
+public class NewApplicationBusinessDetailsPartitionPage extends MethodActionsForPO {
 
     private static final String DESC_BUSINESS_OPERATION_TEXT = "PLAYWRIGHT AT TEST";
 

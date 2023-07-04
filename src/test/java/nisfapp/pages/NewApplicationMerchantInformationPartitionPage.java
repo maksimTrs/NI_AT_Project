@@ -1,9 +1,9 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
-import nisfapp.utils.MethodActionForPO;
+import nisfapp.utils.MethodActionsForPO;
 
-public class NewApplicationMerchantInformationPartitionPage extends MethodActionForPO {
+public class NewApplicationMerchantInformationPartitionPage extends MethodActionsForPO {
 
 
     private static final String PHONE = "//label[text()='* Phone']//ancestor::span//child::input";
