@@ -164,10 +164,10 @@ public abstract class BaseTest {
     }
 
 
-    protected void doSFLogIn() {
+    protected void doSFLogIn(String SFurl, User logInUser) {
         logInPage
-                .openUrl(SF_URL)
-                .fillUserNameAndPasswordFields(SALES_OFFICER_USER)
+                .openUrl(SFurl)
+                .fillUserNameAndPasswordFields(logInUser)
                 .doLogIn();
     }
 

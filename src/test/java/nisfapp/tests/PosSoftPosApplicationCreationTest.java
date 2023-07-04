@@ -26,7 +26,7 @@ public class PosSoftPosApplicationCreationTest extends BaseTest {
     @Test
     public void createSoftPosApplicationTest() {
 
-        doSFLogIn();
+        doSFLogIn(SF_URL, SALES_OFFICER_USER);
         mainSFAppPage
                 .clickOnNavigationMenuType()
                 .chooseOnNavigationMenuType(APPLICATIONS)

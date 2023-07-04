@@ -26,7 +26,7 @@ public class EcomApplicationCreationTest extends BaseTest {
     @Test
     public void createECOMApplicationTest() {
 
-        doSFLogIn();
+        doSFLogIn(SF_URL, SALES_OFFICER_USER);
         mainSFAppPage
                 .clickOnNavigationMenuType()
                 .chooseOnNavigationMenuType(APPLICATIONS)

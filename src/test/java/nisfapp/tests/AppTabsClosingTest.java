@@ -7,7 +7,7 @@ public class AppTabsClosingTest extends BaseTest {
 
     @Test
     public void closeAllAppUITabs() {
-        doSFLogIn();
+        doSFLogIn(SF_URL, SALES_OFFICER_USER);
         applicationPage.closeAllSFTabs();
         applicationPage.assertAllClosedSFTabs();
     }

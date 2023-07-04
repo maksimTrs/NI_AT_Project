@@ -22,7 +22,7 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
     @Test
     public void createNgeniusPosApplicationTest() {
 
-        doSFLogIn();
+        doSFLogIn(SF_URL, SALES_OFFICER_USER);
         mainSFAppPage
                 .clickOnNavigationMenuType()
                 .chooseOnNavigationMenuType(APPLICATIONS)
