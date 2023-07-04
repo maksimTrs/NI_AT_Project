@@ -22,14 +22,14 @@ public class MainSFAppPage extends MethodActionsForPO {
         this.page = page;
     }
 
-    @Step("Open SF navigation menu tab")
+    //@Step("Open SF navigation menu tab")
     public MainSFAppPage clickOnNavigationMenuType() {
         waitForPageLoadState(page);
         doClickOnElement(page.locator(NAVIGATION_MENU));
         return this;
     }
 
-    @Step("Choose navigation menu tab type: {0}")
+    //@Step("Choose navigation menu tab type: {0}")
     public MainSFAppPage chooseOnNavigationMenuType(NavigationMenuPartitions navigationMenuPartition) {
         String locatorMenu = String.format(NAVIGATION_MENU_TYPE, navigationMenuPartition.getDisplayName());
         String locatorMenuHeader = String.format(NAVIGATION_MENU_HEADER, navigationMenuPartition.getDisplayName());
@@ -41,7 +41,7 @@ public class MainSFAppPage extends MethodActionsForPO {
         return this;
     }
 
-    @Step("Click in 'New' button and open initial 'new merchant' window")
+    //@Step("Click in 'New' button and open initial 'new merchant' window")
     public void clickOnNewAppBtn() {
         waitForLocatorLoadState(page, CREATE_NEW_APP_BTN, VISIBLE);
         doClickOnElement(page.locator(CREATE_NEW_APP_BTN));

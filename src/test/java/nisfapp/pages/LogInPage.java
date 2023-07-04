@@ -29,13 +29,14 @@ public class LogInPage extends MethodActionsForPO {
         return this;
     }
 
-    @Step("Fill SF credentials: uname and pass")
+    //@Step("Fill SF credentials: uname and pass")
     public LogInPage fillUserNameAndPasswordFields(User user) {
         waitForLocatorLoadState(page, USER_NAME_FIELD, VISIBLE);
         fillElementField(page.locator(USER_NAME_FIELD), user.getUsername());
         fillElementField(page.locator(PASSWORD_FIELD), user.getPassword());
         return this;
     }
+
     //@Step("Click the login button and enter SF Application")
     public void doLogIn() {
         waitForLocatorLoadState(page, LOGIN_TO_SANDBOX_BTN, VISIBLE);
