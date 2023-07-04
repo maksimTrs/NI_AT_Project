@@ -28,62 +28,68 @@ public class NewApplicationMerchantInformationPartitionPage extends MethodAction
     }
 
     public NewApplicationMerchantInformationPartitionPage fillPhone(String phoneNumber) {
-        //waitForPageLoadState(page);
-        // waitForLocatorLoadTimeout(page, PHONE, 7000);
-        page.locator(PHONE).fill(phoneNumber);
+        page.waitForTimeout(5000);
+        //doClickOnElement(page.locator(PHONE));
+        fillElementField(page.locator(PHONE), phoneNumber);
         return this;
     }
 
     public NewApplicationMerchantInformationPartitionPage fillLegalType(String legalType) {
-        page.locator(LEGAL_TYPE).click();
-        page.locator(String.format(LEGAL_TYPE_OPTION, legalType)).click();
+        doClickOnElement(page.locator(LEGAL_TYPE));
+
+        String legaTypeOpt = String.format(LEGAL_TYPE_OPTION, legalType);
+        doClickOnElement(page.locator(legaTypeOpt));
         return this;
     }
 
     public NewApplicationMerchantInformationPartitionPage fillPOBox(String PoBox) {
-        page.locator(PO_BOX).fill(PoBox);
+        fillElementField(page.locator(PO_BOX), PoBox);
         return this;
     }
 
     public NewApplicationMerchantInformationPartitionPage fillCity(String city) {
-        // page.waitForSelector(CITY_DUBAI, new Page.WaitForSelectorOptions().setState(VISIBLE));
-        page.locator(CITY).press("Enter");
-        page.locator(String.format(CITY_OPTION, city)).click();
+        pressKeyBtn(page.locator(CITY), "Enter");
+
+        String cityOpt = String.format(CITY_OPTION, city);
+        doClickOnElement(page.locator(cityOpt));
         return this;
     }
 
     public NewApplicationMerchantInformationPartitionPage fillAddress(String address) {
-        page.locator(ADDRESS).fill(address);
+        fillElementField(page.locator(ADDRESS), address);
         return this;
     }
 
 
     public NewApplicationMerchantInformationPartitionPage fillWebsiteEcomOrPos(String locator, String webUrl) {
-        page.locator(String.format(WEBSITE, locator)).fill(webUrl);
+        String res = String.format(WEBSITE, locator);
+        fillElementField(page.locator(res), webUrl);
         return this;
     }
 
 
     public NewApplicationMerchantInformationPartitionPage fillTradeLicenceNumber(long tln) {
-        page.locator(TRADE_LICENCE_NUMBER).fill(String.valueOf(tln));
+        fillElementField(page.locator(TRADE_LICENCE_NUMBER), String.valueOf(tln));
         return this;
     }
 
 
     public NewApplicationMerchantInformationPartitionPage fillCountry(String country) {
-        page.locator(COUNTRY).click();
-        page.locator(String.format(COUNTRY_OPTION, country)).click();
+        doClickOnElement(page.locator(COUNTRY));
+
+        String countryOpt = String.format(COUNTRY_OPTION, country);
+        doClickOnElement(page.locator(countryOpt));
         return this;
     }
 
     public NewApplicationMerchantInformationPartitionPage fillDateEstablishment(String date) {
-        page.locator(DATE_ESTABLISHMENT).fill(date);
+        fillElementField(page.locator(DATE_ESTABLISHMENT), date);
         return this;
     }
 
 
     public NewApplicationMerchantInformationPartitionPage fillDateLicenceExpiration(String date) {
-        page.locator(DATE_LICENCE_EXP).fill(date);
+        fillElementField(page.locator(DATE_LICENCE_EXP), date);
         return this;
     }
 }

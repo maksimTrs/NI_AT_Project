@@ -1,9 +1,9 @@
 package nisfapp.pages;
 
-import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import nisfapp.utils.MethodActionForPO;
 
-public class NewApplicationBusinessDetailsPartitionPage {
+public class NewApplicationBusinessDetailsPartitionPage extends MethodActionForPO {
 
     private static final String DESC_BUSINESS_OPERATION_TEXT = "PLAYWRIGHT AT TEST";
 
@@ -24,30 +24,31 @@ public class NewApplicationBusinessDetailsPartitionPage {
 
 
     public NewApplicationBusinessDetailsPartitionPage fillCardPerYear(int num) {
-        page.locator(CARD_VOLUME_PER_YEAR).fill(String.valueOf(num));
+        fillElementField(page.locator(CARD_VOLUME_PER_YEAR), String.valueOf(num));
         return this;
     }
 
     public NewApplicationBusinessDetailsPartitionPage fillVolumePerYear(int num) {
-        page.locator(VOLUME_PER_YEAR).fill(String.valueOf(num));
+        fillElementField(page.locator(VOLUME_PER_YEAR), String.valueOf(num));
         return this;
     }
 
     public NewApplicationBusinessDetailsPartitionPage fillDescOfBusinessOperation(String msg) {
-        page.locator(DESC_BUSINESS_OPERATION).fill(msg);
+        fillElementField(page.locator(DESC_BUSINESS_OPERATION), msg);
         return this;
     }
 
     public NewApplicationBusinessDetailsPartitionPage fillYearsInBusiness(int year) {
-        page.locator(YEARS_IN_BUSINESS).fill(String.valueOf(year));
+        fillElementField(page.locator(YEARS_IN_BUSINESS), String.valueOf(year));
         return this;
     }
 
 
     public NewApplicationBusinessDetailsPartitionPage fillBusinessLine(String mode) {
-        page.locator(BUSINESS_LINE).press("Enter", new Locator.PressOptions().setDelay(1000));
-        //page.waitForSelector(PAYMENT_MODE_OPTION, new Page.WaitForSelectorOptions().setState(VISIBLE));
-        page.locator(String.format(BUSINESS_LINE_OPTION, mode)).click();
+        pressKeyBtnWithDelay(page.locator(BUSINESS_LINE), "Enter", 1000);
+
+        String blOpt = String.format(BUSINESS_LINE_OPTION, mode);
+        doClickOnElement(page.locator(blOpt));
         return this;
     }
 

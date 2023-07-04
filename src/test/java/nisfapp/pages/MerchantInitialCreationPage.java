@@ -1,5 +1,6 @@
 package nisfapp.pages;
 
+import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import nisfapp.utils.MethodActionForPO;
@@ -34,13 +35,11 @@ public class MerchantInitialCreationPage extends MethodActionForPO {
 
     public MerchantInitialCreationPage fillTradeName(String tradeName) {
         page.waitForTimeout(5000);
-        doClickOnElement(page.locator(TRADE_NAME));
         fillElementField(page.locator(TRADE_NAME), tradeName);
         return this;
     }
 
     public MerchantInitialCreationPage fillMerchantEmail(String merchantEmail) {
-        waitForLocatorLoadState(page, MERCHANT_EMAIL, VISIBLE);
         fillElementField(page.locator(MERCHANT_EMAIL), merchantEmail);
         return this;
     }
@@ -65,7 +64,7 @@ public class MerchantInitialCreationPage extends MethodActionForPO {
 
         List<String> businessNatureList = page.querySelectorAll(BUSINESS_NATURE_LIST)
                 .stream()
-                .map(x -> x.innerText())
+                .map(ElementHandle::innerText)
                 .filter(x -> !x.startsWith(" ")) // text doesn't  start from space sign
                 .toList();
 
@@ -85,21 +84,18 @@ public class MerchantInitialCreationPage extends MethodActionForPO {
     public MerchantInitialCreationPage unselectSelectedProduct(String selectedProduct) {
         String product = (String.format(SELECTED_PRODUCT, selectedProduct));
 
-        //waitForLocatorLoadState(page, product, VISIBLE);
         doClickOnElement(page.locator(product));
         doClickOnElement(page.locator(UNSELECT_SELECTED_PRODUCT_BTN));
         return this;
     }
 
     public MerchantInitialCreationPage selectPosType(String selectedPosType) {
-        //waitForLocatorLoadState(page, POS_TYPE, VISIBLE);
         doClickOnElement(page.locator(POS_TYPE));
         selectOptionFromList(page.locator(POS_TYPE), selectedPosType);
         return this;
     }
 
     public MerchantInitialCreationPage selectEcomType(String selectedEcomType) {
-        //waitForLocatorLoadState(page, ECOM_TYPE, VISIBLE);
         doClickOnElement(page.locator(ECOM_TYPE));
         selectOptionFromList(page.locator(ECOM_TYPE), selectedEcomType);
         return this;
@@ -107,7 +103,6 @@ public class MerchantInitialCreationPage extends MethodActionForPO {
 
 
     public MerchantInitialCreationPage setNumberOfPos(int posNumber) {
-        //waitForLocatorLoadState(page, NUMBER_OF_POS, VISIBLE);
         fillElementField(page.locator(NUMBER_OF_POS), String.valueOf(posNumber));
         return this;
     }

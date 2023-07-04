@@ -23,7 +23,6 @@ public class MainSFAppPage extends MethodActionForPO {
 
     public MainSFAppPage clickOnNavigationMenuType() {
         waitForPageLoadState(page);
-        //waitForLocatorLoadState(page, NAVIGATION_MENU, VISIBLE);
         doClickOnElement(page.locator(NAVIGATION_MENU));
         return this;
     }
@@ -33,9 +32,6 @@ public class MainSFAppPage extends MethodActionForPO {
         String locatorMenu = String.format(NAVIGATION_MENU_TYPE, navigationMenuPartition.getDisplayName());
         String locatorMenuHeader = String.format(NAVIGATION_MENU_HEADER, navigationMenuPartition.getDisplayName());
 
-
-        // waitForLocatorLoadState(page, locatorMenu, VISIBLE);
-        //page.locator(String.format(NAVIGATION_MENU_TYPE, navigationMenuPartition.getDisplayName())).click(new Locator.ClickOptions().setDelay(1000));
         doClickOnElementWithDelay(page.locator(locatorMenu), 1000);
 
         waitForLocatorLoadState(page, locatorMenuHeader, VISIBLE);

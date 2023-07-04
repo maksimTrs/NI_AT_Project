@@ -1,8 +1,9 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
+import nisfapp.utils.MethodActionForPO;
 
-public class NewApplicationSalesOfficerInspectionPartitionPage {
+public class NewApplicationSalesOfficerInspectionPartitionPage extends MethodActionForPO {
 
     private static String originalDocumentImageVerifiedCheckBox = "//div[contains(@class,'maximized active')]//span[text()='* Original document image verified']";
 
@@ -15,8 +16,8 @@ public class NewApplicationSalesOfficerInspectionPartitionPage {
 
 
     public NewApplicationSalesOfficerInspectionPartitionPage clickOnOriginalDocumentImageVerifiedCheckBox(boolean activateCheckbox) {
-        if (activateCheckbox) {
-            page.locator(originalDocumentImageVerifiedCheckBox).click();
+        if (activateCheckbox && !page.locator(originalDocumentImageVerifiedCheckBox).isChecked()) {
+            doClickOnElement(page.locator(originalDocumentImageVerifiedCheckBox));
         }
         return this;
     }

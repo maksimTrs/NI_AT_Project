@@ -1,8 +1,9 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
+import nisfapp.utils.MethodActionForPO;
 
-public class NewApplicationFeesChargesPartitionPage {
+public class NewApplicationFeesChargesPartitionPage extends MethodActionForPO {
 
     private static final String MIS_MONTH_REPORT_FEE = "//input[contains(@name, 'MisMonthlyReportFee')]";
 
@@ -15,7 +16,7 @@ public class NewApplicationFeesChargesPartitionPage {
 
 
     public NewApplicationFeesChargesPartitionPage fillMisMonthReportFee(double num) {
-        page.locator(MIS_MONTH_REPORT_FEE).fill(String.valueOf(num));
+        fillElementField(page.locator(MIS_MONTH_REPORT_FEE), String.valueOf(num));
         return this;
     }
 }

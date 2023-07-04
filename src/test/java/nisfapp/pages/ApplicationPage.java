@@ -3,6 +3,7 @@ package nisfapp.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.LocatorAssertions;
+import nisfapp.utils.MethodActionForPO;
 
 import java.util.regex.Pattern;
 
@@ -10,7 +11,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 import static nisfapp.tests.BaseTest.logger;
 
-public class ApplicationPage {
+public class ApplicationPage extends MethodActionForPO {
 
     private static final String MAIN_WINDOW = "//div[contains(@class,'windowViewMode-maximized active')]";
     private static final String PRIMARY_APP_ID = "(//slot[@name='primaryField']/lightning-formatted-text)[last()]";
@@ -36,37 +37,6 @@ public class ApplicationPage {
 
     public ApplicationPage(Page page) {
         this.page = page;
-    }
-
-
-    public ApplicationPage openCurrentSFAppTab() {
-        page.waitForSelector(CURRENT_APP_SF_TAB, new Page.WaitForSelectorOptions().setState(VISIBLE));
-        page.locator(CURRENT_APP_SF_TAB).click();
-        return this;
-    }
-
-    public ApplicationPage assertApplicationPrimaryId() {
-        assertThat(page.locator(PRIMARY_APP_ID)).hasText(Pattern.compile("A-\\d{9,}"));
-        String appID = page.locator(PRIMARY_APP_ID).innerText();
-
-        logger.info("<<<<< Application was created with ID: " + appID + " >>>>>");
-        return this;
-    }
-
-    public ApplicationPage assertApplicationTradeName() {
-        assertThat(page.locator(TRADE_NAME)).containsText("AT TEST");
-        String appName = page.locator(TRADE_NAME).innerText();
-
-        appSFName = page.locator(TRADE_NAME).innerText();
-        logger.info("<<<<< Application was created with Trade Name: " + appName + " >>>>>");
-        return this;
-    }
-
-    public ApplicationPage assertDraftStageIsChosen() {
-        assertThat(page.locator(DRAFT_STAGE_FIELD)).hasAttribute("aria-selected", "true",
-                new LocatorAssertions.HasAttributeOptions().setTimeout(3000));
-        assertThat(page.locator(DRAFT_STAGE_FIELD)).hasAttribute("aria-current", "true");
-        return this;
     }
 
 
@@ -96,16 +66,21 @@ public class ApplicationPage {
         }
     }
 
-    public void assertAllClosedSFTabs() {
-        assertThat(page.locator(ALL_APP_SF_TABS)).hasCount(0, new LocatorAssertions.HasCountOptions().setTimeout(15000));
+
+    public ApplicationPage openCurrentSFAppTab() {
+        waitForLocatorLoadState(page, CURRENT_APP_SF_TAB, VISIBLE);
+        doClickOnElement(page.locator(CURRENT_APP_SF_TAB));
+        return this;
     }
 
+
     public ApplicationPage fillBusinessSensitivePartition(String iban, String accNum) {
-        // page.waitForTimeout(7000);
-        page.waitForSelector(IBAN, new Page.WaitForSelectorOptions().setState(VISIBLE));
-        page.locator(IBAN).fill(iban);
-        page.locator(ACCOUNT_NUMBER).fill(accNum);
-        page.locator(IBAN_ACC_SAVE_BTN).click();
+        page.waitForTimeout(3000);
+        waitForLocatorLoadState(page, IBAN, VISIBLE);
+
+        fillElementField(page.locator(IBAN), iban);
+        fillElementField(page.locator(ACCOUNT_NUMBER), accNum);
+        doClickOnElement(page.locator(IBAN_ACC_SAVE_BTN));
         return this;
     }
 
@@ -119,16 +94,6 @@ public class ApplicationPage {
         return new ContactPage(contactPage);
     }
 
-    public void assertAppIdFromContactPageReturning() {
-        assertThat(page.locator(PRIMARY_APP_ID)).hasText(appSFID);
-        logger.debug("<<<<< Contact's Application:" + appSFName + " has ID: " + appSFID + " >>>>>");
-    }
-
-    public void assertAppIdFromDocumentPageReturning() {
-        assertThat(page.locator(PRIMARY_APP_ID)).hasText(appSFID);
-        logger.debug("<<<<< Document's Application" + appSFName + " has ID: " + appSFID + " >>>>>");
-    }
-
 
     public void submitToNextStage() {
         page.reload();
@@ -139,5 +104,46 @@ public class ApplicationPage {
     public void openAppGenericDocument() {
         page.waitForTimeout(5000);
         page.locator(MAIN_WINDOW + APP_GENERIC_DOCUMENT).click();
+    }
+
+
+    public ApplicationPage assertApplicationPrimaryId() {
+        assertThat(page.locator(PRIMARY_APP_ID)).hasText(Pattern.compile("A-\\d{9,}"));
+        String appID = page.locator(PRIMARY_APP_ID).innerText();
+
+        logger.info("<<<<< Application was created with ID: " + appID + " >>>>>");
+        return this;
+    }
+
+    public ApplicationPage assertApplicationTradeName() {
+        assertThat(page.locator(TRADE_NAME)).containsText("AT TEST");
+        String appName = page.locator(TRADE_NAME).innerText();
+
+        appSFName = page.locator(TRADE_NAME).innerText();
+        logger.info("<<<<< Application was created with Trade Name: " + appName + " >>>>>");
+        return this;
+    }
+
+    public ApplicationPage assertDraftStageIsChosen() {
+        assertThat(page.locator(DRAFT_STAGE_FIELD)).hasAttribute("aria-selected", "true",
+                new LocatorAssertions.HasAttributeOptions().setTimeout(3000));
+        assertThat(page.locator(DRAFT_STAGE_FIELD)).hasAttribute("aria-current", "true");
+        return this;
+    }
+
+
+    public void assertAllClosedSFTabs() {
+        assertThat(page.locator(ALL_APP_SF_TABS)).hasCount(0, new LocatorAssertions.HasCountOptions().setTimeout(15000));
+    }
+
+
+    public void assertAppIdFromContactPageReturning() {
+        assertThat(page.locator(PRIMARY_APP_ID)).hasText(appSFID);
+        logger.debug("<<<<< Contact's Application:" + appSFName + " has ID: " + appSFID + " >>>>>");
+    }
+
+    public void assertAppIdFromDocumentPageReturning() {
+        assertThat(page.locator(PRIMARY_APP_ID)).hasText(appSFID);
+        logger.debug("<<<<< Document's Application" + appSFName + " has ID: " + appSFID + " >>>>>");
     }
 }

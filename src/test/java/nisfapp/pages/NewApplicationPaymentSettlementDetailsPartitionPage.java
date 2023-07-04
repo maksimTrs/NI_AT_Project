@@ -1,9 +1,9 @@
 package nisfapp.pages;
 
-import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import nisfapp.utils.MethodActionForPO;
 
-public class NewApplicationPaymentSettlementDetailsPartitionPage {
+public class NewApplicationPaymentSettlementDetailsPartitionPage extends MethodActionForPO {
 
 
     private static final String BANK_NAME = "//input[@Placeholder='Search Banks...']";
@@ -23,30 +23,32 @@ public class NewApplicationPaymentSettlementDetailsPartitionPage {
 
 
     public NewApplicationPaymentSettlementDetailsPartitionPage fillBankName(String bank) {
-        page.locator(BANK_NAME).fill(bank, new Locator.FillOptions().setTimeout(3000));
-        page.locator(BANK_NAME).click(new Locator.ClickOptions().setTimeout(2000));
-        page.locator(BANK_NAME_OPTION).click();
+        fillElementFieldWithTimeOut(page.locator(BANK_NAME), bank, 3000);
+        doClickOnElementWithTimeOut(page.locator(BANK_NAME), 2000);
+        doClickOnElement(page.locator(BANK_NAME_OPTION));
         return this;
     }
 
     public NewApplicationPaymentSettlementDetailsPartitionPage fillTaxRegNum(long num) {
-        page.locator(TAX_REG_NUMBER).fill(String.valueOf(num));
+        fillElementField(page.locator(TAX_REG_NUMBER), String.valueOf(num));
         return this;
     }
 
 
     public NewApplicationPaymentSettlementDetailsPartitionPage fillPaymentMode(String mode) {
-        page.locator(PAYMENT_MODE).press("Enter");
-        //page.waitForSelector(PAYMENT_MODE_OPTION, new Page.WaitForSelectorOptions().setState(VISIBLE));
-        page.locator(String.format(PAYMENT_MODE_OPTION, mode)).click();
+        pressKeyBtn(page.locator(PAYMENT_MODE), "Enter");
+
+        String paymentOpt = String.format(PAYMENT_MODE_OPTION, mode);
+        doClickOnElement(page.locator(paymentOpt));
         return this;
     }
 
 
     public NewApplicationPaymentSettlementDetailsPartitionPage fillRentalMode(String mode) {
-        page.locator(RENTAL_MODE).press("Enter", new Locator.PressOptions().setDelay(1000));
-        //page.waitForSelector(PAYMENT_MODE_OPTION, new Page.WaitForSelectorOptions().setState(VISIBLE));
-        page.locator(String.format(RENTAL_MODE_OPTION, mode)).click();
+        pressKeyBtnWithDelay(page.locator(RENTAL_MODE), "Enter", 1000);
+
+        String rentalOpt = (String.format(RENTAL_MODE_OPTION, mode));
+        doClickOnElement(page.locator(rentalOpt));
         return this;
     }
 }

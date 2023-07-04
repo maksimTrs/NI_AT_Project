@@ -47,6 +47,14 @@ public abstract class MethodActionForPO {
         locator.fill(value, new Locator.FillOptions().setTimeout(timeOut));
     }
 
+    public void pressKeyBtn(Locator locator, String keyBoardKey) {
+        locator.press(keyBoardKey);
+    }
+
+    public void pressKeyBtnWithDelay(Locator locator, String keyBoardKey, int delay) {
+        locator.press(keyBoardKey, new Locator.PressOptions().setDelay(delay));
+    }
+
     public void selectOptionFromList(Locator locator, String value) {
         locator.selectOption(value);
     }

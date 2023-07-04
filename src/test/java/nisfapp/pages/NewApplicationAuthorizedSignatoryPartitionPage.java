@@ -1,8 +1,9 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
+import nisfapp.utils.MethodActionForPO;
 
-public class NewApplicationAuthorizedSignatoryPartitionPage {
+public class NewApplicationAuthorizedSignatoryPartitionPage extends MethodActionForPO {
 
     private static final String FIRST_NAME = "//label[text()='First Name']//..//input[contains(@name, 'Contact_FirstName')]";
     private static final String LAST_NAME = "//label[text()='Last Name']//..//input[contains(@name, 'Contact_LastName')]";
@@ -22,36 +23,37 @@ public class NewApplicationAuthorizedSignatoryPartitionPage {
 
 
     public NewApplicationAuthorizedSignatoryPartitionPage fillMobilPhone(String phoneNumber) {
-        page.locator(MOBILE_PHONE).fill(phoneNumber);
+        fillElementField(page.locator(MOBILE_PHONE), phoneNumber);
         return this;
     }
 
     public NewApplicationAuthorizedSignatoryPartitionPage fillPassportNum(String passport) {
-        page.locator(PASSPORT_NUMBER).fill(passport);
+        fillElementField(page.locator(PASSPORT_NUMBER), passport);
         return this;
     }
 
 
     public NewApplicationAuthorizedSignatoryPartitionPage fillPassportExpDate(String expirationDate) {
-        page.locator(PASSPORT_EXP_DATE).fill(expirationDate);
+        fillElementField(page.locator(PASSPORT_EXP_DATE), expirationDate);
         return this;
     }
 
     public NewApplicationAuthorizedSignatoryPartitionPage fillContactBirthday(String bd) {
-        page.locator(BIRTHDAY_DATE).fill(bd);
+        fillElementField(page.locator(BIRTHDAY_DATE), bd);
         return this;
     }
 
     public NewApplicationAuthorizedSignatoryPartitionPage fillFirstAndLastName(String fn, String ln) {
-        page.locator(FIRST_NAME).fill(fn);
-        page.locator(LAST_NAME).fill(ln);
+        fillElementField(page.locator(FIRST_NAME), fn);
+        fillElementField(page.locator(LAST_NAME), ln);
         return this;
     }
 
     public NewApplicationAuthorizedSignatoryPartitionPage fillNationality(String nationality) {
-        page.locator(NATIONALITY).press("Enter");
-        //page.waitForSelector(NATIONALITY_OPTION, new Page.WaitForSelectorOptions().setState(VISIBLE));
-        page.locator(String.format(NATIONALITY_OPTION, nationality)).click();
+        pressKeyBtn(page.locator(NATIONALITY), "Enter");
+
+        String nationOpt = String.format(NATIONALITY_OPTION, nationality);
+        doClickOnElement(page.locator(nationOpt));
         return this;
     }
 }
