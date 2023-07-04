@@ -2,6 +2,7 @@ package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.LocatorAssertions;
+import io.qameta.allure.Step;
 import nisfapp.model.User;
 import nisfapp.utils.MethodActionsForPO;
 
@@ -21,19 +22,21 @@ public class LogInPage extends MethodActionsForPO {
         this.page = page;
     }
 
+    @Step("Open SF URL: {0}")
     public LogInPage openUrl(String pageUrl) {
         page.navigate(pageUrl);
         waitForPageLoadState(page);
         return this;
     }
 
+    @Step("Fill SF credentials: uname and pass")
     public LogInPage fillUserNameAndPasswordFields(User user) {
         waitForLocatorLoadState(page, USER_NAME_FIELD, VISIBLE);
         fillElementField(page.locator(USER_NAME_FIELD), user.getUsername());
         fillElementField(page.locator(PASSWORD_FIELD), user.getPassword());
         return this;
     }
-
+    //@Step("Click the login button and enter SF Application")
     public void doLogIn() {
         waitForLocatorLoadState(page, LOGIN_TO_SANDBOX_BTN, VISIBLE);
         doClickOnElement(page.locator(LOGIN_TO_SANDBOX_BTN));

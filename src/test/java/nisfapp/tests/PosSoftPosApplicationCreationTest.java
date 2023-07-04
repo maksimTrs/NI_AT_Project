@@ -1,5 +1,8 @@
 package nisfapp.tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.testng.Tag;
+import io.qameta.allure.testng.Tags;
 import org.testng.annotations.Test;
 
 import static nisfapp.pages.NavigationMenuPartitions.APPLICATIONS;
@@ -23,7 +26,15 @@ import static nisfapp.utils.AppDataFaker.*;
 
 public class PosSoftPosApplicationCreationTest extends BaseTest {
 
-    @Test
+
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Maksim T")
+    @Tags({@Tag("UI_TEST"), @Tag("SMOKE_TEST")})
+    @Description("Create POS application with type 'SoftPos' in the 'Draft' stage. Fill App Contact PEP info and upload Document file")
+    @Epic("SF Application Testing")
+    @Feature("Create POS Application in SF UI")
+    @Story("POS 'SoftPos' Application Creation Test")
+    @Test(groups = {"SmokeTest"})
     public void createSoftPosApplicationTest() {
 
         doSFLogIn(SF_URL, SALES_OFFICER_USER);
