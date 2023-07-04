@@ -124,7 +124,7 @@ public abstract class BaseTest {
                     .setViewportSize(width, height)
                     .setPermissions(Arrays.asList("notifications", "geolocation")));
         }
-        // browserContext.setDefaultTimeout(40000);
+        browserContext.setDefaultTimeout(40000);
         //page.setDefaultTimeout(40000);
         page = browserContext.newPage();
         initPages(this, page);

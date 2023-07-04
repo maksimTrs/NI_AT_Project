@@ -2,11 +2,12 @@ package nisfapp.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import nisfapp.utils.MethodActionForPO;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 
-public class MainSFAppPage {
+public class MainSFAppPage extends MethodActionForPO {
 
     private static final String VIEW_PROFILE = "//img[@title='User']/ancestor::button[@data-aura-class='forceHeaderButton']";
     private static final String LOGOUT_BTN = "//div/a[contains(@href, '/logout.')][@dir='ltr']";
@@ -21,29 +22,42 @@ public class MainSFAppPage {
         this.page = page;
     }
 
-    public void assertLogOutBtn() {
-        page.waitForSelector(VIEW_PROFILE, new Page.WaitForSelectorOptions().setState(VISIBLE));
-        page.locator(VIEW_PROFILE).click();
-        assertThat(page.locator(LOGOUT_BTN)).isEnabled();
-        assertThat(page.locator(LOGOUT_BTN)).hasText("Log Out");
-    }
-
     public MainSFAppPage clickOnNavigationMenuType() {
-        page.locator(NAVIGATION_MENU).click();
+        waitForPageLoadState(page);
+        waitForLocatorLoadState(page, NAVIGATION_MENU, VISIBLE);
+        doClickOnElement(page.locator(NAVIGATION_MENU));
         return this;
     }
 
 
     public MainSFAppPage chooseOnNavigationMenuType(NavigationMenuPartitions navigationMenuPartition) {
-        page.waitForSelector(String.format(NAVIGATION_MENU_TYPE, navigationMenuPartition.getDisplayName()), new Page.WaitForSelectorOptions().setState(VISIBLE));
-        page.locator(String.format(NAVIGATION_MENU_TYPE, navigationMenuPartition.getDisplayName())).click(new Locator.ClickOptions().setDelay(1000));
-        page.locator(String.format(NAVIGATION_MENU_HEADER, navigationMenuPartition.getDisplayName())).click(new Locator.ClickOptions().setDelay(1000));
+        String locatorMenu = String.format(NAVIGATION_MENU_TYPE, navigationMenuPartition.getDisplayName());
+        String locatorMenuHeader = String.format(NAVIGATION_MENU_HEADER, navigationMenuPartition.getDisplayName());
+
+
+        waitForLocatorLoadState(page, locatorMenu, VISIBLE);
+        //page.locator(String.format(NAVIGATION_MENU_TYPE, navigationMenuPartition.getDisplayName())).click(new Locator.ClickOptions().setDelay(1000));
+        doClickOnElement(page.locator(locatorMenu));
+
+        waitForLocatorLoadState(page, locatorMenuHeader, VISIBLE);
+        doClickOnElement(page.locator(locatorMenuHeader));
         return this;
     }
 
     public void clickOnNewAppBtn() {
-        page.waitForSelector(CREATE_NEW_APP_BTN, new Page.WaitForSelectorOptions().setState(VISIBLE));
-        page.locator(CREATE_NEW_APP_BTN).click();
-        page.waitForTimeout(5000);
+        waitForLocatorLoadState(page, CREATE_NEW_APP_BTN, VISIBLE);
+        doClickOnElement(page.locator(CREATE_NEW_APP_BTN));
+        waitForPageLoadState(page);
+    }
+
+
+
+
+
+    public void assertLogOutBtn() {
+        page.waitForSelector(VIEW_PROFILE, new Page.WaitForSelectorOptions().setState(VISIBLE));
+        page.locator(VIEW_PROFILE).click();
+        assertThat(page.locator(LOGOUT_BTN)).isEnabled();
+        assertThat(page.locator(LOGOUT_BTN)).hasText("Log Out");
     }
 }
