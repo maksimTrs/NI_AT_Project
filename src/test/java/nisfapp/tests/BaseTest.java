@@ -111,7 +111,7 @@ public abstract class BaseTest {
         if (isTraceEnabled) {
             browserContext = browser.newContext(new Browser.NewContextOptions()
                     .setViewportSize(width, height)
-                    .setPermissions(Arrays.asList("notifications", "geolocation"))
+                    //.setPermissions(Arrays.asList("notifications", "geolocation"))
                     .setRecordVideoDir(Paths.get("videos/"))
                     .setRecordVideoSize(1280, 720));
 
@@ -121,8 +121,8 @@ public abstract class BaseTest {
                     .setSources(false));
         } else {
             browserContext = browser.newContext(new Browser.NewContextOptions()
-                    .setViewportSize(width, height)
-                    .setPermissions(Arrays.asList("notifications", "geolocation")));
+                    //.setPermissions(Arrays.asList("notifications", "geolocation"))
+                    .setViewportSize(width, height));
         }
         //browserContext.setDefaultTimeout(40000);
         //page.setDefaultTimeout(40000);
