@@ -171,9 +171,9 @@
                     </systemPropertyVariables>
                     <suiteXmlFiles>
                         <!--suppress UnresolvedMavenProperty -->
-                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                        <!-- <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
                         <!--suppress UnresolvedMavenProperty -->
-                        <!--  <suiteXmlFile>${project.basedir}/src/test/resources/${suiteFile}</suiteXmlFile>-->
+                          <suiteXmlFile>${project.basedir}/src/test/resources/${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>
