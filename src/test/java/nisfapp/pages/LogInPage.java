@@ -2,7 +2,6 @@ package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.LocatorAssertions;
-import com.microsoft.playwright.options.WaitForSelectorState;
 import nisfapp.model.User;
 import nisfapp.utils.MethodActionForPO;
 
@@ -40,8 +39,6 @@ public class LogInPage extends MethodActionForPO {
         doClickOnElement(page.locator(LOGIN_TO_SANDBOX_BTN));
         waitForPageLoadState(page);
     }
-
-
 
 
     public void assertErrorMsg() {

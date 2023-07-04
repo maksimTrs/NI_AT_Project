@@ -6,7 +6,8 @@
 
 **_-DBUNDLE_TYPE=preprod_**
 
-2. [x] This framework is using mvn wrapper (mvn -N wrapper:wrapper -Dmaven=3.8.5). To run command via maven, use "mvn" instead of "./mvnw".
+2. [x] This framework is using mvn wrapper (mvn -N wrapper:wrapper -Dmaven=3.8.5). To run command via maven, use "mvn"
+   instead of "./mvnw".
 
 =================================================================================================================
 

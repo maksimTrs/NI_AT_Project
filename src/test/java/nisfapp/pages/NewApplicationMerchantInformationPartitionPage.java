@@ -1,8 +1,9 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
+import nisfapp.utils.MethodActionForPO;
 
-public class NewApplicationMerchantInformationPartitionPage {
+public class NewApplicationMerchantInformationPartitionPage extends MethodActionForPO {
 
 
     private static final String PHONE = "//label[text()='* Phone']//ancestor::span//child::input";
@@ -27,6 +28,8 @@ public class NewApplicationMerchantInformationPartitionPage {
     }
 
     public NewApplicationMerchantInformationPartitionPage fillPhone(String phoneNumber) {
+        //waitForPageLoadState(page);
+        // waitForLocatorLoadTimeout(page, PHONE, 7000);
         page.locator(PHONE).fill(phoneNumber);
         return this;
     }

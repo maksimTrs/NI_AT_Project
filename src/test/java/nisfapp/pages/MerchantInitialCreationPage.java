@@ -2,14 +2,16 @@ package nisfapp.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import nisfapp.utils.MethodActionForPO;
 
 import java.util.List;
 
+import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 import static nisfapp.tests.BaseTest.logger;
 import static nisfapp.utils.AppDataFaker.getRandomIntValue;
 
 
-public class MerchantInitialCreationPage {
+public class MerchantInitialCreationPage extends MethodActionForPO {
 
     private static final String TRADE_NAME = "//input[@placeholder='Merchant inc.']";
     private static final String MERCHANT_EMAIL = "//input[@inputmode='email']";
@@ -31,22 +33,25 @@ public class MerchantInitialCreationPage {
     }
 
     public MerchantInitialCreationPage fillTradeName(String tradeName) {
-        page.locator(TRADE_NAME).fill(tradeName);
+        page.waitForTimeout(5000);
+        doClickOnElement(page.locator(TRADE_NAME));
+        fillElementField(page.locator(TRADE_NAME), tradeName);
         return this;
     }
 
     public MerchantInitialCreationPage fillMerchantEmail(String merchantEmail) {
-        page.locator(MERCHANT_EMAIL).fill(merchantEmail);
+        waitForLocatorLoadState(page, MERCHANT_EMAIL, VISIBLE);
+        fillElementField(page.locator(MERCHANT_EMAIL), merchantEmail);
         return this;
     }
 
 
     public MerchantInitialCreationPage chooseBusinessNatureType(String businessNatureType) {
-
+        waitForLocatorLoadState(page, BUSINESS_NATURE, VISIBLE);
         Locator businessNature = page.locator(BUSINESS_NATURE);
-        businessNature.click();
-        businessNature.selectOption(businessNatureType);
-        businessNature.click();
+        doClickOnElement(businessNature);
+        selectOptionFromList(businessNature, businessNatureType);
+        doClickOnElement(businessNature);
         return this;
     }
 
@@ -78,32 +83,37 @@ public class MerchantInitialCreationPage {
 
 
     public MerchantInitialCreationPage unselectSelectedProduct(String selectedProduct) {
-        page.locator(String.format(SELECTED_PRODUCT, selectedProduct)).click();
-        page.locator(UNSELECT_SELECTED_PRODUCT_BTN).click();
+        String product = (String.format(SELECTED_PRODUCT, selectedProduct));
+
+        //waitForLocatorLoadState(page, product, VISIBLE);
+        doClickOnElement(page.locator(product));
+        doClickOnElement(page.locator(UNSELECT_SELECTED_PRODUCT_BTN));
         return this;
     }
 
     public MerchantInitialCreationPage selectPosType(String selectedPosType) {
-        page.locator(POS_TYPE).click();
-        page.locator(POS_TYPE).selectOption(selectedPosType);
+        //waitForLocatorLoadState(page, POS_TYPE, VISIBLE);
+        doClickOnElement(page.locator(POS_TYPE));
+        selectOptionFromList(page.locator(POS_TYPE), selectedPosType);
         return this;
     }
 
     public MerchantInitialCreationPage selectEcomType(String selectedEcomType) {
-        page.locator(ECOM_TYPE).click();
-        page.locator(ECOM_TYPE).selectOption(selectedEcomType);
+        //waitForLocatorLoadState(page, ECOM_TYPE, VISIBLE);
+        doClickOnElement(page.locator(ECOM_TYPE));
+        selectOptionFromList(page.locator(ECOM_TYPE), selectedEcomType);
         return this;
     }
 
 
     public MerchantInitialCreationPage setNumberOfPos(int posNumber) {
-        page.locator(NUMBER_OF_POS).fill(String.valueOf(posNumber));
+        //waitForLocatorLoadState(page, NUMBER_OF_POS, VISIBLE);
+        fillElementField(page.locator(NUMBER_OF_POS), String.valueOf(posNumber));
         return this;
     }
 
 
     public void moveToTheSecondApplicationScreen() {
-        page.locator(NEXT_BTN).click();
-        page.waitForTimeout(5000);
+        doClickOnElement(page.locator(NEXT_BTN));
     }
 }

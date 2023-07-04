@@ -3,11 +3,11 @@ package nisfapp.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.LocatorAssertions;
-import com.microsoft.playwright.options.WaitForSelectorState;
 
 import java.util.regex.Pattern;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 import static nisfapp.tests.BaseTest.logger;
 
 public class ApplicationPage {
@@ -40,7 +40,7 @@ public class ApplicationPage {
 
 
     public ApplicationPage openCurrentSFAppTab() {
-        page.waitForTimeout(19000);
+        page.waitForSelector(CURRENT_APP_SF_TAB, new Page.WaitForSelectorOptions().setState(VISIBLE));
         page.locator(CURRENT_APP_SF_TAB).click();
         return this;
     }
@@ -87,7 +87,7 @@ public class ApplicationPage {
 
             Locator closeLocator = page.locator(String.format(APP_SF_TAB_CLOSE_BTN, appID));
             closeLocator.waitFor(new Locator.WaitForOptions()
-                    .setState(WaitForSelectorState.VISIBLE)
+                    .setState(VISIBLE)
                     .setTimeout(5000));
 
             // listEle.nth(i).click(new Locator.ClickOptions().setDelay(1000));
@@ -101,8 +101,9 @@ public class ApplicationPage {
     }
 
     public ApplicationPage fillBusinessSensitivePartition(String iban, String accNum) {
-        page.waitForTimeout(25000);
-        page.locator(IBAN).fill(iban, new Locator.FillOptions().setTimeout(11000));
+        // page.waitForTimeout(7000);
+        page.waitForSelector(IBAN, new Page.WaitForSelectorOptions().setState(VISIBLE));
+        page.locator(IBAN).fill(iban);
         page.locator(ACCOUNT_NUMBER).fill(accNum);
         page.locator(IBAN_ACC_SAVE_BTN).click();
         return this;
@@ -110,7 +111,7 @@ public class ApplicationPage {
 
 
     public ContactPage openAppContactPage() {
-        page.waitForTimeout(9000);
+        page.waitForTimeout(5000);
         appSFID = page.locator(PRIMARY_APP_ID).innerText();
         // page.locator(CONTACT_NAME).click();
         //page.waitForTimeout(3000);
@@ -136,6 +137,7 @@ public class ApplicationPage {
     }
 
     public void openAppGenericDocument() {
+        page.waitForTimeout(5000);
         page.locator(MAIN_WINDOW + APP_GENERIC_DOCUMENT).click();
     }
 }

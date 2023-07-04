@@ -1,6 +1,5 @@
 package nisfapp.pages;
 
-import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import nisfapp.utils.MethodActionForPO;
 
@@ -24,7 +23,7 @@ public class MainSFAppPage extends MethodActionForPO {
 
     public MainSFAppPage clickOnNavigationMenuType() {
         waitForPageLoadState(page);
-        waitForLocatorLoadState(page, NAVIGATION_MENU, VISIBLE);
+        //waitForLocatorLoadState(page, NAVIGATION_MENU, VISIBLE);
         doClickOnElement(page.locator(NAVIGATION_MENU));
         return this;
     }
@@ -35,23 +34,19 @@ public class MainSFAppPage extends MethodActionForPO {
         String locatorMenuHeader = String.format(NAVIGATION_MENU_HEADER, navigationMenuPartition.getDisplayName());
 
 
-        waitForLocatorLoadState(page, locatorMenu, VISIBLE);
+        // waitForLocatorLoadState(page, locatorMenu, VISIBLE);
         //page.locator(String.format(NAVIGATION_MENU_TYPE, navigationMenuPartition.getDisplayName())).click(new Locator.ClickOptions().setDelay(1000));
-        doClickOnElement(page.locator(locatorMenu));
+        doClickOnElementWithDelay(page.locator(locatorMenu), 1000);
 
         waitForLocatorLoadState(page, locatorMenuHeader, VISIBLE);
-        doClickOnElement(page.locator(locatorMenuHeader));
+        doClickOnElementWithDelay(page.locator(locatorMenuHeader), 1000);
         return this;
     }
 
     public void clickOnNewAppBtn() {
         waitForLocatorLoadState(page, CREATE_NEW_APP_BTN, VISIBLE);
         doClickOnElement(page.locator(CREATE_NEW_APP_BTN));
-        waitForPageLoadState(page);
     }
-
-
-
 
 
     public void assertLogOutBtn() {
