@@ -33,9 +33,7 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
     @Test(groups = {"SmokeTest"})
     public void createNgeniusPosApplicationTest() {
 
-        step("Sign in", () -> {
-            doSFLogIn(SF_URL, SALES_OFFICER_USER);
-        });
+        doSFLogIn(SF_URL, SALES_OFFICER_USER);
 
         step("Open Application tab and click on 'New' btn", () -> {
             mainSFAppPage
@@ -143,7 +141,6 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
         });
 
 
-
         step("Open initial Application Document and upload document file. Go back to the initial application.", () -> {
             applicationPage
                     .openAppGenericDocument();
@@ -153,7 +150,6 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
                     .uploadDocFileViaPopUp(DOC_FILE_UPLOAD_PATH)
                     .closeDocPartitionAndMoveToAppPage();
         });
-
 
 
         step("Assert APP ID, check the latest created test Application after Document Page redirection", () -> {
