@@ -5,16 +5,15 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.LocatorAssertions;
 import nisfapp.utils.MethodActionsForPO;
 
-import java.util.regex.Pattern;
-
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 import static nisfapp.tests.BaseTest.logger;
+import static nisfapp.utils.MethodAssertionsForPO.*;
 
 public class ApplicationPage extends MethodActionsForPO {
 
     private static final String MAIN_WINDOW = "//div[contains(@class,'windowViewMode-maximized active')]";
-    private static final String PRIMARY_APP_ID = "(//slot[@name='primaryField']/lightning-formatted-text)[last()]";
+    private static final String PRIMARY_APP_ID = "(//h1/div[text()='Application']//..//slot[@name='primaryField']/lightning-formatted-text)[last()]";
     private static final String CURRENT_APP_SF_TAB = "(//div[@aria-label=\"Workspace tabs for NI Onboarding Console\"]" +
             "//ul[@role='presentation']//a[contains(@title, 'Application')])[last()]";
     private static final String TRADE_NAME = "(//p[contains(@title,'Trade name')]//..//slot//lightning-formatted-text)[last()]";
@@ -108,26 +107,32 @@ public class ApplicationPage extends MethodActionsForPO {
 
 
     public ApplicationPage assertApplicationPrimaryId() {
-        assertThat(page.locator(PRIMARY_APP_ID)).hasText(Pattern.compile("A-\\d{9,}"));
+        //assertThat(page.locator(PRIMARY_APP_ID)).hasText(Pattern.compile("A-\\d{9,}"));
         String appID = page.locator(PRIMARY_APP_ID).innerText();
-
         logger.info("<<<<< Application was created with ID: " + appID + " >>>>>");
+
+        String appId = page.locator(PRIMARY_APP_ID).innerText();
+        assertElementHasMatches(appId, "A-\\d{9,}");
         return this;
     }
 
     public ApplicationPage assertApplicationTradeName() {
-        assertThat(page.locator(TRADE_NAME)).containsText("AT TEST");
         String appName = page.locator(TRADE_NAME).innerText();
-
-        appSFName = page.locator(TRADE_NAME).innerText();
         logger.info("<<<<< Application was created with Trade Name: " + appName + " >>>>>");
+        appSFName = page.locator(TRADE_NAME).innerText();
+
+        assertElementContainsText(appName, "AT TEST");
         return this;
     }
 
     public ApplicationPage assertDraftStageIsChosen() {
-        assertThat(page.locator(DRAFT_STAGE_FIELD)).hasAttribute("aria-selected", "true",
-                new LocatorAssertions.HasAttributeOptions().setTimeout(3000));
-        assertThat(page.locator(DRAFT_STAGE_FIELD)).hasAttribute("aria-current", "true");
+        waitForLocatorLoadState(page, DRAFT_STAGE_FIELD, VISIBLE);
+
+        String ariaSelected = page.locator(DRAFT_STAGE_FIELD).getAttribute("aria-selected");
+        String ariaCurrent = page.locator(DRAFT_STAGE_FIELD).getAttribute("aria-current");
+        assertElementHasText(ariaSelected, "true");
+        assertElementHasText(ariaCurrent, "true");
+
         return this;
     }
 
@@ -138,12 +143,17 @@ public class ApplicationPage extends MethodActionsForPO {
 
 
     public void assertAppIdFromContactPageReturning() {
-        assertThat(page.locator(PRIMARY_APP_ID)).hasText(appSFID);
+        // assertThat(page.locator(PRIMARY_APP_ID)).hasText(appSFID);
         logger.debug("<<<<< Contact's Application:" + appSFName + " has ID: " + appSFID + " >>>>>");
+
+        assertElementHasText(page.locator(PRIMARY_APP_ID).innerText(), appSFID);
     }
 
     public void assertAppIdFromDocumentPageReturning() {
-        assertThat(page.locator(PRIMARY_APP_ID)).hasText(appSFID);
+        //assertThat(page.locator(PRIMARY_APP_ID)).hasText(appSFID);
+        waitForLocatorLoadState(page, PRIMARY_APP_ID, VISIBLE);
         logger.debug("<<<<< Document's Application" + appSFName + " has ID: " + appSFID + " >>>>>");
+
+        assertElementHasText(page.locator(PRIMARY_APP_ID).innerText(), appSFID);
     }
 }

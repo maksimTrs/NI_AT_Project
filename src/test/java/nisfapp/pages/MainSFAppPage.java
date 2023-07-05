@@ -1,11 +1,11 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
-import io.qameta.allure.Step;
 import nisfapp.utils.MethodActionsForPO;
 
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
+import static nisfapp.utils.MethodAssertionsForPO.assertElementHasText;
+import static nisfapp.utils.MethodAssertionsForPO.assertElementIsEnabled;
 
 public class MainSFAppPage extends MethodActionsForPO {
 
@@ -49,9 +49,12 @@ public class MainSFAppPage extends MethodActionsForPO {
 
 
     public void assertLogOutBtn() {
-        page.waitForSelector(VIEW_PROFILE, new Page.WaitForSelectorOptions().setState(VISIBLE));
+        waitForLocatorLoadState(page, VIEW_PROFILE, VISIBLE);
         page.locator(VIEW_PROFILE).click();
-        assertThat(page.locator(LOGOUT_BTN)).isEnabled();
-        assertThat(page.locator(LOGOUT_BTN)).hasText("Log Out");
+
+        boolean logOutBtnIsActive = page.locator(LOGOUT_BTN).isEnabled();
+        String logOutBtnName = page.locator(LOGOUT_BTN).innerText();
+        assertElementIsEnabled(logOutBtnIsActive);
+        assertElementHasText(logOutBtnName, "Log Out");
     }
 }

@@ -24,7 +24,6 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.UUID;
 
 import static nisfapp.utils.PropertyReader.getTestDataFromBundle;

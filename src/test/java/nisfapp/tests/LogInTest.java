@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 public class LogInTest extends BaseTest {
 
 
-
     @Severity(SeverityLevel.BLOCKER)
     @Owner("Maksim T")
     @Tags({@Tag("UI_TEST"), @Tag("SMOKE_TEST")})

@@ -6,7 +6,6 @@ import io.qameta.allure.Step;
 import nisfapp.model.User;
 import nisfapp.utils.MethodActionsForPO;
 
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 import static io.qameta.allure.model.Parameter.Mode.MASKED;
 import static nisfapp.utils.MethodAssertionsForPO.assertElementContainsText;
@@ -33,7 +32,7 @@ public class LogInPage extends MethodActionsForPO {
     }
 
     @Step("Fill SF credentials: username and password")
-    public LogInPage fillUserNameAndPasswordFields(@Param(name="UserCredentials", mode=MASKED) User user) {
+    public LogInPage fillUserNameAndPasswordFields(@Param(name = "UserCredentials", mode = MASKED) User user) {
         waitForLocatorLoadState(page, USER_NAME_FIELD, VISIBLE);
         fillElementField(page.locator(USER_NAME_FIELD), user.getUsername());
         fillElementField(page.locator(PASSWORD_FIELD), user.getPassword());
@@ -51,7 +50,7 @@ public class LogInPage extends MethodActionsForPO {
     public void assertLogInErrorMsg() {
         waitForLocatorLoadState(page, LOGIN_ERROR_MSG, VISIBLE);
         String loginErrorMsg = page.locator(LOGIN_ERROR_MSG).innerText();
-        String expectedRes =  "Please check your username and password.";
+        String expectedRes = "Please check your username and password.";
 
         assertElementContainsText(loginErrorMsg, expectedRes);
     }

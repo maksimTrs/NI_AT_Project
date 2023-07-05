@@ -1,9 +1,9 @@
 package nisfapp.utils;
 
 import io.qameta.allure.Allure;
-import org.assertj.core.api.Assertions;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 public abstract class MethodAssertionsForPO {
 
     public static void assertElementHasText(String actualResult, String expectedResult) {
@@ -32,6 +32,35 @@ public abstract class MethodAssertionsForPO {
             Allure.step("Assertion failed: Actual value does not match expected value: ");
             Allure.attachment("Expected Value", String.valueOf(expectedResult));
             Allure.attachment("Actual Value", String.valueOf(actualResult));
+            throw e;
+        }
+    }
+
+
+    public static void assertElementIsEnabled(boolean buttonIsActive) {
+        try {
+            assertThat(buttonIsActive)
+                    .isTrue()
+                    .as("Validate element (<button>, <select>, <input> or <textarea>) is active on the page");
+
+            Allure.step("Assertion passed: page element is active on the page");
+        } catch (AssertionError e) {
+            Allure.step("Assertion failed: page element  is not active on the page");
+            throw e;
+        }
+    }
+
+    public static void assertElementHasMatches(String element, String matchesCondition) {
+        try {
+            assertThat(element)
+                    .matches(matchesCondition)
+                    .as("Validate element regex matches");
+
+            Allure.step("Assertion passed: Actual value matches expected value");
+        } catch (AssertionError e) {
+            Allure.step("Assertion failed: Actual value does not match expected value: ");
+            Allure.attachment("Actual Value", String.valueOf(element));
+            Allure.attachment("Regex Value", String.valueOf(matchesCondition));
             throw e;
         }
     }
