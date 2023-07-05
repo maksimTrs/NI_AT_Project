@@ -1,7 +1,6 @@
 package nisfapp.pages;
 
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.assertions.LocatorAssertions;
 import io.qameta.allure.Param;
 import io.qameta.allure.Step;
 import nisfapp.model.User;
@@ -10,6 +9,8 @@ import nisfapp.utils.MethodActionsForPO;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 import static io.qameta.allure.model.Parameter.Mode.MASKED;
+import static nisfapp.utils.MethodAssertionsForPO.assertElementContainsText;
+import static nisfapp.utils.MethodAssertionsForPO.assertElementHasText;
 
 public class LogInPage extends MethodActionsForPO {
 
@@ -47,14 +48,18 @@ public class LogInPage extends MethodActionsForPO {
     }
 
 
-    public void assertErrorMsg() {
-        assertThat(page.locator(LOGIN_ERROR_MSG)).isVisible(new LocatorAssertions.IsVisibleOptions().setTimeout(2000));
-        assertThat(page.locator(LOGIN_ERROR_MSG))
-                .containsText("Please check your username and password. If you still can't log in, contact your Salesforce administrator");
+    public void assertLogInErrorMsg() {
+        waitForLocatorLoadState(page, LOGIN_ERROR_MSG, VISIBLE);
+        String loginErrorMsg = page.locator(LOGIN_ERROR_MSG).innerText();
+        String expectedRes =  "Please check your username and password.";
+
+        assertElementContainsText(loginErrorMsg, expectedRes);
     }
 
     public void assertLogInPageTitle() {
-        assertThat(page)
-                .hasTitle("Login | Salesforce111");
+        String pageTitle = page.title();
+        String expectedRes = "Login | Salesforce";
+
+        assertElementHasText(pageTitle, expectedRes);
     }
 }

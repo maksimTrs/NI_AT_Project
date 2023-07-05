@@ -44,6 +44,6 @@ public class LogInTest extends BaseTest {
                 .doLogIn();
 
         logInPage.assertLogInPageTitle();
-        logInPage.assertErrorMsg();
+        logInPage.assertLogInErrorMsg();
     }
 }
