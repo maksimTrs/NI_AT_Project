@@ -42,7 +42,7 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
                     .clickOnNewAppBtn();
         });
 
-        step("Open 'NEW MERCHANT:NEW APPLICATION' window and fill mandatory fields", () -> {
+        step("Open 'NEW MERCHANT:NEW APPLICATION' window and fill mandatory fields with POS type = NGENIUS POS", () -> {
             merchantInitialCreationPage
                     .fillTradeName(getRandomTradeName())
                     .fillMerchantEmail(getRandomEmail())
