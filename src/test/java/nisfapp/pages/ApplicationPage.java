@@ -74,7 +74,7 @@ public class ApplicationPage extends MethodActionsForPO {
 
 
     public ApplicationPage fillBusinessSensitivePartition(String iban, String accNum) {
-        page.waitForTimeout(3000);
+        //page.waitForTimeout(3000);
         waitForLocatorLoadState(page, IBAN, VISIBLE);
 
         fillElementField(page.locator(IBAN), iban);
@@ -85,8 +85,10 @@ public class ApplicationPage extends MethodActionsForPO {
 
 
     public ContactPage openAppContactPage() {
-        page.waitForTimeout(5000);
+        //page.waitForTimeout(5000);
         appSFID = page.locator(PRIMARY_APP_ID).innerText();
+
+        waitForLocatorLoadState(page, CONTACT_NAME, VISIBLE);
         // page.locator(CONTACT_NAME).click();
         //page.waitForTimeout(3000);
         Page contactPage = page.waitForPopup(() -> doClickOnElement(page.locator(CONTACT_NAME)));
@@ -101,7 +103,8 @@ public class ApplicationPage extends MethodActionsForPO {
     }
 
     public void openAppGenericDocument() {
-        page.waitForTimeout(5000);
+        //page.waitForTimeout(5000);
+        waitForLocatorLoadState(page, MAIN_WINDOW + APP_GENERIC_DOCUMENT, VISIBLE);
         doClickOnElement(page.locator(MAIN_WINDOW + APP_GENERIC_DOCUMENT));
     }
 

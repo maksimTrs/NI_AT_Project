@@ -3,6 +3,8 @@ package nisfapp.pages;
 import com.microsoft.playwright.Page;
 import nisfapp.utils.MethodActionsForPO;
 
+import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
+
 public class DocumentPage extends MethodActionsForPO {
 
     private static final String MAIN_WINDOW = "//div[contains(@class,'windowViewMode-maximized active')]";
@@ -20,7 +22,8 @@ public class DocumentPage extends MethodActionsForPO {
 
 
     public DocumentPage clickOnUploadDocFilesBtn() {
-        page.waitForTimeout(5000);
+        //page.waitForTimeout(5000);
+        waitForLocatorLoadState(page, APP_DOCUMENT_UPLOAD_BTN, VISIBLE);
         doClickOnElement(page.locator(APP_DOCUMENT_UPLOAD_BTN));
         return this;
     }
