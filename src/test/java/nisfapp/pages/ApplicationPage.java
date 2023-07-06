@@ -24,7 +24,9 @@ public class ApplicationPage extends MethodActionsForPO {
     private static final String APP_SF_TAB_CLOSE_BTN = "//div[@aria-label=\"Workspace tabs for NI Onboarding Console\"]//ul[@role='presentation']//a[contains(@title, 'Application')]/..//button[@title=\"Close %s | Application\"]";
     private static final String APP_SF_TAB_CLOSE_BTN2 = "(//div[@aria-label=\"Workspace tabs for NI Onboarding Console\"]//ul[@role='presentation']//a[contains(@title, 'Application')]/..//button[contains(@title, 'Close')])[last()]";
     private static final String IBAN = "(//label[contains(text(),'IBAN')]/parent::div//input)[last()]";
+    private static final String IBAN_TYPE3 = "(//span[text()='Use same Business sensitive Information']/ancestor::ul//label[contains(text(),'IBAN')]/parent::div//input)[1]";
     private static final String ACCOUNT_NUMBER = "(//label[contains(text(),'Account number')]/parent::div//input)[last()]";
+    private static final String ACCOUNT_NUMBER_TYPE3 = "(//span[text()='Use same Business sensitive Information']/ancestor::ul//label[contains(text(),'Account number')]/parent::div//input)[1]";
     private static final String IBAN_ACC_SAVE_BTN = "(//button[text()='Save' and not(@disabled='true')])[last()]";
     private static final String CONTACT_NAME = "(//dt[text()='Contact Name:']/following-sibling::dd//a[@target='_blank'])[last()]";
     private static final String SUBMIT_TO_NEXT_STAGE_BTN = "(//button[text()='Submit to new stage'])[last()]";
@@ -80,6 +82,14 @@ public class ApplicationPage extends MethodActionsForPO {
         fillElementField(page.locator(IBAN), iban);
         fillElementField(page.locator(ACCOUNT_NUMBER), accNum);
         doClickOnElement(page.locator(IBAN_ACC_SAVE_BTN));
+        return this;
+    }
+
+    public ApplicationPage fillType3BusinessSensitivePartition(String iban, String accNum) {
+        fillElementField(page.locator(IBAN_TYPE3), iban);
+        fillElementField(page.locator(ACCOUNT_NUMBER_TYPE3), accNum);
+
+        fillBusinessSensitivePartition(iban, accNum);
         return this;
     }
 
