@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="pos-app-creation-smoke" parallel="classes" thread-count="2">
+<suite name="ecom-app-creation-smoke" parallel="classes" thread-count="2">
 
-    <test name="pos-app-creation-smoke">
+    <test name="ecom-app-creation">
         <classes>
             <class name="nisfapp.tests.EcomApplicationCreationTest"/>
         </classes>

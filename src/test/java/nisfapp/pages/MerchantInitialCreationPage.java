@@ -19,11 +19,14 @@ public class MerchantInitialCreationPage extends MethodActionsForPO {
     private static final String BUSINESS_NATURE = "(//*[text()='Business Nature']/../..//select)[1]";
     private static final String BUSINESS_NATURE_LIST = "(//*[text()='Business Nature']/../..//select)[1]/option";
     private static final String SELECTED_PRODUCT = "(//span[text()='Selected Product']//parent::div//span[text()='%s'])[1]";
+    private static final String AVAILABLE_PRODUCT = "(//span[text()='Available Product']//parent::div//span[text()='%s'])[1]";
     private static final String UNSELECT_SELECTED_PRODUCT_BTN = "(//button[@title='Move selection to Available Product'])[1]";
+    private static final String SELECT_SELECTED_PRODUCT_BTN = "(//button[@title='Move selection to Selected Product'])[1]";
     private static final String POS_TYPE = "(//span[text()='POS Type']//parent::label//following-sibling::div//select)[1]";
     private static final String ECOM_TYPE = "(//span[text()='Gateway Type']//parent::label//following-sibling::div//select)[1]";
     private static final String NUMBER_OF_POS = "(//div/input[@id='input-02'])[1]";
     private static final String NEXT_BTN = "//button[text()='Next']";
+    private static final String PAY_BY_QR = "//span[text()='Selected Payment Method']/..//ul//span[text()='Pay by QR']";
 
 
     private final Page page;
@@ -92,6 +95,16 @@ public class MerchantInitialCreationPage extends MethodActionsForPO {
     public MerchantInitialCreationPage selectPosType(String selectedPosType) {
         doClickOnElement(page.locator(POS_TYPE));
         selectOptionFromList(page.locator(POS_TYPE), selectedPosType);
+        return this;
+    }
+
+
+    public MerchantInitialCreationPage selectAvailableProduct(String product) {
+        String productToChoose = (String.format(AVAILABLE_PRODUCT, product));
+
+        doClickOnElement(page.locator(productToChoose));
+        doClickOnElement(page.locator(SELECT_SELECTED_PRODUCT_BTN));
+        //waitForLocatorLoadState(page, PAY_BY_QR, VISIBLE);
         return this;
     }
 

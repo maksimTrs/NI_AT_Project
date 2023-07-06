@@ -133,6 +133,7 @@ public class EcomApplicationCreationTest extends BaseTest {
                     .fillBusinessSensitivePartition(IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
         });
 
+
         step("Assert new application: validate APP ID, Trade Name, Draft Stage", () -> {
             applicationPage
                     .assertApplicationPrimaryId()

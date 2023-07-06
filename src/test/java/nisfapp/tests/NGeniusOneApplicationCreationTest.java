@@ -7,6 +7,7 @@ import io.qameta.allure.testng.Tags;
 import org.testng.annotations.Test;
 
 import static nisfapp.pages.NavigationMenuPartitions.APPLICATIONS;
+import static nisfapp.services.ApplicationProductTypes.*;
 import static nisfapp.services.BankTypes.ENBD;
 import static nisfapp.services.CityTypes.ABU_DHABI;
 import static nisfapp.services.CountryTypes.UAE;
@@ -16,25 +17,24 @@ import static nisfapp.services.NgOnlineIntegrationMethodTypes.NHR;
 import static nisfapp.services.NgOnlinePaymentTypes.MASTERCARD;
 import static nisfapp.services.NgOnlinePaymentTypes.VISA;
 import static nisfapp.services.PaymentModeTypes.MC_777;
-import static nisfapp.services.PosTypeAndGatewayTypes.ECON_TYPE;
-import static nisfapp.services.PosTypeAndGatewayTypes.POS_TYPE_NG;
 import static nisfapp.services.RefundCategoryTypes.C;
 import static nisfapp.services.RentalModeTypes.BANK_TRANSFER;
 import static nisfapp.services.SettlementFrequencyEcomTypes.DAILY;
 import static nisfapp.services.TestHelper.*;
 import static nisfapp.utils.AppDataFaker.*;
 
-public class Type3ApplicationCreationTest extends BaseTest {
+public class NGeniusOneApplicationCreationTest extends BaseTest {
 
-    @Severity(SeverityLevel.NORMAL)
+
+    @Severity(SeverityLevel.CRITICAL)
     @Owner("Maksim T")
     @Tags({@Tag("UI_TEST"), @Tag("SMOKE_TEST")})
-    @Description("Create TYPE3 application in the 'Draft' stage. Fill App Contact PEP info and upload Document file")
+    @Description("Create NGeniusOne application in the 'Draft' stage. Fill App Contact PEP info and upload Document file")
     @Epic("SF Application Testing")
-    @Feature("Create TYPE3 (ECOM + POS) Application in SF UI")
-    @Story("Type3 Application Creation Test")
+    @Feature("Create NGeniusOne (PBQ, TTP, PBL) Application in SF UI")
+    @Story("NGeniusOne Application Creation Test")
     @Test(groups = {"SmokeTest"})
-    public void createType3ApplicationTest() {
+    public void createNGeniusOneApplicationTest() {
 
         doSFLogIn(SF_URL, SALES_OFFICER_USER);
 
@@ -46,9 +46,10 @@ public class Type3ApplicationCreationTest extends BaseTest {
         merchantInitialCreationPage
                 .fillTradeName(getRandomTradeName())
                 .fillMerchantEmail(getRandomEmail())
-                .chooseBusinessNatureType("Mail Order")
-                .selectPosType(POS_TYPE_NG.getDisplayName())
-                .selectEcomType(ECON_TYPE.getDisplayName())
+                .chooseBusinessNatureType("Car Rental")
+                .unselectSelectedProduct(POS.getDisplayName())
+                .unselectSelectedProduct(ECOM.getDisplayName())
+                .selectAvailableProduct(NG1.getDisplayName())
                 .moveToTheSecondApplicationScreen();
 
 
@@ -102,17 +103,16 @@ public class Type3ApplicationCreationTest extends BaseTest {
                 .selectCardPaymentType(MASTERCARD.getDisplayName());
 
         newApplicationBusinessDetailsPartitionPage
-                .fillBusinessLine("Door-to-Door Sales")
+                .fillBusinessLine("Truck Rental")
                 .fillDescOfBusinessOperation(BUSINESS_OPERATION_DESC)
                 .fillYearsInBusiness(getRandomIntValue(1, 15))
                 .fillVolumePerYear(getRandomIntValue(1000, 500000))
                 .fillCardPerYear(getRandomIntValue(100, 10000))
                 .clickOnNewAppSaveBtn();
 
-
         applicationPage
                 .openCurrentSFAppTab()
-                .fillType3BusinessSensitivePartition(IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
+                .fillBusinessSensitivePartition(IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
 
         applicationPage
                 .assertApplicationPrimaryId()
@@ -141,5 +141,4 @@ public class Type3ApplicationCreationTest extends BaseTest {
                 .assertAppIdFromDocumentPageReturning();
 
     }
-
 }

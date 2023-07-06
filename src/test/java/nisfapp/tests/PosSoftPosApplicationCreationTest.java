@@ -114,6 +114,7 @@ public class PosSoftPosApplicationCreationTest extends BaseTest {
                     .clickOnNewAppSaveBtn();
         });
 
+
         step("Open new create Application tab and fill IBAN value", () -> {
             applicationPage
                     .openCurrentSFAppTab()
@@ -127,6 +128,7 @@ public class PosSoftPosApplicationCreationTest extends BaseTest {
                     .assertApplicationTradeName()
                     .assertDraftStageIsChosen();
         });
+
 
         step("Open Application Contact Page and fill field PEP=No. Move to the App page", () -> {
             applicationPage

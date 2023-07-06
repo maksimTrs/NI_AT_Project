@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="pos-softpos-app-creation-smoke" parallel="classes" thread-count="2">
+
+    <test name="pos-softpos-app-creation">
+        <classes>
+            <class name="nisfapp.tests.PosSoftPosApplicationCreationTest"/>
+        </classes>
+    </test>
+</suite>
