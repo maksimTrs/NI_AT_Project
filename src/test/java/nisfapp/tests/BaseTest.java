@@ -6,6 +6,7 @@ import nisfapp.annotations.PlayWrightPage;
 import nisfapp.model.User;
 import nisfapp.pages.*;
 import nisfapp.services.UserCreator;
+import nisfapp.utils.BrowserContextFactory;
 import nisfapp.utils.BrowserFactory;
 import nisfapp.utils.TestListener;
 import org.apache.commons.io.FileUtils;
@@ -26,6 +27,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+import static nisfapp.utils.BrowserContextFactory.setupBrowserContext;
 import static nisfapp.utils.PropertyReader.getTestDataFromBundle;
 
 
@@ -102,28 +104,9 @@ public abstract class BaseTest {
         playwright = Playwright.create();
         browser = BrowserFactory.launchBrowser(playwright, browserType, isHeadlessMode);
 
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = (int) screenSize.getWidth();
-        int height = (int) screenSize.getHeight();
-
-        if (isTraceEnabled) {
-            browserContext = browser.newContext(new Browser.NewContextOptions()
-                    .setViewportSize(width, height)
-                    //.setPermissions(Arrays.asList("notifications", "geolocation"))
-                    .setRecordVideoDir(Paths.get("videos/"))
-                    .setRecordVideoSize(1280, 720));
-
-            browserContext.tracing().start(new Tracing.StartOptions()
-                    .setScreenshots(true)
-                    .setSnapshots(true)
-                    .setSources(false));
-        } else {
-            browserContext = browser.newContext(new Browser.NewContextOptions()
-                    //.setPermissions(Arrays.asList("notifications", "geolocation"))
-                    .setViewportSize(width, height));
-        }
+        browserContext = setupBrowserContext(browser, isTraceEnabled);
         //browserContext.setDefaultTimeout(40000);
+
         //page.setDefaultTimeout(40000);
         page = browserContext.newPage();
         initPages(this, page);

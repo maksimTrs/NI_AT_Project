@@ -13,11 +13,11 @@
 
 #### **--->>> To run TestNG suite with parameters  (e.g. BROWSER_TYPE=firefox) - run command:**
 
-`./mvnw -DBROWSER_TYPE=chrome -DTRACE_FLAG=false -DsuiteXmlFile="posNgeniousAppCreationSmoke.xml"  clean test`
+`./mvnw -DBROWSER_TYPE=chrome -DTRACE_FLAG=false -DsuiteXmlFile="PosNgAppCreationSmoke.xml"  clean test`
 
 OR
 
-`./mvnw -DBROWSER_TYPE=firefox -DTRACE_FLAG=true -DsuiteXmlFile="posNgeniousAppCreationSmoke.xml"  clean test"`
+`./mvnw -DBROWSER_TYPE=msedge -DTRACE_FLAG=true -DsuiteXmlFile="EcomAppCreationSmoke.xml"  clean test"`
 
 =================================================================================================================
 
