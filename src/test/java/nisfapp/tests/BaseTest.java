@@ -28,6 +28,7 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 import static nisfapp.utils.BrowserContextFactory.setupBrowserContext;
+import static nisfapp.utils.BrowserFactory.launchBrowser;
 import static nisfapp.utils.PropertyReader.getTestDataFromBundle;
 
 
@@ -102,7 +103,7 @@ public abstract class BaseTest {
         logger.info("********************************************************************************");
 
         playwright = Playwright.create();
-        browser = BrowserFactory.launchBrowser(playwright, browserType, isHeadlessMode);
+        browser = launchBrowser(playwright, browserType, isHeadlessMode);
 
         browserContext = setupBrowserContext(browser, isTraceEnabled);
         //browserContext.setDefaultTimeout(40000);
