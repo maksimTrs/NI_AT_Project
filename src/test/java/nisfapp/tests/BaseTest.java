@@ -106,7 +106,7 @@ public abstract class BaseTest {
         browser = launchBrowser(playwright, browserType, isHeadlessMode);
 
         browserContext = setupBrowserContext(browser, isTraceEnabled);
-        //browserContext.setDefaultTimeout(40000);
+        browserContext.setDefaultTimeout(40000);
 
         //page.setDefaultTimeout(40000);
         page = browserContext.newPage();

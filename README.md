@@ -33,3 +33,32 @@ OR
 
 =================================================================================================================
 
+#### --->>> **_To run tests via Docker - run commands:_**
+
+1. Run docker compose file (and open after that http://localhost:4444/ui/index.html#/):
+
+`docker compose up`
+
+2. Export PlayWright variable to the project:
+
+export SELENIUM_REMOTE_URL=http://localhost:4444
+
+OR
+
+set SELENIUM_REMOTE_URL=http://localhost:4444
+
+and check the export: 
+
+echo %SELENIUM_REMOTE_URL%
+
+OR
+
+echo $SELENIUM_REMOTE_URL
+
+
+3. Run tests for chrome:
+
+`mvnw    -DBROWSER_TYPE=chrome  -DsuiteXmlFile="PosNgAppCreationSmoke.xml"  clean test`
+
+
+4. Check video record or test execution via UI http://localhost:4444/ui/index.html#/ (default UI pass: "secret")

@@ -1,0 +1,45 @@
+version: "3"
+services:
+  selenium-hub:
+    image: selenium/hub:4.8.0-20230210
+    container_name: selenium-hub-ni-playwright
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+    environment:
+      - JAVA_OPTS=-Djdk.httpclient.websocket.intermediateBufferSize=3000000
+      - SE_EVENT_BUS_HOST=selenium-hub
+  chrome:
+    image: selenium/node-chrome:4.8.0-20230210
+    shm_size: 2gb
+#    volumes:
+#      - E:\MAX\testimages:/opt/selenium/testimages
+    depends_on:
+      - selenium-hub
+    environment:
+      - JAVA_OPTS=-Djdk.httpclient.websocket.intermediateBufferSize=3000000
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_INSTANCES=4
+      - SE_NODE_MAX_SESSIONS=4
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - SE_NODE_GRID_URL=http://localhost:4444
+  chrome_video:
+    image: selenium/video:ffmpeg-4.3.1-20230614
+    volumes:
+      - ./logs/chrome:/videos
+    depends_on:
+      - chrome
+    environment:
+      - DISPLAY_CONTAINER_NAME=chrome
+      - FILE_NAME=chrome_video.mp4
+
+
+# docker compose up
+# docker-compose up --build
+# docker compose up  -d --scale chrome=3
+# docker compose down
+

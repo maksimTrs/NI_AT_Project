@@ -31,13 +31,15 @@ public class ContactPage extends MethodActionsForPO {
 
         doClickOnElement(page.locator(PEP_FIELD));
         //doClickOnElement(page.locator(pepTypeYesOrNo));
-        doClickOnElementWithDelay(page.locator(pepTypeYesOrNo), 1000);
+        //doClickOnElementWithDelay(page.locator(pepTypeYesOrNo), 1000);
+        doClickOnElement(page.locator(pepTypeYesOrNo));
         return this;
     }
 
     public ContactPage saveContact() {
         //page.waitForTimeout(3000);
-        doClickOnElementWithDelay(page.locator(SAVE_BTN), 1000);
+        //doClickOnElementWithDelay(page.locator(SAVE_BTN), 1000);
+        doClickOnElement(page.locator(SAVE_BTN));
         return this;
     }
 
