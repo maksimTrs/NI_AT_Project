@@ -41,11 +41,13 @@ OR
 
 2. Export PlayWright variable to the project:
 
-export SELENIUM_REMOTE_URL=http://localhost:4444
+export SELENIUM_REMOTE_URL=http://localhost:4444 
+export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 OR
 
 set SELENIUM_REMOTE_URL=http://localhost:4444
+set PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 and check the export: 
 

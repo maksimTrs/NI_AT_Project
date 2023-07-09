@@ -144,6 +144,7 @@ public abstract class BaseTest {
         browserContext.close();
         browser.close();
         page.close();
+        playwright.close();
     }
 
 
