@@ -10,5 +10,6 @@ public class TestHelper {
     public static final String WEBSITE = "*Website";
 
     public static final String DOC_FILE_UPLOAD_PATH = "src/test/resources/cert_1.jpg";
+    public static final String DOC_FILE_UPLOAD_PATH2 = "src/test/resources/cert_2.xlsx";
 
 }

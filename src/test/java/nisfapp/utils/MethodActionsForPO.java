@@ -4,6 +4,7 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.WaitForSelectorState;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static com.microsoft.playwright.options.LoadState.LOAD;
@@ -57,8 +58,16 @@ public abstract class MethodActionsForPO {
         locator.press(keyBoardKey, new Locator.PressOptions().setDelay(delay));
     }
 
-    public void setFile(Page page, String elementPath, String path) {
-        page.setInputFiles(elementPath, Paths.get(path));
+    public void setFile(Locator locator, String path) {
+        //page.setInputFiles(elementPath, Paths.get(path));
+        locator.setInputFiles(Paths.get(path));
+    }
+
+    public void setFiles(Locator locator, String path1, String path2) {
+        locator.setInputFiles(new Path[]{
+                Paths.get(path1),
+                Paths.get(path2)
+        });
     }
 
     public void selectOptionFromList(Locator locator, String value) {

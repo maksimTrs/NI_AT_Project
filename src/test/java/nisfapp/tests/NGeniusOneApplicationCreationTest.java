@@ -175,7 +175,8 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
 
             documentPage
                     .clickOnUploadDocFilesBtn()
-                    .uploadDocFileViaPopUp(DOC_FILE_UPLOAD_PATH)
+                    //.uploadDocFileViaPopUp(DOC_FILE_UPLOAD_PATH)
+                    .uploadDocFilesViaPopUp(DOC_FILE_UPLOAD_PATH, DOC_FILE_UPLOAD_PATH2)
                     .closeDocPartitionAndMoveToAppPage();
         });
 
