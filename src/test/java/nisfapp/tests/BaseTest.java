@@ -6,8 +6,6 @@ import nisfapp.annotations.PlayWrightPage;
 import nisfapp.model.User;
 import nisfapp.pages.*;
 import nisfapp.services.UserCreator;
-import nisfapp.utils.BrowserContextFactory;
-import nisfapp.utils.BrowserFactory;
 import nisfapp.utils.TestListener;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -15,7 +13,6 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +22,11 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static nisfapp.utils.BrowserContextFactory.setupBrowserContext;
 import static nisfapp.utils.BrowserFactory.launchBrowser;
@@ -34,6 +35,8 @@ import static nisfapp.utils.PropertyReader.getTestDataFromBundle;
 
 @Listeners({TestListener.class})
 public abstract class BaseTest {
+
+    private List<Path> listOfVideoRecords;
     public static final String SF_URL = getTestDataFromBundle("BASE_URL");
     public static Logger logger = Logger.getLogger(BaseTest.class);
     private static boolean isTraceEnabled = Boolean.getBoolean("TRACE_FLAG");
@@ -102,15 +105,19 @@ public abstract class BaseTest {
         logger.info("<<< Test method: " + method.getName() + " was started >>>");
         logger.info("********************************************************************************");
 
+
         playwright = Playwright.create();
         browser = launchBrowser(playwright, browserType, isHeadlessMode);
 
         browserContext = setupBrowserContext(browser, isTraceEnabled);
         browserContext.setDefaultTimeout(40000);
 
+
         //page.setDefaultTimeout(40000);
         page = browserContext.newPage();
         initPages(this, page);
+
+        collectPlayWrightVideos();
     }
 
 
@@ -141,10 +148,15 @@ public abstract class BaseTest {
         logger.info("<<< Test method: " + method.getName() + " was finished >>>");
         logger.info("********************************************************************************");
 
+
         browserContext.close();
         browser.close();
         page.close();
         playwright.close();
+
+        if (result.isSuccess()) {
+            deleteSuccessfulTestPlayWrightVideos(method);
+        }
     }
 
 
@@ -167,6 +179,34 @@ public abstract class BaseTest {
                     throw new RuntimeException("!!! +++ Constructor for PO objects wasn't created for field: " + field.getName() + " +++ !!!\n" + e);
                 }
             }
+        }
+    }
+
+    private void collectPlayWrightVideos() {
+        try (Stream<Path> pathStream = Files.walk(Paths.get("videos/"))) {
+            listOfVideoRecords = pathStream
+                    .filter(Files::isRegularFile)
+                    .collect(Collectors.toList());
+            // Process the list of video records
+        } catch (IOException e) {
+            logger.error("Failed to walk through the directory: " + e.getMessage());
+        }
+    }
+
+    private void deleteSuccessfulTestPlayWrightVideos(Method method) {
+        List<Path> fullListOfVideoRecords = new ArrayList<>();
+        try (Stream<Path> pathStream = Files.walk(Paths.get("videos/"))) {
+            fullListOfVideoRecords = pathStream
+                    .filter(Files::isRegularFile)
+                    .filter(s1 -> !listOfVideoRecords.contains(s1))
+                    .collect(Collectors.toList());
+
+            for (Path path : fullListOfVideoRecords) {
+                Files.deleteIfExists(path);
+            }
+            logger.debug("<<<<< For test [" + method.getName() + "] was deleted a video: " + page.video().path() + " >>>>>");
+        } catch (IOException e) {
+            logger.error("Failed to walk through the directory2: " + e.getMessage());
         }
     }
 }
