@@ -6,8 +6,9 @@ import com.microsoft.playwright.assertions.LocatorAssertions;
 import nisfapp.utils.MethodActionsForPO;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-import static com.microsoft.playwright.options.WaitForSelectorState.HIDDEN;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
+import static nisfapp.services.TestHelper.ACCOUNT_NUMBER_VALUE;
+import static nisfapp.services.TestHelper.IBAN_VALUE;
 import static nisfapp.tests.BaseTest.logger;
 import static nisfapp.utils.MethodAssertionsForPO.*;
 
@@ -25,6 +26,7 @@ public class ApplicationPage extends MethodActionsForPO {
     private static final String APP_SF_TAB_CLOSE_BTN = "//div[@aria-label=\"Workspace tabs for NI Onboarding Console\"]//ul[@role='presentation']//a[contains(@title, 'Application')]/..//button[@title=\"Close %s | Application\"]";
     private static final String APP_SF_TAB_CLOSE_BTN2 = "(//div[@aria-label=\"Workspace tabs for NI Onboarding Console\"]//ul[@role='presentation']//a[contains(@title, 'Application')]/..//button[contains(@title, 'Close')])[last()]";
     private static final String IBAN = "(//label[contains(text(),'IBAN')]/parent::div//input)[last()]";
+    private static final String IBAN_PARTITION = "(//h2/span[text()='Business Sensitive']/ancestor::flexipage-aura-wrapper)[last()]";
     private static final String IBAN_TYPE3 = "(//label[text()='IBAN']/parent::div//input)[last()]";
     private static final String ACCOUNT_NUMBER = "(//label[contains(text(),'Account number')]/parent::div//input)[last()]";
     private static final String ACCOUNT_NUMBER_TYPE3 = "(//label[text()='Account number']/parent::div//input)[last()]";
@@ -76,16 +78,14 @@ public class ApplicationPage extends MethodActionsForPO {
 
 
     public ApplicationPage fillBusinessSensitivePartition(String iban, String accNum) {
-        //page.waitForTimeout(3000);
+        //page.waitForTimeout(5000);
         waitForLocatorLoadState(page, IBAN, VISIBLE);
-
-        //fillElementField(page.locator(IBAN), iban);
-        typeElementFieldTextWithTimeOut(page.locator(IBAN), iban, 500);
-        //fillElementField(page.locator(ACCOUNT_NUMBER), accNum);
-        typeElementFieldTextWithTimeOut(page.locator(ACCOUNT_NUMBER), accNum, 500);
+        fillElementField(page.locator(IBAN), iban);
+        fillElementField(page.locator(ACCOUNT_NUMBER), accNum);
 
         waitForLocatorLoadState(page, IBAN_ACC_SAVE_BTN, VISIBLE);
-        //doClickOnElementWithDelay(page.locator(IBAN_ACC_SAVE_BTN), 500);
+        //doClickOnElement(page.locator(IBAN_ACC_SAVE_BTN));
+        //doClickOnElementWithDelay(page.locator(IBAN_ACC_SAVE_BTN), 2000);
         doClickOnElement(page.locator(IBAN_ACC_SAVE_BTN));
         return this;
     }
@@ -109,7 +109,7 @@ public class ApplicationPage extends MethodActionsForPO {
         appSFID = page.locator(PRIMARY_APP_ID).innerText();
 
         waitForLocatorLoadState(page, CONTACT_NAME, VISIBLE);
-        Page contactPage = page.waitForPopup(() -> doClickOnElementWithDelay(page.locator(CONTACT_NAME), 1500));
+        Page contactPage = page.waitForPopup(() -> doClickOnElement(page.locator(CONTACT_NAME)));
         return new ContactPage(contactPage);
     }
 
@@ -128,6 +128,8 @@ public class ApplicationPage extends MethodActionsForPO {
 
 
     public ApplicationPage assertApplicationPrimaryId() {
+        waitForLocatorLoadState(page, PRIMARY_APP_ID, VISIBLE);
+
         String appId = page.locator(PRIMARY_APP_ID).innerText();
         logger.info("<<<<< Application was created with ID: " + appId + " >>>>>");
 
@@ -136,6 +138,8 @@ public class ApplicationPage extends MethodActionsForPO {
     }
 
     public ApplicationPage assertApplicationTradeName() {
+        waitForLocatorLoadState(page, TRADE_NAME, VISIBLE);
+
         String appName = page.locator(TRADE_NAME).innerText();
         logger.info("<<<<< Application was created with Trade Name: " + appName + " >>>>>");
         appSFName = page.locator(TRADE_NAME).innerText();
@@ -172,5 +176,16 @@ public class ApplicationPage extends MethodActionsForPO {
         logger.debug("<<<<< Document's Application" + appSFName + " has ID: " + appSFID + " >>>>>");
 
         assertElementHasText(page.locator(PRIMARY_APP_ID).innerText(), appSFID);
+    }
+
+    public void assertFilledAppPageIban() {
+        waitForLocatorLoadState(page, IBAN, VISIBLE);
+        String ibanVal = page.locator(IBAN).inputValue();
+        String accIbanVal = page.locator(ACCOUNT_NUMBER).inputValue();
+
+        logger.debug("<<<<< Application has IBAN: " + ibanVal + " And has ACCOUNT NUM: " + accIbanVal + " >>>>>");
+
+        assertElementHasText(ibanVal, IBAN_VALUE);
+        assertElementHasText(accIbanVal, ACCOUNT_NUMBER_VALUE);
     }
 }

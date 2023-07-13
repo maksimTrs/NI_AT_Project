@@ -29,6 +29,7 @@ public class MerchantInitialCreationPage extends MethodActionsForPO {
     private static final String PAY_BY_QR = "//span[text()='Selected Payment Method']/..//ul//span[text()='Pay by QR']";
     private static final String NG1_ECOM_AUTH = "//select[@name='Select11']";
     private static final String NG1_SOFTPOS_AUTH = "//select[@name='Select12']";
+    private static final String NEW_MERCHANT_SELECTOR = "//option[text()='New Merchant']/parent::select";
 
 
     private final Page page;
@@ -39,12 +40,14 @@ public class MerchantInitialCreationPage extends MethodActionsForPO {
     }
 
     public MerchantInitialCreationPage fillTradeName(String tradeName) {
-        page.waitForTimeout(5000);
+        //page.waitForTimeout(5000);
+        waitForLocatorLoadState(page, NEW_MERCHANT_SELECTOR, VISIBLE);
         fillElementField(page.locator(TRADE_NAME), tradeName);
         return this;
     }
 
     public MerchantInitialCreationPage fillMerchantEmail(String merchantEmail) {
+        waitForLocatorLoadState(page, NEW_MERCHANT_SELECTOR, VISIBLE);
         fillElementField(page.locator(MERCHANT_EMAIL), merchantEmail);
         return this;
     }

@@ -4,7 +4,6 @@ package nisfapp.tests;
 import io.qameta.allure.*;
 import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
-import nisfapp.services.Ng1AuthSystemTypes;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -186,6 +185,11 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
         step("Assert APP ID, check the latest created test Application after Document Page redirection", () -> {
             applicationPage
                     .assertAppIdFromDocumentPageReturning();
+        });
+
+        step("Assert filled Application IBAN partition", () -> {
+            applicationPage
+                    .assertFilledAppPageIban();
         });
 
     }
