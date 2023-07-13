@@ -14,7 +14,6 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestSuccess(ITestResult iTestResult) {
-        //deleteTraceInfo(iTestResult);
     }
 
     public void onTestFailure(ITestResult iTestResult) {
@@ -22,18 +21,14 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestSkipped(ITestResult iTestResult) {
-
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
     }
 
     public void onStart(ITestContext iTestContext) {
-
     }
 
     public void onFinish(ITestContext iTestContext) {
-
     }
 }

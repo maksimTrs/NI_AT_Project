@@ -36,7 +36,6 @@ public class ContactPage extends MethodActionsForPO {
 
     public ContactPage saveContact() {
         doClickOnElementWithDelay(page.locator(SAVE_BTN), 1000);
-        //doClickOnElement(page.locator(SAVE_BTN));
         return this;
     }
 

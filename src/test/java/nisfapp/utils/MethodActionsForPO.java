@@ -11,11 +11,11 @@ import static com.microsoft.playwright.options.LoadState.LOAD;
 
 public abstract class MethodActionsForPO {
 
-    public void customWaiterForElement(Page page, String elementXpathOrCss) {
-        page.locator(elementXpathOrCss)
+    public void customWaiterForElement(Locator elementXpathOrCss, int timeout) {
+        elementXpathOrCss
                 .waitFor(new Locator.WaitForOptions()
                         .setState(WaitForSelectorState.VISIBLE)
-                        .setTimeout(15000));
+                        .setTimeout(timeout));
     }
 
     public void waitForPageLoadState(Page page) {
@@ -59,7 +59,6 @@ public abstract class MethodActionsForPO {
     }
 
     public void setFile(Locator locator, String path) {
-        //page.setInputFiles(elementPath, Paths.get(path));
         locator.setInputFiles(Paths.get(path));
     }
 

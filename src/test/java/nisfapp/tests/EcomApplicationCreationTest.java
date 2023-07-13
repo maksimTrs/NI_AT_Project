@@ -109,8 +109,8 @@ public class EcomApplicationCreationTest extends BaseTest {
             nGeniusOnlinePartitionPage
                     .clickOnWebIntegrationCheckbox(true)
                     .clickOnPayByLinkCheckbox(true)
-                    .fillNumberTransactionsAnnual(getRandomIntValue(1000, 100000))
-                    .fillNumberEcomAnnualValue(getRandomIntValue(1000, 100000))
+                    .fillNumberTransactionsAnnual(getRandomIntValue(10000, 100000))
+                    .fillNumberEcomAnnualValue(getRandomIntValue(100, 10000))
                     .fillIntegrationMethod(NHR.getDisplayName())
                     .selectCardPaymentType(VISA.getDisplayName())
                     .selectCardPaymentType(MASTERCARD.getDisplayName());
@@ -121,7 +121,7 @@ public class EcomApplicationCreationTest extends BaseTest {
                     .fillBusinessLine("Truck Rental")
                     .fillDescOfBusinessOperation(BUSINESS_OPERATION_DESC)
                     .fillYearsInBusiness(getRandomIntValue(1, 15))
-                    .fillVolumePerYear(getRandomIntValue(1000, 500000))
+                    .fillVolumePerYear(getRandomIntValue(10000, 50000))
                     .fillCardPerYear(getRandomIntValue(100, 10000))
                     .clickOnNewAppSaveBtn();
         });

@@ -115,8 +115,8 @@ public class Type3ApplicationCreationTest extends BaseTest {
             nGeniusOnlinePartitionPage
                     .clickOnWebIntegrationCheckbox(true)
                     .clickOnPayByLinkCheckbox(true)
-                    .fillNumberTransactionsAnnual(getRandomIntValue(1000, 100000))
-                    .fillNumberEcomAnnualValue(getRandomIntValue(1000, 100000))
+                    .fillNumberTransactionsAnnual(getRandomIntValue(1000, 10000))
+                    .fillNumberEcomAnnualValue(getRandomIntValue(100, 1000))
                     .fillIntegrationMethod(NHR.getDisplayName())
                     .selectCardPaymentType(VISA.getDisplayName())
                     .selectCardPaymentType(MASTERCARD.getDisplayName());
@@ -128,8 +128,8 @@ public class Type3ApplicationCreationTest extends BaseTest {
                     .fillBusinessLine("Door-to-Door Sales")
                     .fillDescOfBusinessOperation(BUSINESS_OPERATION_DESC)
                     .fillYearsInBusiness(getRandomIntValue(1, 15))
-                    .fillVolumePerYear(getRandomIntValue(1000, 500000))
-                    .fillCardPerYear(getRandomIntValue(100, 10000))
+                    .fillVolumePerYear(getRandomIntValue(1000, 5000))
+                    .fillCardPerYear(getRandomIntValue(100, 1000))
                     .clickOnNewAppSaveBtn();
         });
 

@@ -49,7 +49,7 @@ public class ApplicationPage extends MethodActionsForPO {
         logger.debug("list app tabs  info: " + listEle.allInnerTexts());
         for (int i = 0; i < listEle.count(); i++) {
             (listEle.nth(i)).waitFor(new Locator.WaitForOptions()
-                    .setTimeout(5000));
+                    .setTimeout(7000));
 
             logger.debug(listEle.nth(i).getAttribute("title"));
 
@@ -59,9 +59,8 @@ public class ApplicationPage extends MethodActionsForPO {
             Locator closeLocator = page.locator(String.format(APP_SF_TAB_CLOSE_BTN, appID));
             closeLocator.waitFor(new Locator.WaitForOptions()
                     .setState(VISIBLE)
-                    .setTimeout(5000));
+                    .setTimeout(7000));
 
-            // listEle.nth(i).click(new Locator.ClickOptions().setDelay(1000));
             listEle.nth(i).click();
             closeLocator.click();
         }
@@ -102,8 +101,6 @@ public class ApplicationPage extends MethodActionsForPO {
         appSFID = page.locator(PRIMARY_APP_ID).innerText();
 
         waitForLocatorLoadState(page, CONTACT_NAME, VISIBLE);
-        // page.locator(CONTACT_NAME).click();
-        //page.waitForTimeout(3000);
         Page contactPage = page.waitForPopup(() -> doClickOnElement(page.locator(CONTACT_NAME)));
         return new ContactPage(contactPage);
     }
@@ -157,14 +154,12 @@ public class ApplicationPage extends MethodActionsForPO {
 
 
     public void assertAppIdFromContactPageReturning() {
-        // assertThat(page.locator(PRIMARY_APP_ID)).hasText(appSFID);
         logger.debug("<<<<< Contact's Application:" + appSFName + " has ID: " + appSFID + " >>>>>");
 
         assertElementHasText(page.locator(PRIMARY_APP_ID).innerText(), appSFID);
     }
 
     public void assertAppIdFromDocumentPageReturning() {
-        //assertThat(page.locator(PRIMARY_APP_ID)).hasText(appSFID);
         waitForLocatorLoadState(page, PRIMARY_APP_ID, VISIBLE);
         logger.debug("<<<<< Document's Application" + appSFName + " has ID: " + appSFID + " >>>>>");
 

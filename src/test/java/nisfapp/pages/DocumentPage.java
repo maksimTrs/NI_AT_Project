@@ -29,7 +29,6 @@ public class DocumentPage extends MethodActionsForPO {
     }
 
     public DocumentPage uploadDocFileViaPopUp(String filePath) {
-        //page.setInputFiles(APP_DOCUMENT_FILE_UPLOADER_FIELD, Paths.get(filePath));
         setFile(page.locator(APP_DOCUMENT_FILE_UPLOADER_FIELD), filePath);
         doClickOnElement(page.locator(APP_DOCUMENT_FILE_UPLOADER_DONE_BTN));
         return this;

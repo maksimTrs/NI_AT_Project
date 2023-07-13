@@ -36,7 +36,6 @@ import static nisfapp.utils.PropertyReader.getTestDataFromBundle;
 @Listeners({TestListener.class})
 public abstract class BaseTest {
 
-    private List<Path> listOfVideoRecords;
     public static final String SF_URL = getTestDataFromBundle("BASE_URL");
     public static Logger logger = Logger.getLogger(BaseTest.class);
     private static boolean isTraceEnabled = Boolean.getBoolean("TRACE_FLAG");
@@ -72,12 +71,11 @@ public abstract class BaseTest {
     ContactPage contactPage;
     @PlayWrightPage
     DocumentPage documentPage;
-
     @PlayWrightPage
     NewApplicationFeesChargesEcomPartitionPage newApplicationFeesChargesEcomPartitionPage;
     @PlayWrightPage
     NGeniusOnlinePartitionPage nGeniusOnlinePartitionPage;
-
+    private List<Path> listOfVideoRecords;
 
     @BeforeSuite(alwaysRun = true)
     public static void executePreConditions() {
@@ -136,13 +134,10 @@ public abstract class BaseTest {
 
             if (isTraceEnabled) {
                 logger.debug("<<<<< For test [" + method.getName() + "] was created a video: " + page.video().path() + " >>>>>");
-                /*String traceFileName = String.format("build/%s_trace.zip", uuid);
-                Path tracePath = Paths.get(traceFileName);*/
                 Path tracePath = Paths.get("traces/" + result.getMethod().getMethodName().replace("()", "") + ".zip");
                 browserContext.tracing()
                         .stop(new Tracing.StopOptions()
                                 .setPath(tracePath));
-                // Allure.addAttachment("trace.zip", new ByteArrayInputStream(Files.readAllBytes(tracePath)));
                 Allure.addAttachment(tracePath.getFileName().toString(), new ByteArrayInputStream(Files.readAllBytes(tracePath)));
             }
         }

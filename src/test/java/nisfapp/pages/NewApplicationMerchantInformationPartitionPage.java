@@ -29,7 +29,6 @@ public class NewApplicationMerchantInformationPartitionPage extends MethodAction
 
     public NewApplicationMerchantInformationPartitionPage fillPhone(String phoneNumber) {
         page.waitForTimeout(3000);
-        //doClickOnElement(page.locator(PHONE));
         fillElementField(page.locator(PHONE), phoneNumber);
         return this;
     }

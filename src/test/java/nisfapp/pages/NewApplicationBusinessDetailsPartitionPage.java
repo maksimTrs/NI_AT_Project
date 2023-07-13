@@ -5,8 +5,6 @@ import nisfapp.utils.MethodActionsForPO;
 
 public class NewApplicationBusinessDetailsPartitionPage extends MethodActionsForPO {
 
-    private static final String DESC_BUSINESS_OPERATION_TEXT = "PLAYWRIGHT AT TEST";
-
     private static final String BUSINESS_LINE = "//label[text()='Business Line']//..//button[contains(@aria-label, 'Business Line')]";
     private static final String BUSINESS_LINE_OPTION = "//span[text()='%s']";
     private static final String DESC_BUSINESS_OPERATION = "//label[text()='* Description of business operations']//..//input[contains(@name, 'DescriptionOfBusinessOperations')]";

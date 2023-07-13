@@ -9,12 +9,6 @@ public class PropertyReader {
     private static ResourceBundle resourceBundle = ResourceBundle.getBundle(BUNDLE_TYPE);
 
     public static String getTestDataFromBundle(String prop) {
-/*        if (System.getProperty("ENVIRONMENT") != null && (!System.getProperty("ENVIRONMENT").isEmpty())) {
-            resourceBundle = ResourceBundle.getBundle(System.getProperty("ENVIRONMENT"));
-            return resourceBundle.getString(prop);
-        }*/
         return resourceBundle.getString(prop);
     }
-
-
 }

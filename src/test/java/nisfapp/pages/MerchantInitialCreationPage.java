@@ -63,8 +63,6 @@ public class MerchantInitialCreationPage extends MethodActionsForPO {
         Locator businessNature = page.locator(BUSINESS_NATURE);
         businessNature.click();
 
-        //page.waitForSelector(BUSINESS_NATURE_LIST, new Page.WaitForSelectorOptions().setTimeout(5000));
-
         List<String> businessNatureList = page.querySelectorAll(BUSINESS_NATURE_LIST)
                 .stream()
                 .map(ElementHandle::innerText)
@@ -76,7 +74,6 @@ public class MerchantInitialCreationPage extends MethodActionsForPO {
 
         String randomBusinessNature = businessNatureList.get(getRandomIntValue(1, businessNatureList.size() - 1));
 
-        //businessNature.selectOption(randomBusinessNature, new Locator.SelectOptionOptions().setTimeout(2000));
         businessNature.selectOption(randomBusinessNature);
         businessNature.click();
 
@@ -104,7 +101,6 @@ public class MerchantInitialCreationPage extends MethodActionsForPO {
 
         doClickOnElement(page.locator(productToChoose));
         doClickOnElement(page.locator(SELECT_SELECTED_PRODUCT_BTN));
-        //waitForLocatorLoadState(page, PAY_BY_QR, VISIBLE);
         return this;
     }
 

@@ -41,7 +41,7 @@ OR
 
 2. Export PlayWright variable to the project:
 
-export SELENIUM_REMOTE_URL=http://localhost:4444 
+export SELENIUM_REMOTE_URL=http://localhost:4444
 export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 OR
@@ -49,7 +49,7 @@ OR
 set SELENIUM_REMOTE_URL=http://localhost:4444
 set PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
-and check the export: 
+and check the export:
 
 echo %SELENIUM_REMOTE_URL%
 
@@ -57,10 +57,8 @@ OR
 
 echo $SELENIUM_REMOTE_URL
 
-
 3. Run tests for chrome:
 
-`mvnw    -DBROWSER_TYPE=chrome  -DsuiteXmlFile="PosNgAppCreationSmoke.xml"  clean test`
-
+`mvnw -DBROWSER_TYPE=chrome -DsuiteXmlFile="PosNgAppCreationSmoke.xml"  clean test`
 
 4. Check video record or test execution via UI http://localhost:4444/ui/index.html#/ (default UI pass: "secret")

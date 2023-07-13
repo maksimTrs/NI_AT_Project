@@ -95,7 +95,7 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
 
         step("Open 'New Application: New' window and fill 'Fees and Charges' partition", () -> {
             newApplicationFeesChargesPartitionPage
-                    .fillMisMonthReportFee(getRandomDoubleValue(10, 1001));
+                    .fillMisMonthReportFee(getRandomDoubleValue(10, 99));
         });
 
 
@@ -104,7 +104,7 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
                     .fillBusinessLine("Fines")
                     .fillDescOfBusinessOperation(BUSINESS_OPERATION_DESC)
                     .fillYearsInBusiness(getRandomIntValue(1, 15))
-                    .fillVolumePerYear(getRandomIntValue(1000, 500000))
+                    .fillVolumePerYear(getRandomIntValue(10000, 50000))
                     .fillCardPerYear(getRandomIntValue(100, 10000))
                     .clickOnNewAppSaveBtn();
         });

@@ -88,7 +88,6 @@ public class AppDataFaker {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
-            //   Date initialDate = dateFormatter.parse(initialDateStr);
             Date currentDate = new Date();
             Date initDate = new Date(currentDate.getTime() + TimeUnit.DAYS.toMillis(4));
             Date endDate = new Date(currentDate.getTime() + TimeUnit.DAYS.toMillis(2520));
