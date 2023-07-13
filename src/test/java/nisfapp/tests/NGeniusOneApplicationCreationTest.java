@@ -191,6 +191,5 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
             applicationPage
                     .assertFilledAppPageIban();
         });
-
     }
 }

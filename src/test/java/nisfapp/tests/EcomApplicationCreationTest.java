@@ -173,6 +173,9 @@ public class EcomApplicationCreationTest extends BaseTest {
                     .assertAppIdFromDocumentPageReturning();
         });
 
-        // applicationPage.submitToNextStage();
+        step("Assert filled Application IBAN partition", () -> {
+            applicationPage
+                    .assertFilledAppPageIban();
+        });
     }
 }

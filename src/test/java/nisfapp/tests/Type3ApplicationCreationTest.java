@@ -181,6 +181,9 @@ public class Type3ApplicationCreationTest extends BaseTest {
                     .assertAppIdFromDocumentPageReturning();
         });
 
+        step("Assert filled Application IBAN partition", () -> {
+            applicationPage
+                    .assertFilledType3AppPageIban();
+        });
     }
-
 }

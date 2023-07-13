@@ -160,7 +160,9 @@ public class PosSoftPosApplicationCreationTest extends BaseTest {
                     .assertAppIdFromDocumentPageReturning();
         });
 
-        //applicationPage.submitToNextStage();
+        step("Assert filled Application IBAN partition", () -> {
+            applicationPage
+                    .assertFilledAppPageIban();
+        });
     }
-
 }

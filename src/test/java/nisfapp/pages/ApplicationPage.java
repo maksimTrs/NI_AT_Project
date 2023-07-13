@@ -188,4 +188,15 @@ public class ApplicationPage extends MethodActionsForPO {
         assertElementHasText(ibanVal, IBAN_VALUE);
         assertElementHasText(accIbanVal, ACCOUNT_NUMBER_VALUE);
     }
+
+    public void assertFilledType3AppPageIban() {
+        waitForLocatorLoadState(page, IBAN_TYPE3, VISIBLE);
+        String ibanVal = page.locator(IBAN_TYPE3).inputValue();
+        String accIbanVal = page.locator(ACCOUNT_NUMBER_TYPE3).inputValue();
+
+        logger.debug("<<<<< Application Type3 has IBAN: " + ibanVal + " And has ACCOUNT NUM: " + accIbanVal + " >>>>>");
+
+        assertElementHasText(ibanVal, IBAN_VALUE);
+        assertElementHasText(accIbanVal, ACCOUNT_NUMBER_VALUE);
+    }
 }
