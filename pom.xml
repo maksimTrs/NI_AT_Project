@@ -173,7 +173,7 @@
                         <!--suppress UnresolvedMavenProperty -->
                         <!-- <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
                         <!--suppress UnresolvedMavenProperty -->
-                        <suiteXmlFile>${project.basedir}/src/test/resources/${suiteXmlFile}</suiteXmlFile>
+                        <suiteXmlFile>${project.basedir}/src/test/resources/testNgSuites/${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>
