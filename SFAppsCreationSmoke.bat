@@ -1,0 +1,1 @@
+mvnw -DBROWSER_TYPE=chrome -DTRACE_FLAG=false -DsuiteXmlFile="SFAppsCreationSmoke.xml" clean test
