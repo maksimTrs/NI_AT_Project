@@ -76,4 +76,13 @@ public abstract class MethodActionsForPO {
     public void selectOptionFromListWithTimeOut(Locator locator, String value, int timeOut) {
         locator.selectOption(value, new Locator.SelectOptionOptions().setTimeout(timeOut));
     }
+
+
+    public void typeElementFieldTextWithTimeOut(Locator locator, String value, int timeOut) {
+        locator.type(value, new Locator.TypeOptions().setTimeout(timeOut));
+    }
+
+    public void typeElementFieldText(Locator locator, String value) {
+        locator.type(value);
+    }
 }

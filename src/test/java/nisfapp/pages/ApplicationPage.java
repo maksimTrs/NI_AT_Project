@@ -6,6 +6,7 @@ import com.microsoft.playwright.assertions.LocatorAssertions;
 import nisfapp.utils.MethodActionsForPO;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+import static com.microsoft.playwright.options.WaitForSelectorState.HIDDEN;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 import static nisfapp.tests.BaseTest.logger;
 import static nisfapp.utils.MethodAssertionsForPO.*;
@@ -78,9 +79,11 @@ public class ApplicationPage extends MethodActionsForPO {
         //page.waitForTimeout(3000);
         waitForLocatorLoadState(page, IBAN, VISIBLE);
 
-        fillElementField(page.locator(IBAN), iban);
-        fillElementField(page.locator(ACCOUNT_NUMBER), accNum);
-        doClickOnElement(page.locator(IBAN_ACC_SAVE_BTN));
+        //fillElementField(page.locator(IBAN), iban);
+        typeElementFieldTextWithTimeOut(page.locator(IBAN), iban, 500);
+        //fillElementField(page.locator(ACCOUNT_NUMBER), accNum);
+        typeElementFieldTextWithTimeOut(page.locator(ACCOUNT_NUMBER), accNum, 500);
+        doClickOnElementWithDelay(page.locator(IBAN_ACC_SAVE_BTN), 500);
         return this;
     }
 
