@@ -117,7 +117,9 @@ public abstract class BaseTest {
         page = browserContext.newPage();
         initPages(this, page);
 
-        collectPlayWrightVideos();
+        if (isTraceEnabled) {
+            collectPlayWrightVideos();
+        }
     }
 
 
@@ -154,7 +156,7 @@ public abstract class BaseTest {
         page.close();
         playwright.close();
 
-        if (result.isSuccess()) {
+        if (isTraceEnabled && result.isSuccess()) {
             deleteSuccessfulTestPlayWrightVideos(method);
         }
     }
