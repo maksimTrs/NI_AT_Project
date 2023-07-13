@@ -9,7 +9,7 @@ public class TestHelper {
     public static final String WEBSITE_ECOM = "*Website URL (Ecom)";
     public static final String WEBSITE = "*Website";
 
-    public static final String DOC_FILE_UPLOAD_PATH = "src/test/resources/cert_1.jpg";
-    public static final String DOC_FILE_UPLOAD_PATH2 = "src/test/resources/cert_2.xlsx";
+    public static final String DOC_FILE_UPLOAD_PATH = "src/test/resources/testData/cert_1.jpg";
+    public static final String DOC_FILE_UPLOAD_PATH2 = "src/test/resources/testData/cert_2.xlsx";
 
 }
