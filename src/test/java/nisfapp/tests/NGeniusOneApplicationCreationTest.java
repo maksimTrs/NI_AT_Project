@@ -4,6 +4,7 @@ package nisfapp.tests;
 import io.qameta.allure.*;
 import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
+import nisfapp.services.Ng1AuthSystemTypes;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -14,6 +15,7 @@ import static nisfapp.services.CityTypes.ABU_DHABI;
 import static nisfapp.services.CountryTypes.UAE;
 import static nisfapp.services.LegalTypeTypes.LLC;
 import static nisfapp.services.NationalityTypes.NATIONALITY_UAE;
+import static nisfapp.services.Ng1AuthSystemTypes.BASE24;
 import static nisfapp.services.NgOnlineIntegrationMethodTypes.NHR;
 import static nisfapp.services.NgOnlinePaymentTypes.MASTERCARD;
 import static nisfapp.services.NgOnlinePaymentTypes.VISA;
@@ -55,6 +57,8 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
                     .unselectSelectedProduct(POS.getDisplayName())
                     .unselectSelectedProduct(ECOM.getDisplayName())
                     .selectAvailableProduct(NG1.getDisplayName())
+                    .selectNg1ECOMAuthType(BASE24.getDisplayName())
+                    .selectNg1SoftPOSAuthType(BASE24.getDisplayName())
                     .moveToTheSecondApplicationScreen();
         });
 

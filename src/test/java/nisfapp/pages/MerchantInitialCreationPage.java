@@ -27,6 +27,8 @@ public class MerchantInitialCreationPage extends MethodActionsForPO {
     private static final String NUMBER_OF_POS = "(//div/input[@id='input-02'])[1]";
     private static final String NEXT_BTN = "//button[text()='Next']";
     private static final String PAY_BY_QR = "//span[text()='Selected Payment Method']/..//ul//span[text()='Pay by QR']";
+    private static final String NG1_ECOM_AUTH = "//select[@name='Select11']";
+    private static final String NG1_SOFTPOS_AUTH = "//select[@name='Select12']";
 
 
     private final Page page;
@@ -119,5 +121,18 @@ public class MerchantInitialCreationPage extends MethodActionsForPO {
 
     public void moveToTheSecondApplicationScreen() {
         doClickOnElement(page.locator(NEXT_BTN));
+    }
+
+
+    public MerchantInitialCreationPage selectNg1ECOMAuthType(String ng1AuthType) {
+        //doClickOnElement(page.locator(NG1_ECOM_AUTH));
+        selectOptionFromList(page.locator(NG1_ECOM_AUTH), ng1AuthType);
+        return this;
+    }
+
+
+    public MerchantInitialCreationPage selectNg1SoftPOSAuthType(String ng1AuthType) {
+        selectOptionFromList(page.locator(NG1_SOFTPOS_AUTH), ng1AuthType);
+        return this;
     }
 }
