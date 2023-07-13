@@ -40,6 +40,7 @@ public abstract class BaseTest {
     public static Logger logger = Logger.getLogger(BaseTest.class);
     private static boolean isTraceEnabled = Boolean.getBoolean("TRACE_FLAG");
     private static boolean isHeadlessMode = Boolean.getBoolean("HEADLESS_MODE");
+    private static boolean isClearMode = Boolean.getBoolean("CLEAR_MODE");
     private static String browserType = System.getProperty("BROWSER_TYPE");
     public User SALES_OFFICER_USER;
     public User INCORRECT_SF_USER;
@@ -80,10 +81,12 @@ public abstract class BaseTest {
     @BeforeSuite(alwaysRun = true)
     public static void executePreConditions() {
         try {
-            FileUtils.deleteDirectory(new File("traces"));
-            FileUtils.deleteDirectory(new File("videos"));
-            FileUtils.deleteDirectory(new File("target/allure-results"));
-            logger.debug("Folders [videos, traces, allure-results] were deleted successfully");
+            if (isClearMode) {
+                FileUtils.deleteDirectory(new File("traces"));
+                FileUtils.deleteDirectory(new File("videos"));
+                FileUtils.deleteDirectory(new File("target/allure-results"));
+                logger.debug("Folders [videos, traces, allure-results] were deleted successfully");
+            }
         } catch (IOException e) {
             logger.debug("Failed to delete folder: " + e.getMessage());
         }

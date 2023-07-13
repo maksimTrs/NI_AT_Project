@@ -138,6 +138,17 @@
                 <HEADLESS_MODE>false</HEADLESS_MODE>
             </properties>
         </profile>
+        <profile>
+            <id>clear-type-property</id>
+            <activation>
+                <property>
+                    <name>!CLEAR_MODE</name>
+                </property>
+            </activation>
+            <properties>
+                <CLEAR_MODE>true</CLEAR_MODE>
+            </properties>
+        </profile>
     </profiles>
 
 
@@ -168,6 +179,7 @@
                         <BROWSER_TYPE>${BROWSER_TYPE}</BROWSER_TYPE>
                         <TRACE_FLAG>${TRACE_FLAG}</TRACE_FLAG>
                         <HEADLESS_MODE>${HEADLESS_MODE}</HEADLESS_MODE>
+                        <CLEAR_MODE>${CLEAR_MODE}</CLEAR_MODE>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
                         <!--suppress UnresolvedMavenProperty -->
