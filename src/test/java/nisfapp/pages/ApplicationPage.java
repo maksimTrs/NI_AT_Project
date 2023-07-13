@@ -83,7 +83,10 @@ public class ApplicationPage extends MethodActionsForPO {
         typeElementFieldTextWithTimeOut(page.locator(IBAN), iban, 500);
         //fillElementField(page.locator(ACCOUNT_NUMBER), accNum);
         typeElementFieldTextWithTimeOut(page.locator(ACCOUNT_NUMBER), accNum, 500);
-        doClickOnElementWithDelay(page.locator(IBAN_ACC_SAVE_BTN), 500);
+
+        waitForLocatorLoadState(page, IBAN_ACC_SAVE_BTN, VISIBLE);
+        //doClickOnElementWithDelay(page.locator(IBAN_ACC_SAVE_BTN), 500);
+        doClickOnElement(page.locator(IBAN_ACC_SAVE_BTN));
         return this;
     }
 
@@ -94,6 +97,8 @@ public class ApplicationPage extends MethodActionsForPO {
 
         fillElementField(page.locator(IBAN), iban);
         fillElementField(page.locator(ACCOUNT_NUMBER), accNum);
+
+        waitForLocatorLoadState(page, IBAN_ACC_SAVE_BTN, VISIBLE);
         doClickOnElement(page.locator(IBAN_ACC_SAVE_BTN));
         return this;
     }
@@ -104,7 +109,7 @@ public class ApplicationPage extends MethodActionsForPO {
         appSFID = page.locator(PRIMARY_APP_ID).innerText();
 
         waitForLocatorLoadState(page, CONTACT_NAME, VISIBLE);
-        Page contactPage = page.waitForPopup(() -> doClickOnElement(page.locator(CONTACT_NAME)));
+        Page contactPage = page.waitForPopup(() -> doClickOnElementWithDelay(page.locator(CONTACT_NAME), 1500));
         return new ContactPage(contactPage);
     }
 
