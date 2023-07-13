@@ -8,14 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 public class AppDataFaker {
 
-
-    // Faker faker2 = new Faker(new Locale("ae"));
-
-/*    String name = faker.name().fullName(); // Miss Samanta Schmidt
-    String firstName = faker.name().firstName(); // Emory
-    String lastName = faker.name().lastName(); // Barton
-    String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449*/
-
     public static String getRandomEmail() {
         Faker faker = new Faker();
         return faker.internet().emailAddress();
@@ -90,11 +82,6 @@ public class AppDataFaker {
     }
 
     public static String getRandomLicenceExpirationDate() {
-    /*    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Faker faker = new Faker();
-        int years = 7;
-        String futureDate2 = faker.date().future(years, TimeUnit.DAYS, "dd/MM/yyyy");
-        return futureDate2;*/
         Faker faker = new Faker();
 
         String randomDate1 = null;
