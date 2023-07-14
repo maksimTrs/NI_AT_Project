@@ -2,7 +2,7 @@ package nisfapp.tests;
 
 import org.testng.annotations.Test;
 
-public class AppTabsClosingTest extends BaseTest {
+public class AppTabsClosingTest extends BaseApiTest {
 
 
     @Test(enabled = false)

@@ -5,6 +5,7 @@ build/
 !**/src/test/**/build/
 uat.properties
 predprod.properties
+uatApiConfig.properties
 
 ### IntelliJ IDEA ###
 .idea/

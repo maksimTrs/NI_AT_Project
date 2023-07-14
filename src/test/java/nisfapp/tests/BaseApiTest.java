@@ -34,10 +34,10 @@ import static nisfapp.utils.PropertyReader.getTestDataFromBundle;
 
 
 @Listeners({TestListener.class})
-public abstract class BaseTest {
+public abstract class BaseApiTest {
 
     public static final String SF_URL = getTestDataFromBundle("BASE_URL");
-    public static Logger logger = Logger.getLogger(BaseTest.class);
+    public static Logger logger = Logger.getLogger(BaseApiTest.class);
     private static boolean isTraceEnabled = Boolean.getBoolean("TRACE_FLAG");
     private static boolean isHeadlessMode = Boolean.getBoolean("HEADLESS_MODE");
     private static boolean isClearMode = Boolean.getBoolean("CLEAR_MODE");

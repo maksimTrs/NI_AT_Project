@@ -25,7 +25,7 @@ import static nisfapp.utils.AppDataFaker.*;
  * Error within the Product please select POS Brand that is suitable for Soft POS
  **/
 
-public class PosSoftPosApplicationCreationTest extends BaseTest {
+public class PosSoftPosApplicationCreationTest extends BaseApiTest {
 
 
     @Severity(SeverityLevel.CRITICAL)

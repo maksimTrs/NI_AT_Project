@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 //import static org.assertj.core.api.Assertions.*;
 
 
-public class LogInTest extends BaseTest {
+public class LogInTest extends BaseApiTest {
 
 
     @Severity(SeverityLevel.BLOCKER)

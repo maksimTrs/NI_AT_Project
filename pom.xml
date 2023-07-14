@@ -27,8 +27,16 @@
         <playwright.ver>1.35.1</playwright.ver>
         <allure.maven.ver>2.12.0</allure.maven.ver>
         <surefire.plagin.ver>3.0.0-M5</surefire.plagin.ver>
+        <jackson.ver>2.15.2</jackson.ver>
+        <org-json-verion>20230227</org-json-verion>
+        <jackson-databind.ver>2.15.2</jackson-databind.ver>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${org-json-verion}</version>
+        </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -89,6 +97,16 @@
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
             <version>${playwright.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.ver}</version>
         </dependency>
     </dependencies>
 

@@ -20,7 +20,7 @@ import static nisfapp.services.RentalModeTypes.BANK_TRANSFER;
 import static nisfapp.services.TestHelper.*;
 import static nisfapp.utils.AppDataFaker.*;
 
-public class PosNgeniusApplicationCreationTest extends BaseTest {
+public class PosNgeniusApplicationCreationTest extends BaseApiTest {
 
 
     @Severity(SeverityLevel.CRITICAL)
