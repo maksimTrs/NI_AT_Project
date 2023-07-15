@@ -1,20 +1,13 @@
 package nisobapp.tests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsoft.playwright.APIResponse;
-import com.microsoft.playwright.options.FormData;
 import com.microsoft.playwright.options.RequestOptions;
-import org.apache.commons.io.FileUtils;
+import nisobapp.pojo.SobAppApiMain;
+import nisobapp.utils.SobAppDataBuilder;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.testng.annotations.Test;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
 
 import static nisobapp.utils.ConfigLoader.getSingletonInstance;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,25 +15,31 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SOBCreationApiTest extends BaseApiTest {
 
 
-   // private static Path file = Paths.get("src/test/resources/testData/SOB_Application_API_UAT_Creation.json");
-
-
     @Test
-    public void createBookingTest()   {
+    public void createBookingTest() {
 
-        File file = new File("src/test/resources/testData/SOB_Application_API_UAT_Creation.json");
-        String fileContent= null;
+        SobAppApiMain newApplicationFromBuilder = SobAppApiMain.builder()
+                .application(SobAppDataBuilder.getApplicationBuilderData())
+                .build();
+
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonConvertAppResult;
         try {
-            fileContent = FileUtils.readFileToString(file, "UTF-8");
-        } catch (IOException e) {
-            // Handle the exception appropriately
-            e.printStackTrace();
+            jsonConvertAppResult = objectMapper.writeValueAsString(newApplicationFromBuilder);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
         }
 
-        APIResponse response = manager.postRequest(BASE_URL1, RequestOptions.create().setData(fileContent).setTimeout(40000));
+        System.out.println("^^^^^^^^^^^^^^^ newApplication JSON = " + jsonConvertAppResult);
 
-        System.out.println("***********"  + response.text());
-        System.out.println("***********"  + response.statusText());
+
+        APIResponse response = manager.postRequest(BASE_URL1, RequestOptions.create()
+                .setData(jsonConvertAppResult)
+                .setTimeout(60000));
+
+        System.out.println("***********" + response.text());
+        System.out.println("***********" + response.statusText());
 
         assertThat(response.status()).isEqualTo(201);
 
@@ -49,7 +48,7 @@ public class SOBCreationApiTest extends BaseApiTest {
         System.out.println("************** applicationNumber = " + applicationNumber);
 
         assertThat(applicationNumber)
-                .as("applicationNumber value is: "+ applicationNumber)
+                .as("applicationNumber value is: " + applicationNumber)
                 .isNotEmpty()
                 .matches("A-\\d{9,}");
 

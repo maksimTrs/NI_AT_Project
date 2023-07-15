@@ -59,8 +59,8 @@ public class ApiAppDataFaker {
         Faker faker = new Faker();
 
         String randomDate1 = null;
-        String initialDateStr = "25/01/2018";
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+        String initialDateStr = "2018-01-25";
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
             Date initialDate = dateFormatter.parse(initialDateStr);
@@ -76,7 +76,7 @@ public class ApiAppDataFaker {
     }
 
     public static String getRandomDateOfBirth() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Faker faker = new Faker();
         return sdf.format(faker.date().birthday(18, 79));
     }
@@ -85,7 +85,7 @@ public class ApiAppDataFaker {
         Faker faker = new Faker();
 
         String randomDate1 = null;
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
             Date currentDate = new Date();

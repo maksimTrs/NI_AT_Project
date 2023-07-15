@@ -1,6 +1,7 @@
 package nisobapp.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
@@ -9,9 +10,10 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Address{
-	private String pobox;
-	private String city;
-	private String phone;
-	private String addressLine;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Address {
+    private String pobox;
+    private String city;
+    private String phone;
+    private String addressLine;
 }

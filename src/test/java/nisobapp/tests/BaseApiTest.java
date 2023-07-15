@@ -13,15 +13,13 @@ import static nisobapp.api.AccessTokenManager.renewToken;
 
 public class BaseApiTest {
 
-    protected RequestManager manager;
-
     protected static final String BASE_URL1 = "https://network-international--uat.sandbox.my.salesforce.com/services/apexrest/selfonboarding/application/";
-    private static  String TOKEN;
-
+    private static String TOKEN;
+    protected RequestManager manager;
 
     @BeforeSuite(alwaysRun = true)
     public static void executeApiPreConditions() {
-        TOKEN =  getToken();
+        TOKEN = getToken();
     }
 
     @BeforeTest
