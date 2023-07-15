@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static nisobapp.api.AccessTokenManager.getToken;
+import static nisobapp.api.AccessTokenManager.renewToken;
 
 public class BaseApiTest {
 
@@ -25,6 +26,8 @@ public class BaseApiTest {
 
     @BeforeTest
     public void setUp() {
+        TOKEN = renewToken();
+
         manager = new RequestManager();
         manager.createPlaywright();
 

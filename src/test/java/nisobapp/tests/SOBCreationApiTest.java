@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import static nisobapp.utils.ConfigLoader.getSingletonInstance;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SOBCreationApiTest extends BaseApiTest {
@@ -45,6 +46,13 @@ public class SOBCreationApiTest extends BaseApiTest {
 
         JSONObject responseObject = new JSONObject(response.text());
         String applicationNumber = responseObject.getString("applicationNumber");
-        System.out.println(applicationNumber);
+        System.out.println("************** applicationNumber = " + applicationNumber);
+
+        assertThat(applicationNumber)
+                .as("applicationNumber value is: "+ applicationNumber)
+                .isNotEmpty()
+                .matches("A-\\d{9,}");
+
+        getSingletonInstance().setApplicationNumber(applicationNumber);
     }
 }

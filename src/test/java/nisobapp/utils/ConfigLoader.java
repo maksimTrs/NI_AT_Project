@@ -72,4 +72,22 @@ public class ConfigLoader {
             throw new RuntimeException("property << password >>" + ERR_MSG);
         }
     }
+
+    public String getApplicationNumber() {
+        String prop = properties.getProperty("applicationNumber");
+        if (prop != null) {
+            return prop;
+        }
+        else {
+            throw new RuntimeException("property << applicationNumber >>" + ERR_MSG);
+        }
+    }
+
+    public void setApplicationNumber(String value) {
+        properties.setProperty("applicationNumber", value);
+
+        if (properties.getProperty("applicationNumber") == null || properties.getProperty("applicationNumber").isEmpty()) {
+            throw new RuntimeException("property << applicationNumber >>" + ERR_MSG);
+        }
+    }
 }
