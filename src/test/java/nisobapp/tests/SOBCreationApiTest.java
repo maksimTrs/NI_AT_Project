@@ -36,7 +36,7 @@ public class SOBCreationApiTest extends BaseApiTest {
 
         APIResponse response = manager.postRequest(BASE_URL1, RequestOptions.create()
                 .setData(jsonConvertAppResult)
-                .setTimeout(60000));
+                .setTimeout(80000));
 
         System.out.println("***********" + response.text());
         System.out.println("***********" + response.statusText());

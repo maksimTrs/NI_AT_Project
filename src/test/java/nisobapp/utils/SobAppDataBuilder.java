@@ -10,6 +10,17 @@ import static nisobapp.utils.TestHelper.*;
 
 public class SobAppDataBuilder {
 
+    private static final long TLN = getRandomTLN();
+    private static final String PASSPORT = getRandomPassport();
+
+    private static final String SCREENING_RESULT_FORMAT = String.format(
+            SCREENING_RESULT,
+            TLN, TLN, TLN,
+            TLN, TLN, TLN,
+            TLN, TLN, TLN,
+            PASSPORT, PASSPORT,
+            PASSPORT, PASSPORT);
+
     public static Application getApplicationBuilderData() {
         return Application.builder()
                 .merchantType("SME")
@@ -26,7 +37,7 @@ public class SobAppDataBuilder {
                 .expectedCardVolume(String.valueOf(getRandomIntValue(100, 1000)))
                 .paymentMode("EQ")
                 .rentalMode("DD")
-                .screeningResult(SCREENING_RESULT)
+                .screeningResult(SCREENING_RESULT_FORMAT)
                 //.shareHolders(null)
                 .tenantId("ni")
                 .contacts(getContactsItems())
@@ -54,7 +65,7 @@ public class SobAppDataBuilder {
                 .birthDate(getRandomDateOfBirth())
                 .emiratesId("784-1990-6338466-5")
                 .nationality("Indian")
-                .passportNumber("V4554")
+                .passportNumber(PASSPORT)
                 .passportExpirationDate(getRandomLicenceExpirationDate())
                 .visaExpirationDate(getRandomLicenceExpirationDate())
                 .emiratesExpirationDate(getRandomLicenceExpirationDate())
@@ -75,7 +86,7 @@ public class SobAppDataBuilder {
                 .birthDate(getRandomDateOfBirth())
                 .designation("tet")
                 .nationality("UAE")
-                .passportNumber("V34355")
+                .passportNumber(PASSPORT)
                 .passportExpirationDate(getRandomLicenceExpirationDate())
                 .email(getRandomEmail())
                 .PEPInformation(PEPInformation
@@ -105,7 +116,7 @@ public class SobAppDataBuilder {
                 .accountNumber(IBAN_ACC_NUM)
                 .documents(getDocumentsItems())
                 .taxRegistrationNumber(String.valueOf(getRandomTLN()))
-                .tradeLicenseNumber("433553")
+                .tradeLicenseNumber(String.valueOf(TLN))
                 .tradeLicenseExpirationDate(getRandomLicenceExpirationDate())
                 .merchantEmail(getRandomEmail())
                 .MSFRates(MSFRates.builder()
@@ -152,7 +163,7 @@ public class SobAppDataBuilder {
                 .accountNumber(IBAN_ACC_NUM)
                 .documents(getDocumentsItems2())
                 .taxRegistrationNumber(String.valueOf(getRandomTLN()))
-                .tradeLicenseNumber("557754")
+                .tradeLicenseNumber(String.valueOf(TLN))
                 .tradeLicenseExpirationDate(getRandomLicenceExpirationDate())
                 .merchantEmail(getRandomEmail())
                 .MSFRates(MSFRates
@@ -202,7 +213,7 @@ public class SobAppDataBuilder {
                 .accountNumber(IBAN_ACC_NUM)
                 .documents(getDocumentsItems2())
                 .taxRegistrationNumber(String.valueOf(getRandomTLN()))
-                .tradeLicenseNumber("141414")
+                .tradeLicenseNumber(String.valueOf(TLN))
                 .tradeLicenseExpirationDate(getRandomLicenceExpirationDate())
                 .merchantEmail(getRandomEmail())
                 .website(getRandomWebURL())

@@ -2,7 +2,17 @@ package nisobapp.utils;
 
 public class TestHelper {
 
-    public static final String SCREENING_RESULT = "  { \"entities\" : [ { \"entityId\" : \"433553\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"433553\",  \"result\" : \"GO\", \"matchedMerchants\" : null},\"MATCH\" : {\"entityId\" : \"433553\", \"result\" : \"GO\",  \"matchedMerchants\" : null }}},{   \"entityId\" : \"557754\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"557754\",  \"result\" : \"GO\", \"matchedMerchants\" : null},\"MATCH\" : {       \"entityId\" : \"557754\",       \"result\" : \"GO\",       \"matchedMerchants\" : null     }   } },{   \"entityId\" : \"141414\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"141414\",  \"result\" : \"GO\", \"matchedMerchants\" : null},\"MATCH\" : {       \"entityId\" : \"141414\",       \"result\" : \"GO\",       \"matchedMerchants\" : null     }   } }, {   \"entityId\" : \"V4554\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"V4554\",  \"result\" : \"GO\", \"matchedMerchants\" : null}}}, {   \"entityId\" : \"V34355\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"V34355\",  \"result\" : \"GO\", \"matchedMerchants\" : null}}}]}";
+    public static final String SCREENING_RESULT = "  { \"entities\" : [ { \"entityId\" : \"%s\",    \"screeningResult\" : {      " +
+            "\"FISERV\" : { \"entityId\" : \"%s\",  \"result\" : \"GO\", \"matchedMerchants\" : null},\"MATCH\" : {\"entityId\" : \"%s\", " +
+            "\"result\" : \"GO\",  \"matchedMerchants\" : null }}},{   \"entityId\" : \"%s\",    \"screeningResult\" : {      " +
+            "\"FISERV\" : { \"entityId\" : \"%s\",  \"result\" : \"GO\", \"matchedMerchants\" : null},\"MATCH\" : {       " +
+            "\"entityId\" : \"%s\",       \"result\" : \"GO\",       \"matchedMerchants\" : null     }   } },{   " +
+            "\"entityId\" : \"%s\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"%s\",  " +
+            "\"result\" : \"GO\", \"matchedMerchants\" : null},\"MATCH\" : {       \"entityId\" : \"%s\",       " +
+            "\"result\" : \"GO\",       \"matchedMerchants\" : null     }   } }, {   \"entityId\" : \"%s\",    " +
+            "\"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"%s\",  \"result\" : \"GO\", \"matchedMerchants\" : null}}}, " +
+            "{   \"entityId\" : \"%s\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"%s\",  " +
+            "\"result\" : \"GO\", \"matchedMerchants\" : null}}}]}";
 
     public static final String IBAN = "AE540035951185368235123";
     public static final String IBAN_ACC_NUM = "368235123";
