@@ -1,12 +1,14 @@
 package nisobapp.utils;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
 public class ConfigLoader {
 
     private static ConfigLoader configLoader;
-    private final Properties properties;
+    private  Properties properties;
 
     private static final String ERR_MSG = " is not specified in the API config.properties file";
     private static final String API_PROP_FILE = "uatApiConfig.properties";
@@ -85,9 +87,10 @@ public class ConfigLoader {
 
     public void setApplicationNumber(String value) {
         properties.setProperty("applicationNumber", value);
-
-        if (properties.getProperty("applicationNumber") == null || properties.getProperty("applicationNumber").isEmpty()) {
-            throw new RuntimeException("property << applicationNumber >>" + ERR_MSG);
+        try {
+            properties.store(new FileOutputStream("src/test/resources/" + API_PROP_FILE), null);
+        } catch (IOException e) {
+            throw new RuntimeException(">>>>>>>>>>>>>>> " + e);
         }
     }
 }

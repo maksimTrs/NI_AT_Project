@@ -37,7 +37,7 @@ public class SOBCreationApiTest extends BaseApiTest {
             e.printStackTrace();
         }
 
-        APIResponse response = manager.postRequest(BASE_URL1, RequestOptions.create().setData(fileContent));
+        APIResponse response = manager.postRequest(BASE_URL1, RequestOptions.create().setData(fileContent).setTimeout(40000));
 
         System.out.println("***********"  + response.text());
         System.out.println("***********"  + response.statusText());

@@ -15,7 +15,6 @@ public class RequestManager {
 
     public void createPlaywright() {
         playwright = Playwright.create();
-
     }
 
     public void setApiRequestContext(String baseUrl, Map<String, String> headers) {
