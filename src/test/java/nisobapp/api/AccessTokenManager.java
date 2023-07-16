@@ -15,6 +15,7 @@ import static nisobapp.api.StatusCode.CODE_200;
 import static nisobapp.tests.BaseApiTest.loggerAPI;
 import static nisobapp.utils.ConfigLoader.getSingletonInstance;
 import static nisobapp.utils.TestHelper.TOKEN_URL;
+import static nisobapp.utils.TestHelper.TOKEN_URL_ENDPOINT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccessTokenManager {
@@ -51,7 +52,7 @@ public class AccessTokenManager {
         TokenApi tokenData = buildTokenRequest();
 
         APIResponse response = manager
-                .postRequest(TOKEN_URL, RequestOptions.create()
+                .postRequest(TOKEN_URL_ENDPOINT, RequestOptions.create()
                         .setForm(FormData.create()
                                 .set("client_id", tokenData.getClient_id())
                                 .set("client_secret", tokenData.getClient_secret())

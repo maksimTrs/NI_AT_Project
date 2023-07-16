@@ -24,7 +24,7 @@ public class ConfigLoader {
 
     public String getClientId() {
         String prop = properties.getProperty("client_id");
-        if (prop != null) {
+        if (prop != null && !prop.isBlank()) {
             return prop;
         } else {
             throw new RuntimeException("property << client_id >>" + ERR_MSG);
@@ -33,7 +33,7 @@ public class ConfigLoader {
 
     public String getClientSecret() {
         String prop = properties.getProperty("client_secret");
-        if (prop != null) {
+        if (prop != null && !prop.isBlank()) {
             return prop;
         } else {
             throw new RuntimeException("property << client_secret >>" + ERR_MSG);
@@ -42,7 +42,7 @@ public class ConfigLoader {
 
     public String getGrantType() {
         String prop = properties.getProperty("grant_type");
-        if (prop != null) {
+        if (prop != null && !prop.isBlank()) {
             return prop;
         } else {
             throw new RuntimeException("property << grant_type >>" + ERR_MSG);
@@ -52,7 +52,7 @@ public class ConfigLoader {
 
     public String getUserName() {
         String prop = properties.getProperty("username");
-        if (prop != null) {
+        if (prop != null && !prop.isBlank()) {
             return prop;
         } else {
             throw new RuntimeException("property << username >>" + ERR_MSG);
@@ -61,7 +61,7 @@ public class ConfigLoader {
 
     public String getGetUserPass() {
         String prop = properties.getProperty("password");
-        if (prop != null) {
+        if (prop != null && !prop.isBlank()) {
             return prop;
         } else {
             throw new RuntimeException("property << password >>" + ERR_MSG);
@@ -70,7 +70,7 @@ public class ConfigLoader {
 
     public String getApplicationNumber() {
         String prop = properties.getProperty("applicationNumber");
-        if (prop != null) {
+        if (prop != null && !prop.isBlank()) {
             return prop;
         } else {
             throw new RuntimeException("property << applicationNumber >>" + ERR_MSG);
@@ -89,7 +89,7 @@ public class ConfigLoader {
 
     public String getSalesforceApplicationId() {
         String prop = properties.getProperty("salesforceApplicationId");
-        if (prop != null) {
+        if (prop != null && !prop.isBlank()) {
             return prop;
         } else {
             throw new RuntimeException("property << salesforceApplicationId >>" + ERR_MSG);

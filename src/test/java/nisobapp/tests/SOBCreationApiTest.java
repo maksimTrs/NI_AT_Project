@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import static nisobapp.api.StatusCode.CODE_201;
 import static nisobapp.utils.ConfigLoader.getSingletonInstance;
 import static nisobapp.utils.TestHelper.APP_ID_REGEX;
-import static nisobapp.utils.TestHelper.SOB_CREATION_URL;
+import static nisobapp.utils.TestHelper.SOB_CREATION_URL_ENDPOINT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SOBCreationApiTest extends BaseApiTest {
@@ -37,9 +37,11 @@ public class SOBCreationApiTest extends BaseApiTest {
         loggerAPI.debug(">>>>>>>>>>>> New Application JSON Body = " + jsonConvertAppResult);
 
 
-        APIResponse response = manager.postRequest(SOB_CREATION_URL, RequestOptions.create()
+        APIResponse response = manager.postRequest(SOB_CREATION_URL_ENDPOINT, RequestOptions.create()
                 .setData(jsonConvertAppResult)
                 .setTimeout(80000));
+
+        loggerAPI.debug("********** = " + response.url());
 
         loggerAPI.debug(">>>>>>>>>>>> New Application Response = " + response.text());
 

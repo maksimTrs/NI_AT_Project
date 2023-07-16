@@ -6,7 +6,8 @@ import org.testng.annotations.Test;
 
 import static nisobapp.api.StatusCode.CODE_200;
 import static nisobapp.utils.ConfigLoader.getSingletonInstance;
-import static nisobapp.utils.TestHelper.SOB_CREATION_URL;
+import static nisobapp.utils.TestHelper.SOB_CREATION_URL_ENDPOINT;
+import static nisobapp.utils.TestHelper.SOB_CREATION_URL_GETAPP_SF_ID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SOBApplicationStatusTest extends BaseApiTest {
@@ -14,7 +15,8 @@ public class SOBApplicationStatusTest extends BaseApiTest {
     @Test(priority = 2)
     public void getSFApplicationStatus() {
 
-        APIResponse apiResponse = manager.getRequest(SOB_CREATION_URL + "/" + getSingletonInstance().getSalesforceApplicationId());
+        APIResponse apiResponse = manager.getRequest(SOB_CREATION_URL_ENDPOINT + SOB_CREATION_URL_GETAPP_SF_ID);
+        loggerAPI.debug("********** = " + apiResponse.url());
 
         assertThat(apiResponse.status())
                 .isEqualTo(CODE_200.CODE);

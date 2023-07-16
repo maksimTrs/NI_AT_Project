@@ -1,9 +1,14 @@
 package nisobapp.utils;
 
+import static nisobapp.utils.ConfigLoader.getSingletonInstance;
+
 public class TestHelper {
 
-    public static final String SOB_CREATION_URL = "https://network-international--uat.sandbox.my.salesforce.com/services/apexrest/selfonboarding/application";
-    public static final String TOKEN_URL = "https://test.salesforce.com/services/oauth2/token";
+    public static final String SOB_CREATION_URL = "https://network-international--uat.sandbox.my.salesforce.com";
+    public static final String SOB_CREATION_URL_ENDPOINT = "/services/apexrest/selfonboarding/application";
+    public static final String SOB_CREATION_URL_GETAPP_SF_ID = "/" + getSingletonInstance().getSalesforceApplicationId();
+    public static final String TOKEN_URL = "https://test.salesforce.com";
+    public static final String TOKEN_URL_ENDPOINT = "/services/oauth2/token";
     public static final String APP_ID_REGEX = "A-\\d{9,}";
 
     public static final String SCREENING_RESULT = "  { \"entities\" : [ { \"entityId\" : \"%s\",    \"screeningResult\" : {      " +
