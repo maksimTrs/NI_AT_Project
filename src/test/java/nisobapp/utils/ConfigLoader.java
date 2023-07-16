@@ -85,4 +85,23 @@ public class ConfigLoader {
             throw new RuntimeException(">>>>>>>>>>>>>>> " + e);
         }
     }
+
+
+    public String getSalesforceApplicationId() {
+        String prop = properties.getProperty("salesforceApplicationId");
+        if (prop != null) {
+            return prop;
+        } else {
+            throw new RuntimeException("property << salesforceApplicationId >>" + ERR_MSG);
+        }
+    }
+
+    public void setSalesforceApplicationId(String value) {
+        properties.setProperty("salesforceApplicationId", value);
+        try {
+            properties.store(new FileOutputStream("src/test/resources/" + API_PROP_FILE), null);
+        } catch (IOException e) {
+            throw new RuntimeException(">>>>>>>>>>>>>>> " + e);
+        }
+    }
 }

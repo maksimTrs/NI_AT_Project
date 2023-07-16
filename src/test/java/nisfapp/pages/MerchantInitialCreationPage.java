@@ -8,7 +8,7 @@ import nisfapp.utils.MethodActionsForPO;
 import java.util.List;
 
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
-import static nisfapp.tests.BaseApiTest.logger;
+import static nisfapp.tests.BaseTest.logger;
 import static nisfapp.utils.AppDataFaker.getRandomIntValue;
 
 

@@ -25,7 +25,7 @@ import static nisfapp.services.SettlementFrequencyEcomTypes.DAILY;
 import static nisfapp.services.TestHelper.*;
 import static nisfapp.utils.AppDataFaker.*;
 
-public class Type3ApplicationCreationTest extends BaseApiTest {
+public class Type3ApplicationCreationTest extends BaseTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Owner("Maksim T")

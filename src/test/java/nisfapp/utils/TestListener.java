@@ -5,7 +5,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import static nisfapp.tests.BaseApiTest.logger;
+import static nisfapp.tests.BaseTest.logger;
 
 
 public class TestListener implements ITestListener {

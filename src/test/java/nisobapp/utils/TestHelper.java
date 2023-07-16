@@ -2,6 +2,10 @@ package nisobapp.utils;
 
 public class TestHelper {
 
+    public static final String SOB_CREATION_URL = "https://network-international--uat.sandbox.my.salesforce.com/services/apexrest/selfonboarding/application";
+    public static final String TOKEN_URL = "https://test.salesforce.com/services/oauth2/token";
+    public static final String APP_ID_REGEX = "A-\\d{9,}";
+
     public static final String SCREENING_RESULT = "  { \"entities\" : [ { \"entityId\" : \"%s\",    \"screeningResult\" : {      " +
             "\"FISERV\" : { \"entityId\" : \"%s\",  \"result\" : \"GO\", \"matchedMerchants\" : null},\"MATCH\" : {\"entityId\" : \"%s\", " +
             "\"result\" : \"GO\",  \"matchedMerchants\" : null }}},{   \"entityId\" : \"%s\",    \"screeningResult\" : {      " +

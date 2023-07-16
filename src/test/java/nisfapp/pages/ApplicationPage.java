@@ -9,7 +9,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 import static nisfapp.services.TestHelper.ACCOUNT_NUMBER_VALUE;
 import static nisfapp.services.TestHelper.IBAN_VALUE;
-import static nisfapp.tests.BaseApiTest.logger;
+import static nisfapp.tests.BaseTest.logger;
 import static nisfapp.utils.MethodAssertionsForPO.*;
 
 public class ApplicationPage extends MethodActionsForPO {

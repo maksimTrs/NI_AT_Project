@@ -9,14 +9,17 @@ import nisobapp.utils.SobAppDataBuilder;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
 
+import static nisobapp.api.StatusCode.CODE_201;
 import static nisobapp.utils.ConfigLoader.getSingletonInstance;
+import static nisobapp.utils.TestHelper.APP_ID_REGEX;
+import static nisobapp.utils.TestHelper.SOB_CREATION_URL;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SOBCreationApiTest extends BaseApiTest {
 
 
-    @Test
-    public void createBookingTest() {
+    @Test(priority = 1)
+    public void createSobAppTest() {
 
         SobAppApiMain newApplicationFromBuilder = SobAppApiMain.builder()
                 .application(SobAppDataBuilder.getApplicationBuilderData())
@@ -31,27 +34,31 @@ public class SOBCreationApiTest extends BaseApiTest {
             throw new RuntimeException(e);
         }
 
-        System.out.println("^^^^^^^^^^^^^^^ newApplication JSON = " + jsonConvertAppResult);
+        loggerAPI.debug(">>>>>>>>>>>> New Application JSON Body = " + jsonConvertAppResult);
 
 
-        APIResponse response = manager.postRequest(BASE_URL1, RequestOptions.create()
+        APIResponse response = manager.postRequest(SOB_CREATION_URL, RequestOptions.create()
                 .setData(jsonConvertAppResult)
                 .setTimeout(80000));
 
-        System.out.println("***********" + response.text());
-        System.out.println("***********" + response.statusText());
+        loggerAPI.debug(">>>>>>>>>>>> New Application Response = " + response.text());
 
-        assertThat(response.status()).isEqualTo(201);
+        assertThat(response.status())
+                .isEqualTo(CODE_201.CODE);
 
         JSONObject responseObject = new JSONObject(response.text());
         String applicationNumber = responseObject.getString("applicationNumber");
-        System.out.println("************** applicationNumber = " + applicationNumber);
+        String salesforceApplicationId = responseObject.getString("salesforceApplicationId");
 
         assertThat(applicationNumber)
                 .as("applicationNumber value is: " + applicationNumber)
                 .isNotEmpty()
-                .matches("A-\\d{9,}");
+                .matches(APP_ID_REGEX);
+
+        loggerAPI.info(">>>>>>>>>>>> New Application Response Application Number = " + applicationNumber);
+        loggerAPI.info(">>>>>>>>>>>> New Application Response salesforceApplicationId = " + salesforceApplicationId);
 
         getSingletonInstance().setApplicationNumber(applicationNumber);
+        getSingletonInstance().setSalesforceApplicationId(salesforceApplicationId);
     }
 }

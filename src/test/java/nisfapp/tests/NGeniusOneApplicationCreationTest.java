@@ -25,7 +25,7 @@ import static nisfapp.services.SettlementFrequencyEcomTypes.DAILY;
 import static nisfapp.services.TestHelper.*;
 import static nisfapp.utils.AppDataFaker.*;
 
-public class NGeniusOneApplicationCreationTest extends BaseApiTest {
+public class NGeniusOneApplicationCreationTest extends BaseTest {
 
 
     @Severity(SeverityLevel.CRITICAL)

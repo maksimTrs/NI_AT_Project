@@ -24,7 +24,7 @@ import static nisfapp.services.SettlementFrequencyEcomTypes.DAILY;
 import static nisfapp.services.TestHelper.*;
 import static nisfapp.utils.AppDataFaker.*;
 
-public class EcomApplicationCreationTest extends BaseApiTest {
+public class EcomApplicationCreationTest extends BaseTest {
 
 
     @Severity(SeverityLevel.CRITICAL)

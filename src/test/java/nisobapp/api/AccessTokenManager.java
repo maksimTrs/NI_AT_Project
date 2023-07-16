@@ -11,12 +11,14 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
+import static nisobapp.api.StatusCode.CODE_200;
+import static nisobapp.tests.BaseApiTest.loggerAPI;
 import static nisobapp.utils.ConfigLoader.getSingletonInstance;
+import static nisobapp.utils.TestHelper.TOKEN_URL;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccessTokenManager {
 
-    private static final String TOKEN_URL = "https://test.salesforce.com/services/oauth2/token";
     private static String access_token;
     private static Instant expires_time;
 
@@ -24,14 +26,14 @@ public class AccessTokenManager {
     public static String renewToken() {
         try {
             if (Instant.now().isAfter(expires_time) || access_token == null) {
-                System.out.println(">>>>>>>>>>>>>>> Token is updating...");
+                loggerAPI.info(">>>>>>> Token is updating <<<<<<<");
                 access_token = getToken();
             } else {
-                System.out.println(">>>>>>>>>>>>>>>  Token is up to date");
+                loggerAPI.info(">>>>>>>  Token is up to date <<<<<<<");
             }
         } catch (Exception exception) {
             exception.printStackTrace();
-            throw new RuntimeException(">>>>>>>>>>>>>>> Failed to get Token!");
+            throw new RuntimeException(">>>>>>> Failed to get Token! <<<<<<<");
         }
         return access_token;
     }
@@ -58,11 +60,13 @@ public class AccessTokenManager {
                                 .set("password", tokenData.getPassword())));
 
         assertThat(response.status())
-                .isEqualTo(200);
+                .isEqualTo(CODE_200.getCODE());
 
         JSONObject responseObject = new JSONObject(response.text());
         String tokenValue = responseObject.getString("access_token");
+        String tokenType = responseObject.getString("token_type");
         long issuedAt = Long.parseLong(responseObject.getString("issued_at"));
+
         assertThat(tokenValue)
                 .isNotEmpty()
                 .isNotNull();
@@ -71,12 +75,15 @@ public class AccessTokenManager {
                 .isNotEqualTo(0)
                 .isNotNull();
 
-        System.out.println("++++++++++++ tokenValue = " + tokenValue);
-        /*        System.out.println("++++++++++++ issuedAt = " + issuedAt);*/
-        access_token = tokenValue;
+        assertThat(tokenType)
+                .isEqualTo("Bearer");
 
+        loggerAPI.debug(">>>>>>>>>>>> tokenValue = " + tokenValue);
+
+        access_token = tokenValue;
         expires_time = Instant.now().plusSeconds(3600);
-        System.out.println("++++++++++++ INSTANT millis expires_time = " + expires_time);
+
+        loggerAPI.debug(">>>>>>>>>>>> INSTANT millis expires_time = " + expires_time);
 
         return access_token;
     }
