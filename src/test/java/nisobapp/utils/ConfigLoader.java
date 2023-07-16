@@ -7,7 +7,7 @@ import java.util.Properties;
 public class ConfigLoader {
 
     private static final String ERR_MSG = " is not specified in the API config.properties file";
-    private static final String API_PROP_FILE = "uatApiConfig.properties";
+    private static final String API_PROP_FILE = System.getProperty("API_CONF_TYPE");
     private static ConfigLoader configLoader;
     private Properties properties;
 

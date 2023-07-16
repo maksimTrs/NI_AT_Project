@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="sob-app-creation-smoke" parallel="classes" thread-count="1">
+<suite name="sob-app-creation-smoke" parallel="none">
 
     <test name="sob-app-creation">
         <classes>

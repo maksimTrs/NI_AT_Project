@@ -167,6 +167,17 @@
                 <CLEAR_MODE>true</CLEAR_MODE>
             </properties>
         </profile>
+        <profile>
+            <id>api-type-property</id>
+            <activation>
+                <property>
+                    <name>!API_CONF_TYPE</name>
+                </property>
+            </activation>
+            <properties>
+                <API_CONF_TYPE>uatApiConfig.properties</API_CONF_TYPE>
+            </properties>
+        </profile>
     </profiles>
 
 
@@ -198,6 +209,7 @@
                         <TRACE_FLAG>${TRACE_FLAG}</TRACE_FLAG>
                         <HEADLESS_MODE>${HEADLESS_MODE}</HEADLESS_MODE>
                         <CLEAR_MODE>${CLEAR_MODE}</CLEAR_MODE>
+                        <API_CONF_TYPE>${API_CONF_TYPE}</API_CONF_TYPE>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
                         <!--suppress UnresolvedMavenProperty -->

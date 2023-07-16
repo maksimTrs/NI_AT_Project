@@ -23,7 +23,7 @@ public class BaseApiTest {
         TOKEN = getToken();
     }
 
-    @BeforeTest
+    @BeforeClass
     public void setUp() {
         TOKEN = renewToken();
 
@@ -36,7 +36,7 @@ public class BaseApiTest {
         manager.setApiRequestContext(SOB_CREATION_URL, headers);
     }
 
-    @AfterTest
+    @AfterClass
     public void tearDown() {
         manager.disposeAPIRequestContext();
         manager.closePlaywright();

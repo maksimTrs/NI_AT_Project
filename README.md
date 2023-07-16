@@ -1,12 +1,12 @@
-**# playwright NI framework**
+## **# playwright NI framework - SF UI**
 
-### **_NOTE_**: By Default this framework is using "src/test/resources/uat.properties" prop file.
+#### **_NOTE_**: By Default this framework is using "src/test/resources/uat.properties" prop file.
 
-1. [x] To change prop file, add in the CLI command property, e.g.:
+1. To change prop file, add in the CLI command property, e.g.:
 
 **_-DBUNDLE_TYPE=preprod_**
 
-2. [x] This framework is using mvn wrapper (mvn -N wrapper:wrapper -Dmaven=3.8.5). To run command via maven, use "mvn"
+2. This framework is using mvn wrapper (mvn -N wrapper:wrapper -Dmaven=3.8.5). To run command via maven, use "mvn"
    instead of "./mvnw".
 
 =================================================================================================================
@@ -62,3 +62,17 @@ echo $SELENIUM_REMOTE_URL
 `mvnw -DBROWSER_TYPE=chrome -DsuiteXmlFile="PosNgAppCreationSmoke.xml"  clean test`
 
 4. Check video record or test execution via UI http://localhost:4444/ui/index.html#/ (default UI pass: "secret")
+
+## **# playwright NI framework - SOB API**
+
+#### **_NOTE_**: By Default this framework is using "src/test/resources/uatApiConfig.properties" prop file.
+
+1. To change prop file, add in the CLI command property, e.g.:
+
+**-DAPI_CONF_TYPE=XXXApiConfig.properties**
+
+=================================================================================================================
+
+#### --->>> **_To run SOB Application creation API (POST request) and Get application info API (GET request), run:_**
+
+`./mvnw -DsuiteXmlFile="SOBAppApiCreationTest.xml"  clean test`
