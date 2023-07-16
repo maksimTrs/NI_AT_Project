@@ -1,0 +1,1 @@
+mvnw -DsuiteXmlFile="SOBAppApiCreationTest.xml"  clean test
