@@ -36,12 +36,12 @@ import static nisfapp.utils.PropertyReader.getTestDataFromBundle;
 @Listeners({TestListener.class})
 public abstract class BaseTest {
 
-    public static final String SF_URL = getTestDataFromBundle("BASE_URL");
+    protected static final String SF_URL = getTestDataFromBundle("BASE_URL");
     public static Logger logger = Logger.getLogger(BaseTest.class);
-    private static boolean isTraceEnabled = Boolean.getBoolean("TRACE_FLAG");
-    private static boolean isHeadlessMode = Boolean.getBoolean("HEADLESS_MODE");
-    private static boolean isClearMode = Boolean.getBoolean("CLEAR_MODE");
-    private static String browserType = System.getProperty("BROWSER_TYPE");
+    public static boolean isClearMode = Boolean.getBoolean("CLEAR_MODE");
+    protected static boolean isTraceEnabled = Boolean.getBoolean("TRACE_FLAG");
+    protected static boolean isHeadlessMode = Boolean.getBoolean("HEADLESS_MODE");
+    protected static String browserType = System.getProperty("BROWSER_TYPE");
     public User SALES_OFFICER_USER;
     public User INCORRECT_SF_USER;
     protected Playwright playwright;

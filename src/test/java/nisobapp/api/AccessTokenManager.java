@@ -14,9 +14,9 @@ import java.util.Map;
 import static nisobapp.api.StatusCode.CODE_200;
 import static nisobapp.tests.BaseApiTest.loggerAPI;
 import static nisobapp.utils.ConfigLoader.getSingletonInstance;
+import static nisobapp.utils.MethodAssertionsFoкAPI.*;
 import static nisobapp.utils.TestHelper.TOKEN_URL;
 import static nisobapp.utils.TestHelper.TOKEN_URL_ENDPOINT;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccessTokenManager {
 
@@ -60,24 +60,18 @@ public class AccessTokenManager {
                                 .set("username", tokenData.getUsername())
                                 .set("password", tokenData.getPassword())));
 
-        assertThat(response.status())
-                .isEqualTo(CODE_200.getCODE());
+        assertApiResponseStatusCode(response.status(), CODE_200.CODE);
 
         JSONObject responseObject = new JSONObject(response.text());
         String tokenValue = responseObject.getString("access_token");
         String tokenType = responseObject.getString("token_type");
         long issuedAt = Long.parseLong(responseObject.getString("issued_at"));
 
-        assertThat(tokenValue)
-                .isNotEmpty()
-                .isNotNull();
+        assertApiResponseElementIsNotEmptyOrNull(tokenValue);
 
-        assertThat(issuedAt)
-                .isNotEqualTo(0)
-                .isNotNull();
+        assertApiResponseElementIsNotEqual(issuedAt, 0);
 
-        assertThat(tokenType)
-                .isEqualTo("Bearer");
+        assertApiResponseElementHasValue(tokenType, "Bearer");
 
         loggerAPI.debug(">>>>>>>>>>>> tokenValue = " + tokenValue);
 

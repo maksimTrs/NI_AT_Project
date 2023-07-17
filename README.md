@@ -76,3 +76,11 @@ echo $SELENIUM_REMOTE_URL
 #### --->>> **_To run SOB Application creation API (POST request) and Get application info API (GET request), run:_**
 
 `./mvnw -DsuiteXmlFile="SOBAppApiCreationTest.xml"  clean test`
+
+=================================================================================================================
+
+#### --->>> **_To run test report Allure - run command:_**
+
+`mvn allure:serve`
+
+=================================================================================================================
