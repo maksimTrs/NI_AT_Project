@@ -28,6 +28,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static nisfapp.services.UserCreator.*;
 import static nisfapp.utils.BrowserContextFactory.setupBrowserContext;
 import static nisfapp.utils.BrowserFactory.launchBrowser;
 import static nisfapp.utils.PropertyReader.getTestDataFromBundle;
@@ -95,8 +96,10 @@ public abstract class BaseTest {
 
     @BeforeClass()
     public void setUp() {
-        SALES_OFFICER_USER = UserCreator.withCredentialsFromPropertyFile();
-        INCORRECT_SF_USER = UserCreator.withWrongCredentialsFromPropertyFile();
+        SALES_OFFICER_USER = withCredentialsFromPropertyFile(getTestDataFromBundle(USER_NAME),
+                        getTestDataFromBundle(USER_PASSWORD));
+        INCORRECT_SF_USER = withWrongCredentialsFromPropertyFile(getTestDataFromBundle(USER_NAME),
+                        getTestDataFromBundle(USER_PASSWORD_WRONG));
     }
 
     @BeforeMethod(alwaysRun = true)

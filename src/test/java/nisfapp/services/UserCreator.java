@@ -5,21 +5,21 @@ import nisfapp.model.User;
 import static nisfapp.utils.PropertyReader.getTestDataFromBundle;
 
 public class UserCreator {
-    private static final String USER_NAME = "USER_EMAIL";
-    private static final String USER_PASSWORD = "USER_PASSWORD";
-    private static final String USER_PASSWORD_WRONG = "USER_PASSWORD_WRONG";
+    public static final String USER_NAME = "USER_EMAIL";
+    public static final String USER_PASSWORD = "USER_PASSWORD";
+    public static final String USER_PASSWORD_WRONG = "USER_PASSWORD_WRONG";
 
-    public static User withCredentialsFromPropertyFile() {
+    public static User withCredentialsFromPropertyFile(String userName, String userPass) {
         return User.builder()
-                .username(getTestDataFromBundle(USER_NAME))
-                .password(getTestDataFromBundle(USER_PASSWORD))
+                .username(userName)
+                .password(userPass)
                 .build();
     }
 
-    public static User withWrongCredentialsFromPropertyFile() {
+    public static User withWrongCredentialsFromPropertyFile(String userName, String userWrongPass) {
         return User.builder()
-                .username(getTestDataFromBundle(USER_NAME))
-                .password(getTestDataFromBundle(USER_PASSWORD_WRONG))
+                .username(userName)
+                .password(userWrongPass)
                 .build();
     }
 }
