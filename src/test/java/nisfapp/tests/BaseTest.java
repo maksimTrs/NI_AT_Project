@@ -128,25 +128,10 @@ public abstract class BaseTest {
 
 
     @AfterMethod(alwaysRun = true)
-    public void attachFilesToFailedTest(ITestContext testInfo, ITestResult result, Method method) throws IOException {
+    public void attachFilesToFailedTest(ITestResult result, Method method) throws IOException {
 
-        if (!result.isSuccess()) {
-            String uuid = UUID.randomUUID().toString();
-            byte[] screenshot = page.screenshot(new Page.ScreenshotOptions()
-                    .setPath(Paths.get("build/allure-results/screenshot_" + uuid + "screenshot.png"))
-                    .setFullPage(true));
+        doLoggingFailedTest(result, method);
 
-            Allure.addAttachment(uuid, new ByteArrayInputStream(screenshot));
-
-            if (isTraceEnabled) {
-                logger.debug("<<<<< For test [" + method.getName() + "] was created a video: " + page.video().path() + " >>>>>");
-                Path tracePath = Paths.get("traces/" + result.getMethod().getMethodName().replace("()", "") + ".zip");
-                browserContext.tracing()
-                        .stop(new Tracing.StopOptions()
-                                .setPath(tracePath));
-                Allure.addAttachment(tracePath.getFileName().toString(), new ByteArrayInputStream(Files.readAllBytes(tracePath)));
-            }
-        }
         logger.info("********************************************************************************");
         logger.info("<<< Test method: " + method.getName() + " was finished >>>");
         logger.info("********************************************************************************");
@@ -181,6 +166,26 @@ public abstract class BaseTest {
                          NoSuchMethodException e) {
                     throw new RuntimeException("!!! +++ Constructor for PO objects wasn't created for field: " + field.getName() + " +++ !!!\n" + e);
                 }
+            }
+        }
+    }
+
+    private void doLoggingFailedTest(ITestResult result, Method method) throws IOException {
+        if (!result.isSuccess()) {
+            String uuid = UUID.randomUUID().toString();
+            byte[] screenshot = page.screenshot(new Page.ScreenshotOptions()
+                    .setPath(Paths.get("build/allure-results/screenshot_" + uuid + "screenshot.png"))
+                    .setFullPage(true));
+
+            Allure.addAttachment(uuid, new ByteArrayInputStream(screenshot));
+
+            if (isTraceEnabled) {
+                logger.debug("<<<<< For test [" + method.getName() + "] was created a video: " + page.video().path() + " >>>>>");
+                Path tracePath = Paths.get("traces/" + result.getMethod().getMethodName().replace("()", "") + ".zip");
+                browserContext.tracing()
+                        .stop(new Tracing.StopOptions()
+                                .setPath(tracePath));
+                Allure.addAttachment(tracePath.getFileName().toString(), new ByteArrayInputStream(Files.readAllBytes(tracePath)));
             }
         }
     }
