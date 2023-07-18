@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import static nisobapp.api.StatusCode.CODE_200;
 import static nisobapp.utils.ConfigLoader.getSingletonInstance;
-import static nisobapp.utils.MethodAssertionsFoкAPI.*;
+import static nisobapp.utils.MethodAssertionsForAPI.*;
 import static nisobapp.utils.TestHelper.SOB_CREATION_URL_ENDPOINT;
 import static nisobapp.utils.TestHelper.SOB_CREATION_URL_GETAPP_SF_ID;
 

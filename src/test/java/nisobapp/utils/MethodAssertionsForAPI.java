@@ -4,7 +4,7 @@ import io.qameta.allure.Allure;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public abstract class MethodAssertionsFoкAPI {
+public abstract class MethodAssertionsForAPI {
 
     public static void assertApiResponseStatusCode(int actualResult, int expectedResult) {
         try {

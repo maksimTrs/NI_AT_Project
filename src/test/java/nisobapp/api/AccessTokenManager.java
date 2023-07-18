@@ -14,7 +14,7 @@ import java.util.Map;
 import static nisobapp.api.StatusCode.CODE_200;
 import static nisobapp.tests.BaseApiTest.loggerAPI;
 import static nisobapp.utils.ConfigLoader.getSingletonInstance;
-import static nisobapp.utils.MethodAssertionsFoкAPI.*;
+import static nisobapp.utils.MethodAssertionsForAPI.*;
 import static nisobapp.utils.TestHelper.TOKEN_URL;
 import static nisobapp.utils.TestHelper.TOKEN_URL_ENDPOINT;
 

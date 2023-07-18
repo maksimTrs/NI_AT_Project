@@ -12,8 +12,8 @@ import org.testng.annotations.Test;
 
 import static nisobapp.api.StatusCode.CODE_201;
 import static nisobapp.utils.ConfigLoader.getSingletonInstance;
-import static nisobapp.utils.MethodAssertionsFoкAPI.assertApiElementHasMatches;
-import static nisobapp.utils.MethodAssertionsFoкAPI.assertApiResponseStatusCode;
+import static nisobapp.utils.MethodAssertionsForAPI.assertApiElementHasMatches;
+import static nisobapp.utils.MethodAssertionsForAPI.assertApiResponseStatusCode;
 import static nisobapp.utils.TestHelper.APP_ID_REGEX;
 import static nisobapp.utils.TestHelper.SOB_CREATION_URL_ENDPOINT;
 
