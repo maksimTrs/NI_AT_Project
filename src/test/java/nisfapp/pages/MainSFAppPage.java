@@ -46,7 +46,7 @@ public class MainSFAppPage extends MethodActionsForPO {
 
 
     public void assertLogOutBtn() {
-        waitForLocatorLoadState(page, VIEW_PROFILE, VISIBLE);
+        waitForPageLoadState(page);
         page.locator(VIEW_PROFILE).click();
 
         boolean logOutBtnIsActive = page.locator(LOGOUT_BTN).isEnabled();
