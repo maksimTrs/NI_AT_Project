@@ -4,18 +4,17 @@ package nisfappui.tests;
 import io.qameta.allure.*;
 import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
+import nisfappui.utils.TestBuilderForNg1App;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
 import static nisfappui.constants.TestHelper.*;
 import static nisfappui.pages.NavigationMenuPartitions.APPLICATIONS;
-import static nisfappui.services.ApplicationProductTypes.*;
 import static nisfappui.services.BankTypes.ENBD;
 import static nisfappui.services.CityTypes.ABU_DHABI;
 import static nisfappui.services.CountryTypes.UAE;
 import static nisfappui.services.LegalTypeTypes.LLC;
 import static nisfappui.services.NationalityTypes.NATIONALITY_UAE;
-import static nisfappui.services.Ng1AuthSystemTypes.BASE24;
 import static nisfappui.services.NgOnlineIntegrationMethodTypes.NHR;
 import static nisfappui.services.NgOnlinePaymentTypes.MASTERCARD;
 import static nisfappui.services.NgOnlinePaymentTypes.VISA;
@@ -29,6 +28,8 @@ import static nisfappui.utils.MethodAssertionsForPO.*;
 
 public class NGeniusOneApplicationCreationTest extends BaseTest {
 
+    private TestBuilderForNg1App testBuilderForNg1App = new TestBuilderForNg1App();
+
 
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Maksim T")
@@ -40,29 +41,18 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
     @Test(groups = {"SmokeTest"})
     public void createNGeniusOneApplicationTest() {
 
+
         doSFLogIn(SF_URL, SALES_OFFICER_USER);
 
 
         step(APP_TAB_STEP, () -> {
 
-            mainSFAppPage
-                    .clickOnNavigationMenuType()
-                    .chooseOnNavigationMenuType(APPLICATIONS)
-                    .clickOnNewAppBtn();
+            testBuilderForNg1App.openNewMerchantPopUp(mainSFAppPage, APPLICATIONS);
         });
 
         step(NEW_APP_TAB_NG1_STEP, () -> {
 
-            merchantInitialCreationPage
-                    .fillTradeName(getRandomTradeName())
-                    .fillMerchantEmail(getRandomEmail())
-                    .chooseBusinessNatureType("Car Rental")
-                    .unselectSelectedProduct(POS.getDisplayName())
-                    .unselectSelectedProduct(ECOM.getDisplayName())
-                    .selectAvailableProduct(NG1.getDisplayName())
-                    .selectNg1ECOMAuthType(BASE24.getDisplayName())
-                    .selectNg1SoftPOSAuthType(BASE24.getDisplayName())
-                    .moveToTheSecondApplicationScreen();
+            testBuilderForNg1App.fillMerchantInitialCreationPagePopUp(merchantInitialCreationPage, "Car Rental");
         });
 
 
