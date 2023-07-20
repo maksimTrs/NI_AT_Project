@@ -1,4 +1,4 @@
-package nisfappui.services;
+package nisfappui.constants;
 
 public class TestHelper {
 

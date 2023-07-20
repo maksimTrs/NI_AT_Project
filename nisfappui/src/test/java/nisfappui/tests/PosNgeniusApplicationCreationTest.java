@@ -17,7 +17,7 @@ import static nisfappui.services.NationalityTypes.NATIONALITY_UAE;
 import static nisfappui.services.PaymentModeTypes.MC_777;
 import static nisfappui.services.PosTypeAndGatewayTypes.POS_TYPE_NG;
 import static nisfappui.services.RentalModeTypes.BANK_TRANSFER;
-import static nisfappui.services.TestHelper.*;
+import static nisfappui.constants.TestHelper.*;
 import static nisfappui.utils.AppDataFaker.*;
 
 public class PosNgeniusApplicationCreationTest extends BaseTest {

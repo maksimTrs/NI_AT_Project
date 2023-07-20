@@ -22,7 +22,7 @@ import static nisfappui.services.PosTypeAndGatewayTypes.POS_TYPE_NG;
 import static nisfappui.services.RefundCategoryTypes.C;
 import static nisfappui.services.RentalModeTypes.BANK_TRANSFER;
 import static nisfappui.services.SettlementFrequencyEcomTypes.DAILY;
-import static nisfappui.services.TestHelper.*;
+import static nisfappui.constants.TestHelper.*;
 import static nisfappui.utils.AppDataFaker.*;
 
 public class Type3ApplicationCreationTest extends BaseTest {

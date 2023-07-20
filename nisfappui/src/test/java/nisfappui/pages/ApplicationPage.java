@@ -7,8 +7,8 @@ import nisfappui.utils.MethodActionsForPO;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
-import static nisfappui.services.TestHelper.ACCOUNT_NUMBER_VALUE;
-import static nisfappui.services.TestHelper.IBAN_VALUE;
+import static nisfappui.constants.TestHelper.ACCOUNT_NUMBER_VALUE;
+import static nisfappui.constants.TestHelper.IBAN_VALUE;
 import static nisfappui.tests.BaseTest.logger;
 import static nisfappui.utils.MethodAssertionsForPO.*;
 

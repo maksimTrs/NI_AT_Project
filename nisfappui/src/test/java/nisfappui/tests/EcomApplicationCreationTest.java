@@ -21,7 +21,7 @@ import static nisfappui.services.PosTypeAndGatewayTypes.ECON_TYPE;
 import static nisfappui.services.RefundCategoryTypes.C;
 import static nisfappui.services.RentalModeTypes.PAY_BY_LINK;
 import static nisfappui.services.SettlementFrequencyEcomTypes.DAILY;
-import static nisfappui.services.TestHelper.*;
+import static nisfappui.constants.TestHelper.*;
 import static nisfappui.utils.AppDataFaker.*;
 
 public class EcomApplicationCreationTest extends BaseTest {

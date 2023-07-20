@@ -4,6 +4,8 @@ import io.qameta.allure.*;
 import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
 import org.testng.annotations.Test;
+
+import static nisfappui.utils.MethodAssertionsForPO.*;
 //import static org.assertj.core.api.Assertions.*;
 
 
@@ -24,7 +26,11 @@ public class LogInTest extends BaseTest {
                 .fillUserNameAndPasswordFields(SALES_OFFICER_USER)
                 .doLogIn();
 
-        mainSFAppPage.assertLogOutBtn();
+        mainSFAppPage
+                .clickOnProfileBtn();
+
+        assertElementIsEnabled(mainSFAppPage.checkLogOutBtnState());
+        assertElementHasText(mainSFAppPage.getLogOutBtnName(), "Log Out");
     }
 
 
@@ -42,7 +48,7 @@ public class LogInTest extends BaseTest {
                 .fillUserNameAndPasswordFields(INCORRECT_SF_USER)
                 .doLogIn();
 
-        logInPage.assertLogInPageTitle();
-        logInPage.assertLogInErrorMsg();
+        assertElementHasText(logInPage.getLogInPageTitle(), "Login | Salesforce");
+        assertElementContainsText(logInPage.getLogInErrorMsg(), "Please check your username and password");
     }
 }

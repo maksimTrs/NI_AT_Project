@@ -44,14 +44,18 @@ public class MainSFAppPage extends MethodActionsForPO {
         doClickOnElement(page.locator(CREATE_NEW_APP_BTN));
     }
 
-
-    public void assertLogOutBtn() {
+    public MainSFAppPage clickOnProfileBtn() {
         waitForPageLoadState(page);
+        waitForLocatorLoadState(page, VIEW_PROFILE, VISIBLE);
         page.locator(VIEW_PROFILE).click();
+        return this;
+    }
 
-        boolean logOutBtnIsActive = page.locator(LOGOUT_BTN).isEnabled();
-        String logOutBtnName = page.locator(LOGOUT_BTN).innerText();
-        assertElementIsEnabled(logOutBtnIsActive);
-        assertElementHasText(logOutBtnName, "Log Out");
+    public boolean checkLogOutBtnState() {
+        return  page.locator(LOGOUT_BTN).isEnabled();
+    }
+
+    public String getLogOutBtnName() {
+        return page.locator(LOGOUT_BTN).innerText();
     }
 }

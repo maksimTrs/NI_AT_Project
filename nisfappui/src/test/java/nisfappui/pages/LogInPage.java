@@ -47,18 +47,12 @@ public class LogInPage extends MethodActionsForPO {
     }
 
 
-    public void assertLogInErrorMsg() {
+    public String getLogInErrorMsg() {
         waitForLocatorLoadState(page, LOGIN_ERROR_MSG, VISIBLE);
-        String loginErrorMsg = page.locator(LOGIN_ERROR_MSG).innerText();
-        String expectedRes = "Please check your username and password.";
-
-        assertElementContainsText(loginErrorMsg, expectedRes);
+        return page.locator(LOGIN_ERROR_MSG).innerText();
     }
 
-    public void assertLogInPageTitle() {
-        String pageTitle = page.title();
-        String expectedRes = "Login | Salesforce";
-
-        assertElementHasText(pageTitle, expectedRes);
+    public String getLogInPageTitle() {
+        return page.title();
     }
 }
