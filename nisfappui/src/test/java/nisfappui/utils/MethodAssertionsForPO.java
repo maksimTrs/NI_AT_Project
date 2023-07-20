@@ -64,4 +64,21 @@ public abstract class MethodAssertionsForPO {
             throw e;
         }
     }
+
+
+
+    public static void assertElementHasCount(int actualResult, int expectedResult) {
+        try {
+            assertThat(actualResult)
+                    .as("Validate element count")
+                    .isEqualTo(expectedResult);
+
+            Allure.step("Assertion passed: Actual element count has expected value");
+        } catch (AssertionError e) {
+            Allure.step("Assertion failed: Actual element count does not have expected value: ");
+            Allure.attachment("Expected Value", String.valueOf(expectedResult));
+            Allure.attachment("Actual Value", String.valueOf(actualResult));
+            throw e;
+        }
+    }
 }

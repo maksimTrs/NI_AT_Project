@@ -52,7 +52,7 @@ public class ApplicationPage extends MethodActionsForPO {
         logger.debug("list app tabs  info: " + listEle.allInnerTexts());
         for (int i = 0; i < listEle.count(); i++) {
             (listEle.nth(i)).waitFor(new Locator.WaitForOptions()
-                    .setTimeout(7000));
+                    .setTimeout(5000));
 
             logger.debug(listEle.nth(i).getAttribute("title"));
 
@@ -62,7 +62,7 @@ public class ApplicationPage extends MethodActionsForPO {
             Locator closeLocator = page.locator(String.format(APP_SF_TAB_CLOSE_BTN, appID));
             closeLocator.waitFor(new Locator.WaitForOptions()
                     .setState(VISIBLE)
-                    .setTimeout(7000));
+                    .setTimeout(5000));
 
             listEle.nth(i).click();
             closeLocator.click();
@@ -159,9 +159,9 @@ public class ApplicationPage extends MethodActionsForPO {
         return this;
     }
 
-
-    public void assertAllClosedSFTabs() {
-        assertThat(page.locator(ALL_APP_SF_TABS)).hasCount(0, new LocatorAssertions.HasCountOptions().setTimeout(15000));
+    public int getSFApplicationTabsCount() {
+        page.waitForTimeout(15000);
+        return page.locator(ALL_APP_SF_TABS).count();
     }
 
 
