@@ -7,6 +7,7 @@ import io.qameta.allure.testng.Tags;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
+import static nisfappui.constants.TestHelper.*;
 import static nisfappui.pages.NavigationMenuPartitions.APPLICATIONS;
 import static nisfappui.services.ApplicationProductTypes.*;
 import static nisfappui.services.BankTypes.ENBD;
@@ -22,8 +23,9 @@ import static nisfappui.services.PaymentModeTypes.MC_777;
 import static nisfappui.services.RefundCategoryTypes.C;
 import static nisfappui.services.RentalModeTypes.BANK_TRANSFER;
 import static nisfappui.services.SettlementFrequencyEcomTypes.DAILY;
-import static nisfappui.constants.TestHelper.*;
+import static nisfappui.utils.AllureStepsTemplates.*;
 import static nisfappui.utils.AppDataFaker.*;
+import static nisfappui.utils.MethodAssertionsForPO.*;
 
 public class NGeniusOneApplicationCreationTest extends BaseTest {
 
@@ -41,14 +43,16 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
         doSFLogIn(SF_URL, SALES_OFFICER_USER);
 
 
-        step("Open Application tab and click on 'New' btn", () -> {
+        step(APP_TAB_STEP, () -> {
+
             mainSFAppPage
                     .clickOnNavigationMenuType()
                     .chooseOnNavigationMenuType(APPLICATIONS)
                     .clickOnNewAppBtn();
         });
 
-        step("Open 'NEW MERCHANT:NEW APPLICATION' window and fill mandatory fields for NG1 product", () -> {
+        step(NEW_APP_TAB_NG1_STEP, () -> {
+
             merchantInitialCreationPage
                     .fillTradeName(getRandomTradeName())
                     .fillMerchantEmail(getRandomEmail())
@@ -62,7 +66,8 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
         });
 
 
-        step("Open 'New Application: New' window and fill 'Merchant Information' partition", () -> {
+        step(NEW_APP_TAB_MERCH_INFO_STEP, () -> {
+
             newApplicationMerchantInformationPartitionPage
                     .fillPhone(getRandomPhone())
                     .fillLegalType(LLC.getDisplayName())
@@ -77,7 +82,8 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
         });
 
 
-        step("Open 'New Application: New' window and fill 'Authorized Signatory details' partition", () -> {
+        step(NEW_APP_TAB_AUTH_SIGN_STEP, () -> {
+
             newApplicationAuthorizedSignatoryPartitionPage
                     .fillFirstAndLastName(getRandomFirstName(), getRandomLastName())
                     .fillMobilPhone(getRandomPhone())
@@ -88,13 +94,15 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
         });
 
 
-        step("Open 'New Application: New' window and fill 'Sales Officer Inspection Report' partition", () -> {
+        step(NEW_APP_TAB_SALES_OFFICER_STEP, () -> {
+
             newApplicationSalesOfficerInspectionPartitionPage
                     .clickOnOriginalDocumentImageVerifiedCheckBox(true);
         });
 
 
-        step("Open 'New Application: New' window and fill 'Payment and Settlement Details' partition", () -> {
+        step(NEW_APP_TAB_PAYMENT_SETTL_STEP, () -> {
+
             newApplicationPaymentSettlementDetailsPartitionPage
                     .fillBankName(ENBD.getDisplayName())
                     .fillPaymentMode(MC_777.getDisplayName())
@@ -103,20 +111,23 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
         });
 
 
-/*        step("Open 'New Application: New' window and fill 'Fees and Charges' partition", () -> {
+/*        step(NEW_APP_TAB_FEES_POS_STEP, () -> {
+
             newApplicationFeesChargesPartitionPage
                     .fillMisMonthReportFee(getRandomDoubleValue(10, 1001));
         });*/
 
 
-        step("Open 'New Application: New' window and fill 'Fees and Charges (Ecom)' partition", () -> {
+        step(NEW_APP_TAB_FEES_ECOM_STEP, () -> {
+
             newApplicationFeesChargesEcomPartitionPage
                     .fillSettlementFreqEcomOption(DAILY.getDisplayName())
                     .fillRefundCategory(C.getDisplayName());
         });
 
 
-        step("Open 'New Application: New' window and fill 'N-Genius Online' partition", () -> {
+        step(NEW_APP_TAB_NG_ONLINE_STEP, () -> {
+
             nGeniusOnlinePartitionPage
                     .clickOnWebIntegrationCheckbox(true)
                     .clickOnPayByLinkCheckbox(true)
@@ -128,7 +139,8 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
         });
 
 
-        step("Open 'New Application: New' window and fill 'Business Details - KYC Profile Form", () -> {
+        step(NEW_APP_TAB_BUSINESS_DETAIL_STEP, () -> {
+
             newApplicationBusinessDetailsPartitionPage
                     .fillBusinessLine("Truck Rental")
                     .fillDescOfBusinessOperation(BUSINESS_OPERATION_DESC)
@@ -139,22 +151,25 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
         });
 
 
-        step("Open new create Application tab and fill IBAN value", () -> {
+        step(APP_TAB_IBAN_STEP, () -> {
+
             applicationPage
                     .openCurrentSFAppTab()
                     .fillBusinessSensitivePartition(IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
         });
 
 
-        step("Assert new application: validate APP ID, Trade Name, Draft Stage", () -> {
-            applicationPage
-                    .assertApplicationPrimaryId()
-                    .assertApplicationTradeName()
-                    .assertDraftStageIsChosen();
+        step(APP_TAB_ASSERT_APP_STEP, () -> {
+
+            assertElementHasMatches(applicationPage.getApplicationPrimaryId(), "A-\\d{9,}");
+            assertElementContainsText(applicationPage.getApplicationTradeName(), "AT TEST");
+            assertElementHasText(applicationPage.getDraftStageIsChosenState().get(0), "true");
+            assertElementHasText(applicationPage.getDraftStageIsChosenState().get(1), "true");
         });
 
 
-        step("Open Application Contact Page and fill field PEP=No. Move to the App page", () -> {
+        step(CONTACT_PAGE_PEP_STEP, () -> {
+
             applicationPage
                     .openAppContactPage()
                     .editContact()
@@ -164,13 +179,14 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
         });
 
 
-        step("Assert APP ID, check the latest created test Application after Contact Page redirection", () -> {
-            applicationPage
-                    .assertAppIdFromContactPageReturning();
+        step(CONTACT_PAGE_ASSERT_APP_ID_STEP, () -> {
+
+            assertElementHasText(applicationPage.getAppIdFromContactPageReturning(), applicationPage.getAppSFID());
         });
 
 
-        step("Open initial Application Document and upload document file. Go back to the initial application.", () -> {
+        step(DOC_TAB_UPLOAD_DOC_FILE_STEP, () -> {
+
             applicationPage
                     .openAppGenericDocument();
 
@@ -182,14 +198,15 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
         });
 
 
-        step("Assert APP ID, check the latest created test Application after Document Page redirection", () -> {
-            applicationPage
-                    .assertAppIdFromDocumentPageReturning();
+        step(DOC_TAB_ASSERT_APP_ID_STEP, () -> {
+
+            assertElementHasText(applicationPage.getAppIdFromDocumentPageReturning(), applicationPage.getAppSFID());
         });
 
-        step("Assert filled Application IBAN partition", () -> {
-            applicationPage
-                    .assertFilledAppPageIban();
+        step(APP_TAB_ASSERT_IBAN_STEP, () -> {
+
+            assertElementHasText(applicationPage.getFilledAppPageIban(), IBAN_VALUE);
+            assertElementHasText(applicationPage.getFilledAppPageIbanAccountNumber(), ACCOUNT_NUMBER_VALUE);
         });
     }
 }

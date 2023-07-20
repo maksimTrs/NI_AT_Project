@@ -3,7 +3,11 @@ package nisfappui.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.assertions.LocatorAssertions;
+import lombok.Getter;
 import nisfappui.utils.MethodActionsForPO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
@@ -36,7 +40,10 @@ public class ApplicationPage extends MethodActionsForPO {
     private static final String SUBMIT_TO_NEXT_STAGE_PROCESS_BTN = "//button[text()='Process']";
     private static final String APP_GENERIC_DOCUMENT = "//a//span[starts-with(text(),'D-')]";
     private final Page page;
+
+    @Getter
     private String appSFID;
+    @Getter
     private String appSFName;
 
     public ApplicationPage(Page page) {
@@ -127,36 +134,35 @@ public class ApplicationPage extends MethodActionsForPO {
     }
 
 
-    public ApplicationPage assertApplicationPrimaryId() {
+    public String getApplicationPrimaryId() {
         waitForLocatorLoadState(page, PRIMARY_APP_ID, VISIBLE);
 
         String appId = page.locator(PRIMARY_APP_ID).innerText();
         logger.info("<<<<< Application was created with ID: " + appId + " >>>>>");
-
-        assertElementHasMatches(appId, "A-\\d{9,}");
-        return this;
+        return appId;
     }
 
-    public ApplicationPage assertApplicationTradeName() {
+
+    public String getApplicationTradeName() {
         waitForLocatorLoadState(page, TRADE_NAME, VISIBLE);
 
         String appName = page.locator(TRADE_NAME).innerText();
         logger.info("<<<<< Application was created with Trade Name: " + appName + " >>>>>");
-        appSFName = page.locator(TRADE_NAME).innerText();
-
-        assertElementContainsText(appName, "AT TEST");
-        return this;
+        appSFName = appName;
+        return appName;
     }
 
-    public ApplicationPage assertDraftStageIsChosen() {
+    public List<String> getDraftStageIsChosenState() {
         waitForLocatorLoadState(page, DRAFT_STAGE_FIELD, VISIBLE);
 
+        List<String> list = new ArrayList<>();
         String ariaSelected = page.locator(DRAFT_STAGE_FIELD).getAttribute("aria-selected");
         String ariaCurrent = page.locator(DRAFT_STAGE_FIELD).getAttribute("aria-current");
-        assertElementHasText(ariaSelected, "true");
-        assertElementHasText(ariaCurrent, "true");
 
-        return this;
+        list.add(ariaSelected);
+        list.add(ariaCurrent);
+
+        return list;
     }
 
     public int getSFApplicationTabsCount() {
@@ -165,38 +171,50 @@ public class ApplicationPage extends MethodActionsForPO {
     }
 
 
-    public void assertAppIdFromContactPageReturning() {
+    public String getAppIdFromContactPageReturning() {
         logger.debug("<<<<< Contact's Application:" + appSFName + " has ID: " + appSFID + " >>>>>");
 
-        assertElementHasText(page.locator(PRIMARY_APP_ID).innerText(), appSFID);
+        return page.locator(PRIMARY_APP_ID).innerText();
     }
 
-    public void assertAppIdFromDocumentPageReturning() {
+
+    public String getAppIdFromDocumentPageReturning() {
         waitForLocatorLoadState(page, PRIMARY_APP_ID, VISIBLE);
         logger.debug("<<<<< Document's Application" + appSFName + " has ID: " + appSFID + " >>>>>");
 
-        assertElementHasText(page.locator(PRIMARY_APP_ID).innerText(), appSFID);
+        return page.locator(PRIMARY_APP_ID).innerText();
     }
 
-    public void assertFilledAppPageIban() {
+
+    public String getFilledAppPageIban() {
         waitForLocatorLoadState(page, IBAN, VISIBLE);
         String ibanVal = page.locator(IBAN).inputValue();
         String accIbanVal = page.locator(ACCOUNT_NUMBER).inputValue();
 
         logger.debug("<<<<< Application has IBAN: " + ibanVal + " And has ACCOUNT NUM: " + accIbanVal + " >>>>>");
 
-        assertElementHasText(ibanVal, IBAN_VALUE);
-        assertElementHasText(accIbanVal, ACCOUNT_NUMBER_VALUE);
+        return ibanVal;
     }
 
-    public void assertFilledType3AppPageIban() {
+    public String getFilledAppPageIbanAccountNumber() {
+        waitForLocatorLoadState(page, ACCOUNT_NUMBER, VISIBLE);
+        return page.locator(ACCOUNT_NUMBER).inputValue();
+    }
+
+
+    public String getFilledType3AppPageIban() {
         waitForLocatorLoadState(page, IBAN_TYPE3, VISIBLE);
         String ibanVal = page.locator(IBAN_TYPE3).inputValue();
         String accIbanVal = page.locator(ACCOUNT_NUMBER_TYPE3).inputValue();
 
         logger.debug("<<<<< Application Type3 has IBAN: " + ibanVal + " And has ACCOUNT NUM: " + accIbanVal + " >>>>>");
 
-        assertElementHasText(ibanVal, IBAN_VALUE);
-        assertElementHasText(accIbanVal, ACCOUNT_NUMBER_VALUE);
+        return ibanVal;
+    }
+
+    public String getFilledType3AppPageIbanAccNumber() {
+        waitForLocatorLoadState(page, ACCOUNT_NUMBER_TYPE3, VISIBLE);
+
+        return page.locator(ACCOUNT_NUMBER_TYPE3).inputValue();
     }
 }
