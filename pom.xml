@@ -7,6 +7,11 @@
     <groupId>org.example</groupId>
     <artifactId>NI_AT_Project</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>nisfappui</module>
+        <module>nisobapi</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -212,8 +217,8 @@
                         <API_CONF_TYPE>${API_CONF_TYPE}</API_CONF_TYPE>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
-                        <!--suppress UnresolvedMavenProperty -->
-                        <!-- <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
+                         <!--suppress UnresolvedMavenProperty -->
+<!--                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
                         <!--suppress UnresolvedMavenProperty -->
                         <suiteXmlFile>${project.basedir}/src/test/resources/testNgSuites/${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>

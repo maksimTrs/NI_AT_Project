@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="sf-apps-creation-smoke" parallel="classes" thread-count="2">
+
+    <test name="POS_NG-POS_SOFTPOS-ECOM-NG1_with_PBQ_TTP_PBL-apps-creation">
+        <classes>
+            <class name="nisfappui.tests.NGeniusOneApplicationCreationTest"/>
+            <class name="nisfappui.tests.PosNgeniusApplicationCreationTest"/>
+            <class name="nisfappui.tests.PosSoftPosApplicationCreationTest"/>
+            <class name="nisfappui.tests.EcomApplicationCreationTest"/>
+            <class name="nisfappui.tests.Type3ApplicationCreationTest"/>
+        </classes>
+    </test>
+</suite>

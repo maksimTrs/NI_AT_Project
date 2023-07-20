@@ -1,0 +1,189 @@
+package nisfappui.tests;
+
+
+import io.qameta.allure.*;
+import io.qameta.allure.testng.Tag;
+import io.qameta.allure.testng.Tags;
+import org.testng.annotations.Test;
+
+import static io.qameta.allure.Allure.step;
+import static nisfappui.pages.NavigationMenuPartitions.APPLICATIONS;
+import static nisfappui.services.BankTypes.ENBD;
+import static nisfappui.services.CityTypes.ABU_DHABI;
+import static nisfappui.services.CountryTypes.UAE;
+import static nisfappui.services.LegalTypeTypes.LLC;
+import static nisfappui.services.NationalityTypes.NATIONALITY_UAE;
+import static nisfappui.services.NgOnlineIntegrationMethodTypes.NHR;
+import static nisfappui.services.NgOnlinePaymentTypes.MASTERCARD;
+import static nisfappui.services.NgOnlinePaymentTypes.VISA;
+import static nisfappui.services.PaymentModeTypes.MC_777;
+import static nisfappui.services.PosTypeAndGatewayTypes.ECON_TYPE;
+import static nisfappui.services.PosTypeAndGatewayTypes.POS_TYPE_NG;
+import static nisfappui.services.RefundCategoryTypes.C;
+import static nisfappui.services.RentalModeTypes.BANK_TRANSFER;
+import static nisfappui.services.SettlementFrequencyEcomTypes.DAILY;
+import static nisfappui.services.TestHelper.*;
+import static nisfappui.utils.AppDataFaker.*;
+
+public class Type3ApplicationCreationTest extends BaseTest {
+
+    @Severity(SeverityLevel.NORMAL)
+    @Owner("Maksim T")
+    @Tags({@Tag("UI_TEST"), @Tag("SMOKE_TEST")})
+    @Description("Create TYPE3 application in the 'Draft' stage. Fill App Contact PEP info and upload Document file")
+    @Epic("SF Application Testing")
+    @Feature("Create TYPE3 (ECOM + POS) Application in SF UI")
+    @Story("Type3 Application Creation Test")
+    @Test(groups = {"SmokeTest"})
+    public void createType3ApplicationTest() {
+
+        doSFLogIn(SF_URL, SALES_OFFICER_USER);
+
+        step("Open Application tab and click on 'New' btn", () -> {
+            mainSFAppPage
+                    .clickOnNavigationMenuType()
+                    .chooseOnNavigationMenuType(APPLICATIONS)
+                    .clickOnNewAppBtn();
+        });
+
+
+        step("Open 'NEW MERCHANT:NEW APPLICATION' window and fill mandatory fields with ECOM type = Ngenius Online and POS TYPE= Ngenius POS", () -> {
+            merchantInitialCreationPage
+                    .fillTradeName(getRandomTradeName())
+                    .fillMerchantEmail(getRandomEmail())
+                    .chooseBusinessNatureType("Mail Order")
+                    .selectPosType(POS_TYPE_NG.getDisplayName())
+                    .selectEcomType(ECON_TYPE.getDisplayName())
+                    .moveToTheSecondApplicationScreen();
+        });
+
+
+        step("Open 'New Application: New' window and fill 'Merchant Information' partition", () -> {
+            newApplicationMerchantInformationPartitionPage
+                    .fillPhone(getRandomPhone())
+                    .fillLegalType(LLC.getDisplayName())
+                    .fillWebsiteEcomOrPos(WEBSITE_ECOM, getRandomWebURL())
+                    .fillPOBox(getRandomPOBox())
+                    .fillAddress(getRandomAddress())
+                    .fillCity(ABU_DHABI.getDisplayName())
+                    .fillCountry(UAE.getDisplayName())
+                    .fillTradeLicenceNumber(getRandomTLN())
+                    .fillDateEstablishment(getRandomDateOfEstablishment())
+                    .fillDateLicenceExpiration(getRandomLicenceExpirationDate());
+        });
+
+        step("Open 'New Application: New' window and fill 'Authorized Signatory details' partition", () -> {
+            newApplicationAuthorizedSignatoryPartitionPage
+                    .fillFirstAndLastName(getRandomFirstName(), getRandomLastName())
+                    .fillMobilPhone(getRandomPhone())
+                    .fillPassportNum(getRandomPassport())
+                    .fillNationality(NATIONALITY_UAE.getDisplayName())
+                    .fillContactBirthday(getRandomDateOfBirth())
+                    .fillPassportExpDate(getRandomLicenceExpirationDate());
+        });
+
+
+        step("Open 'New Application: New' window and fill 'Sales Officer Inspection Report' partition", () -> {
+            newApplicationSalesOfficerInspectionPartitionPage
+                    .clickOnOriginalDocumentImageVerifiedCheckBox(true);
+        });
+
+
+        step("Open 'New Application: New' window and fill 'Payment and Settlement Details' partition", () -> {
+            newApplicationPaymentSettlementDetailsPartitionPage
+                    .fillBankName(ENBD.getDisplayName())
+                    .fillPaymentMode(MC_777.getDisplayName())
+                    .fillRentalMode(BANK_TRANSFER.getDisplayName())
+                    .fillTaxRegNum(getRandomTLN());
+        });
+
+
+        step("Open 'New Application: New' window and fill 'Fees and Charges' partition", () -> {
+            newApplicationFeesChargesPartitionPage
+                    .fillMisMonthReportFee(getRandomDoubleValue(10, 1001));
+        });
+
+
+        step("Open 'New Application: New' window and fill 'Fees and Charges (Ecom)' partition", () -> {
+            newApplicationFeesChargesEcomPartitionPage
+                    .fillSettlementFreqEcomOption(DAILY.getDisplayName())
+                    .fillRefundCategory(C.getDisplayName());
+        });
+
+
+        step("Open 'New Application: New' window and fill 'N-Genius Online' partition", () -> {
+            nGeniusOnlinePartitionPage
+                    .clickOnWebIntegrationCheckbox(true)
+                    .clickOnPayByLinkCheckbox(true)
+                    .fillNumberTransactionsAnnual(getRandomIntValue(1000, 10000))
+                    .fillNumberEcomAnnualValue(getRandomIntValue(100, 1000))
+                    .fillIntegrationMethod(NHR.getDisplayName())
+                    .selectCardPaymentType(VISA.getDisplayName())
+                    .selectCardPaymentType(MASTERCARD.getDisplayName());
+        });
+
+
+        step("Open 'New Application: New' window and fill 'Business Details - KYC Profile Form", () -> {
+            newApplicationBusinessDetailsPartitionPage
+                    .fillBusinessLine("Door-to-Door Sales")
+                    .fillDescOfBusinessOperation(BUSINESS_OPERATION_DESC)
+                    .fillYearsInBusiness(getRandomIntValue(1, 15))
+                    .fillVolumePerYear(getRandomIntValue(1000, 5000))
+                    .fillCardPerYear(getRandomIntValue(100, 1000))
+                    .clickOnNewAppSaveBtn();
+        });
+
+
+        step("Open new create Application tab and fill IBAN value", () -> {
+            applicationPage
+                    .openCurrentSFAppTab()
+                    .fillType3BusinessSensitivePartition(IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
+        });
+
+
+        step("Assert new application: validate APP ID, Trade Name, Draft Stage", () -> {
+            applicationPage
+                    .assertApplicationPrimaryId()
+                    .assertApplicationTradeName()
+                    .assertDraftStageIsChosen();
+        });
+
+
+        step("Open Application Contact Page and fill field PEP=No. Move to the App page", () -> {
+            applicationPage
+                    .openAppContactPage()
+                    .editContact()
+                    .editPepField(false)
+                    .saveContact()
+                    .moveToAppPage();
+        });
+
+
+        step("Assert APP ID, check the latest created test Application after Contact Page redirection", () -> {
+            applicationPage
+                    .assertAppIdFromContactPageReturning();
+        });
+
+
+        step("Open initial Application Document and upload document file. Go back to the initial application.", () -> {
+            applicationPage
+                    .openAppGenericDocument();
+
+            documentPage
+                    .clickOnUploadDocFilesBtn()
+                    .uploadDocFileViaPopUp(DOC_FILE_UPLOAD_PATH)
+                    .closeDocPartitionAndMoveToAppPage();
+        });
+
+
+        step("Assert APP ID, check the latest created test Application after Document Page redirection", () -> {
+            applicationPage
+                    .assertAppIdFromDocumentPageReturning();
+        });
+
+        step("Assert filled Application IBAN partition", () -> {
+            applicationPage
+                    .assertFilledType3AppPageIban();
+        });
+    }
+}

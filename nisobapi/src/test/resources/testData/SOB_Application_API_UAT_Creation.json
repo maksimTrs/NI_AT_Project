@@ -1,0 +1,434 @@
+{
+  "application": {
+    "merchantType": "SME",
+    "keyMerchant": "",
+    "creator": "SOB",
+    "legalType": "Partnership",
+    "countryOfEstablishment": "United Arab Emirates",
+    "dateOfEstablishment": "2022-02-27",
+    "businessNature": "Billing Services",
+    "businessLine": "Accounting, Auditing, and Bookkeeping Services",
+    "businessDescription": "Billing Services; Accounting, Auditing, and Bookkeeping Services",
+    "yearsInBusiness": "11",
+    "expectedCardVolume": "11221",
+    "expectedVolumePerYear": "22442",
+    "paymentMode": "EQ",
+    "rentalMode": "DD",
+    "screeningResult": "  { \"entities\" : [ { \"entityId\" : \"433553\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"433553\",  \"result\" : \"GO\", \"matchedMerchants\" : null},\"MATCH\" : {\"entityId\" : \"433553\", \"result\" : \"GO\",  \"matchedMerchants\" : null }}},{   \"entityId\" : \"557754\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"557754\",  \"result\" : \"GO\", \"matchedMerchants\" : null},\"MATCH\" : {       \"entityId\" : \"557754\",       \"result\" : \"GO\",       \"matchedMerchants\" : null     }   } },{   \"entityId\" : \"141414\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"141414\",  \"result\" : \"GO\", \"matchedMerchants\" : null},\"MATCH\" : {       \"entityId\" : \"141414\",       \"result\" : \"GO\",       \"matchedMerchants\" : null     }   } }, {   \"entityId\" : \"V4554\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"V4554\",  \"result\" : \"GO\", \"matchedMerchants\" : null}}}, {   \"entityId\" : \"V34355\",    \"screeningResult\" : {      \"FISERV\" : { \"entityId\" : \"V34355\",  \"result\" : \"GO\", \"matchedMerchants\" : null}}}]}",
+    "contacts": [
+      {
+        "authorizedSignatory": true,
+        "UAEPASSVerifiedContact": true,
+        "firstName": "Priyanka",
+        "lastName": "Jadhav",
+        "mobile": "971576608139",
+        "birthDate": "2000-02-15",
+        "emiratesId": "784-1990-6338466-5",
+        "nationality": "Indian",
+        "passportNumber": "V34355",
+        "passportExpirationDate": "2024-04-08",
+        "visaExpirationDate": "2024-03-02",
+        "emiratesExpirationDate": "2028-06-05",
+        "email": "154@domain4.cc",
+        "PEPInformation": {
+          "isPEP": true
+        },
+        "percentageofOwnership": "11"
+      },
+      {
+        "authorizedSignatory": true,
+        "UAEPASSVerifiedContact": false,
+        "firstName": "fdgfdg",
+        "lastName": "gdgdfg",
+        "mobile": "971542666139",
+        "birthDate": "2000-02-14",
+        "designation": "tet",
+        "nationality": "UAE",
+        "passportNumber": "V4554",
+        "passportExpirationDate": "2024-04-08",
+        "email": "154@domain4.cc",
+        "PEPInformation": {
+          "isPEP": true
+        },
+        "percentageofOwnership": "11"
+      }
+    ],
+    "sanctionCountryInformation": {
+      "relatedpersonentityinSC": false,
+      "involveddealingsinSC": false,
+      "investmentsinSC": false
+    },
+    "shareHolders": [],
+    "merchants": [
+      {
+        "merchantType": "NG1-PayByQR",
+        "merchantName": "uaepass601",
+        "tradeName": "dfgfgf",
+        "bankCode": "3707",
+        "IBAN": "AE070331234567890123456",
+        "accountNumber": "890123456",
+        "documents": [
+          {
+            "documentId": "bfbdbce5-a757-4296-90d9-eea950e187d1721d894f-d36f-4593-ade7-49ff4dc82e25",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/sob-ni-1876/bfbdbce5-a757-4296-90d9-eea950e187d1721d894f-d36f-4593-ade7-49ff4dc82e25?accessKey=b347409902a86defc10021ff96a1c8c4cac7c6bffce81c8a468a3dab480e3c74",
+            "documentType": "bankStatement"
+          },
+          {
+            "documentId": "bfbdbce5-a757-4296-90d9-eea950e187d1b3003076-a868-4782-9502-07c1e8c38c32",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/sob-ni-1876/bfbdbce5-a757-4296-90d9-eea950e187d1b3003076-a868-4782-9502-07c1e8c38c32?accessKey=ea66de173c685b9bc627fef8a931ae5192ee9ee10822b580836632851a8b434a",
+            "documentType": "tradeLicense"
+          },
+          {
+            "documentId": "bfbdbce5-a757-4296-90d9-eea950e187d1ab705500-f13e-46a7-899e-dcfa48c643bd",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/sob-ni-1876/bfbdbce5-a757-4296-90d9-eea950e187d1ab705500-f13e-46a7-899e-dcfa48c643bd?accessKey=83bcd0944c1ca0dd22cdac0fce2a05fb97734e0aaa53072d9d8ae0dfee44aa48",
+            "documentType": "passport"
+          },
+          {
+            "documentId": "bfbdbce5-a757-4296-90d9-eea950e187d1543a8a3d-c46e-4638-b55c-0f114a4cdd06",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/sob-ni-1876/bfbdbce5-a757-4296-90d9-eea950e187d1543a8a3d-c46e-4638-b55c-0f114a4cdd06?accessKey=462cf6a8b98dbd808e52b6f5d8d51db3bc16e27a55f9030f6c95f4c8739c6ab9",
+            "documentType": "visa",
+            "UAEPASSVerifiedFile": true
+          },
+          {
+            "documentId": "bfbdbce5-a757-4296-90d9-eea950e187d1e443d977-4c08-46b1-8483-24506a6ad826",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/sob-ni-1876/bfbdbce5-a757-4296-90d9-eea950e187d1e443d977-4c08-46b1-8483-24506a6ad826?accessKey=777ac34cd34ade4838cf6264c9ffbbaf1b063fd40859d5ccdd5b17945ba13626",
+            "documentType": "emiratesIdFile",
+            "UAEPASSVerifiedFile": true
+          },
+          {
+            "documentId": "bfbdbce5-a757-4296-90d9-eea950e187d14986d3e8-d652-46be-87bc-dbfac06c1c66",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/sob-ni-1876/bfbdbce5-a757-4296-90d9-eea950e187d14986d3e8-d652-46be-87bc-dbfac06c1c66?accessKey=5949eb7645f5e1a57b1c21f74097ce1d0d6f2036e08a06b822ff27ba383ce426",
+            "documentType": "powerOfAttorney",
+            "UAEPASSVerifiedFile": true
+          },
+          {
+            "documentId": "bfbdbce5-a757-4296-90d9-eea950e187d16025e985-52b0-4739-b870-e6fcfbdb0b58",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/sob-ni-1876/bfbdbce5-a757-4296-90d9-eea950e187d16025e985-52b0-4739-b870-e6fcfbdb0b58?accessKey=67e36b31e81995646605d192ea83048dc120846c3883279ab311c8ed18c21d47",
+            "documentType": "passport"
+          },
+          {
+            "documentId": "bfbdbce5-a757-4296-90d9-eea950e187d174b6242a-fb34-42ca-a2d9-70ffe2fd425b",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/sob-ni-1876/bfbdbce5-a757-4296-90d9-eea950e187d174b6242a-fb34-42ca-a2d9-70ffe2fd425b?accessKey=410af5360e53b6ddf85c487ed0ccabf1a5d668af21391703e1454ebc84f67e18",
+            "documentType": "memorandum"
+          },
+          {
+            "documentId": "bfbdbce5-a757-4296-90d9-eea950e187d1d2caa2d8-9555-4e2b-84fb-e7d1e9554335",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/sob-ni-1876/bfbdbce5-a757-4296-90d9-eea950e187d1d2caa2d8-9555-4e2b-84fb-e7d1e9554335?accessKey=c5bdbbba6e27df124f1d3c9a498c558f7a24579b2230d774e07706862133bd32",
+            "documentType": "selfOnboardingAgreement"
+          },
+          {
+            "documentId": "bfbdbce5-a757-4296-90d9-eea950e187d1d2caa2d8-9555-4e2b-84fb-e7d1e9554335",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/sob-ni-1876/bfbdbce5-a757-4296-90d9-eea950e187d1d2caa2d8-9555-4e2b-84fb-e7d1e9554335?accessKey=c5bdbbba6e27df124f1d3c9a498c558f7a24579b2230d774e07706862133bd32",
+            "documentType": "selfOnboardingAgreement"
+          }
+        ],
+        "taxRegistrationNumber": "111111111111111",
+        "tradeLicenseNumber": "433553",
+        "tradeLicenseExpirationDate": "2024-04-08",
+        "merchantEmail": "154@domain4.cc",
+        "MSFRates": {
+          "standard": "1.50",
+          "premium": "2.25",
+          "manual": "3.00",
+          "debit": "2.25",
+          "international": "3.00"
+        },
+        "fees": {
+          "perTransactionAuthorizationFee": 1.00,
+          "MISMonthlyFee": 129.00,
+          "refundFee": 5.0,
+          "chargebackFee": 20.00
+        },
+        "configuration": {
+          "settlementFrequency": "Monthly",
+          "settlementFirstDay": "",
+          "settlementSecondDay": "",
+          "refundCategory": "N",
+          "netSpread": 0.58
+        },
+        "services": {},
+        "terminals": [
+          {
+            "terminalModel": "",
+            "terminalFee": 0.0,
+            "terminalCategory": "",
+            "terminalBrand": ""
+          }
+        ],
+        "address": {
+          "addressLine": "fdgfgh",
+          "city": "Umm Al Quwain",
+          "pobox": "4343",
+          "phone": "971534468113"
+        }
+      },
+      {
+        "merchantType": "NG1-TapToPay",
+        "merchantName": "Ghghhg",
+        "tradeName": "Gjjgf",
+        "bankCode": "3707",
+        "IBAN": "AE070331234567890123456",
+        "accountNumber": "890123456",
+        "documents": [
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb30c365a9-8fd9-4863-8232-a04dcd67912d",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb30c365a9-8fd9-4863-8232-a04dcd67912d?accessKey=0076aeca492b42150e45a0640682c495f0254386f4ae8d4f17ea5f36156169ac",
+            "documentType": "bankStatement"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb02afb6e7-a117-4a78-aba1-9853bcfbea08",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb02afb6e7-a117-4a78-aba1-9853bcfbea08?accessKey=98b352e0470a8d74ba2d9f8ce02f61a5849d24ffacce9a135d508d9a12b7fed7",
+            "documentType": "tradeLicense"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb746f002d-d3b0-4b1b-ac33-3d30de26b2db",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb746f002d-d3b0-4b1b-ac33-3d30de26b2db?accessKey=d2771cf4f74749a8f6cad30505f2eb60a56747a1fc6f861446722f1b1f650e91",
+            "documentType": "passport"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbb6ea2ded-d835-4e76-976d-62139957a5bb",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbb6ea2ded-d835-4e76-976d-62139957a5bb?accessKey=44437fb08a0572bd288daca56f58da5ab9a44ab2352a12d532d5395f060017f4",
+            "documentType": "visa"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbc5018c45-a384-472e-974d-3bef15edf025",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbc5018c45-a384-472e-974d-3bef15edf025?accessKey=2db21815807a7d4157d0783c0877d4b0616ba1567fa3c28cb8cbd1224d082928",
+            "documentType": "emiratesIdFile"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbd2bd6142-1a86-4c6b-8560-4f8c127af722",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbd2bd6142-1a86-4c6b-8560-4f8c127af722?accessKey=9ce9ab94c3c71f2779ae4a39a72d2eeb510baa9a5e1701180c1b9bac5eabf588",
+            "documentType": "emiratesIdFile"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb56137534-d7de-4657-a175-556e2b68da5f",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb56137534-d7de-4657-a175-556e2b68da5f?accessKey=b4da6421120b7b9581c57954b94a663c0268142ea1acdfd5007a34cb5b4ac1ae",
+            "documentType": "passport"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbe8f00695-070e-4e84-beed-f81561328f0c",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbe8f00695-070e-4e84-beed-f81561328f0c?accessKey=f526982d5688c288cf8c92cc6fd2a10fc1883572b63722f88d7be824fa9cf589",
+            "documentType": "visa"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb74f32add-44aa-405a-9d55-35f87cb37684",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb74f32add-44aa-405a-9d55-35f87cb37684?accessKey=5cdb48a60f766fab8c30215d0f5c033d9ccf9a2740b956dc099c749f87996456",
+            "documentType": "emiratesIdFile"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb3eeac372-9075-4e0c-9ba5-34cc2d863b13",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb3eeac372-9075-4e0c-9ba5-34cc2d863b13?accessKey=9d09c657cf298f6a6069d19fa65343bee3be076a5729fff8be5f72e177e99dcb",
+            "documentType": "emiratesIdFile"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb4e83eae7-887e-45b8-b038-06333842378b",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb4e83eae7-887e-45b8-b038-06333842378b?accessKey=f4b0d34567e22f751648d6bc16d81a88a07ad826bc5978519ad867ef46667044",
+            "documentType": "powerOfAttorney"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb4cba2d6d-6cbf-4b5b-9a9f-ca2dcaf886cc",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb4cba2d6d-6cbf-4b5b-9a9f-ca2dcaf886cc?accessKey=5c871b28c8aaa8fb0ffc82fee471a102e65122fe245f8b8be41fb782442a09ef",
+            "documentType": "taxRegistrationCertificate"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb9d1b0f9f-20b7-45d8-8976-3b137f05ee72",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb9d1b0f9f-20b7-45d8-8976-3b137f05ee72?accessKey=3092f3ec4c49aad21e46e1d81ad07f8ac1efcdfc2b073e9cc6ea08075c6df162",
+            "documentType": "memorandum"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb921f559b-904a-4622-8a19-40b35e80be7e",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb921f559b-904a-4622-8a19-40b35e80be7e?accessKey=bcf4d0cfde010a79be49153e1bef52a40d332da2721b56451631bcc7a80b6fe2",
+            "documentType": "selfOnboardingAgreement"
+          }
+        ],
+        "taxRegistrationNumber": "123456123456603",
+        "tradeLicenseNumber": "557754",
+        "tradeLicenseExpirationDate": "2026-03-18",
+        "merchantEmail": "154@domain4.cc",
+        "MSFRates": {
+          "standard": "1.50",
+          "premium": "2.25",
+          "manual": "3.00",
+          "debit": "2.25",
+          "international": "3.00"
+        },
+        "fees": {
+          "perTransactionAuthorizationFee": 1.00,
+          "MISMonthlyFee": 0.00,
+          "refundFee": 5.00,
+          "chargebackFee": 20.0,
+          "annualFee": 0.00
+        },
+        "configuration": {
+          "settlementFrequency": "Monthly",
+          "settlementFirstDay": "",
+          "settlementSecondDay": "",
+          "refundCategory": "N",
+          "netSpread": 0.58,
+          "SoftPOSAuthSystem": "MPGS"
+        },
+        "services": {},
+        "terminals": [
+          {
+            "terminalModel": "CPOCPIN",
+            "terminalFee": 0.00,
+            "terminalCategory": "",
+            "terminalBrand": "MOSAMBEE"
+          },
+          {
+            "terminalModel": "CPOCPIN",
+            "terminalFee": 0.00,
+            "terminalCategory": "",
+            "terminalBrand": "MOSAMBEE"
+          },
+          {
+            "terminalModel": "CPOCPIN",
+            "terminalFee": 0.00,
+            "terminalCategory": "",
+            "terminalBrand": "MOSAMBEE"
+          }
+        ],
+        "address": {
+          "addressLine": "Hgdcvh",
+          "city": "Umm Al Quwain",
+          "pobox": "55654",
+          "phone": "971562873113"
+        }
+      },
+      {
+        "merchantType": "NG1-PayByLink",
+        "merchantName": "Flexi Cutoff Company LLC",
+        "tradeName": "Flexi Cutoff Company LLC",
+        "bankCode": "3707",
+        "IBAN": "AE070331234567890123456",
+        "accountNumber": "890123456",
+        "documents": [
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb30c365a9-8fd9-4863-8232-a04dcd67912d",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb30c365a9-8fd9-4863-8232-a04dcd67912d?accessKey=0076aeca492b42150e45a0640682c495f0254386f4ae8d4f17ea5f36156169ac",
+            "documentType": "bankStatement"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb02afb6e7-a117-4a78-aba1-9853bcfbea08",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb02afb6e7-a117-4a78-aba1-9853bcfbea08?accessKey=98b352e0470a8d74ba2d9f8ce02f61a5849d24ffacce9a135d508d9a12b7fed7",
+            "documentType": "tradeLicense"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb746f002d-d3b0-4b1b-ac33-3d30de26b2db",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb746f002d-d3b0-4b1b-ac33-3d30de26b2db?accessKey=d2771cf4f74749a8f6cad30505f2eb60a56747a1fc6f861446722f1b1f650e91",
+            "documentType": "passport"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbb6ea2ded-d835-4e76-976d-62139957a5bb",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbb6ea2ded-d835-4e76-976d-62139957a5bb?accessKey=44437fb08a0572bd288daca56f58da5ab9a44ab2352a12d532d5395f060017f4",
+            "documentType": "visa"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbc5018c45-a384-472e-974d-3bef15edf025",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbc5018c45-a384-472e-974d-3bef15edf025?accessKey=2db21815807a7d4157d0783c0877d4b0616ba1567fa3c28cb8cbd1224d082928",
+            "documentType": "emiratesIdFile"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbd2bd6142-1a86-4c6b-8560-4f8c127af722",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbd2bd6142-1a86-4c6b-8560-4f8c127af722?accessKey=9ce9ab94c3c71f2779ae4a39a72d2eeb510baa9a5e1701180c1b9bac5eabf588",
+            "documentType": "emiratesIdFile"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb56137534-d7de-4657-a175-556e2b68da5f",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb56137534-d7de-4657-a175-556e2b68da5f?accessKey=b4da6421120b7b9581c57954b94a663c0268142ea1acdfd5007a34cb5b4ac1ae",
+            "documentType": "passport"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbe8f00695-070e-4e84-beed-f81561328f0c",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cbe8f00695-070e-4e84-beed-f81561328f0c?accessKey=f526982d5688c288cf8c92cc6fd2a10fc1883572b63722f88d7be824fa9cf589",
+            "documentType": "visa"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb74f32add-44aa-405a-9d55-35f87cb37684",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb74f32add-44aa-405a-9d55-35f87cb37684?accessKey=5cdb48a60f766fab8c30215d0f5c033d9ccf9a2740b956dc099c749f87996456",
+            "documentType": "emiratesIdFile"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb3eeac372-9075-4e0c-9ba5-34cc2d863b13",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb3eeac372-9075-4e0c-9ba5-34cc2d863b13?accessKey=9d09c657cf298f6a6069d19fa65343bee3be076a5729fff8be5f72e177e99dcb",
+            "documentType": "emiratesIdFile"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb4e83eae7-887e-45b8-b038-06333842378b",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb4e83eae7-887e-45b8-b038-06333842378b?accessKey=f4b0d34567e22f751648d6bc16d81a88a07ad826bc5978519ad867ef46667044",
+            "documentType": "powerOfAttorney"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb4cba2d6d-6cbf-4b5b-9a9f-ca2dcaf886cc",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb4cba2d6d-6cbf-4b5b-9a9f-ca2dcaf886cc?accessKey=5c871b28c8aaa8fb0ffc82fee471a102e65122fe245f8b8be41fb782442a09ef",
+            "documentType": "taxRegistrationCertificate"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb9d1b0f9f-20b7-45d8-8976-3b137f05ee72",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb9d1b0f9f-20b7-45d8-8976-3b137f05ee72?accessKey=3092f3ec4c49aad21e46e1d81ad07f8ac1efcdfc2b073e9cc6ea08075c6df162",
+            "documentType": "memorandum"
+          },
+          {
+            "documentId": "cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb921f559b-904a-4622-8a19-40b35e80be7e",
+            "documentURL": "https://onboarding-uat.network.ae/files/shared/self-onboarding-665-container/cff27aaf-f1ad-4baf-814e-f84e6b4cb5cb921f559b-904a-4622-8a19-40b35e80be7e?accessKey=bcf4d0cfde010a79be49153e1bef52a40d332da2721b56451631bcc7a80b6fe2",
+            "documentType": "selfOnboardingAgreement"
+          }
+        ],
+        "taxRegistrationNumber": "887655678888111",
+        "tradeLicenseNumber": "141414",
+        "tradeLicenseExpirationDate": "2025-06-18",
+        "merchantEmail": "154@domain4.cc",
+        "website": "https://www.selfonboardingtest.com",
+        "MSFRates": {
+          "standard": "2.99",
+          "CUP": "2.99",
+          "JCB": "1.99",
+          "premium": "1.99",
+          "manual": "1.99",
+          "debit": "2.25",
+          "international": "2.99",
+          "diners": "1.99"
+        },
+        "fees": {
+          "perTransactionAuthorizationFee": 0.4,
+          "MISMonthlyFee": 99.0,
+          "refundFee": 5.0,
+          "chargebackFee": 0.0,
+          "annualFee": 100,
+          "setupFee": 500
+        },
+        "configuration": {
+          "settlementFrequency": "Daily",
+          "settlementFirstDay": "",
+          "settlementSecondDay": "",
+          "refundCategory": "C",
+          "netSpread": "1",
+          "transactionsExpectedAnnually": "",
+          "ecommerceVolumeExpectedAnnually": "",
+          "paymentTypeAccepted": "MasterCard",
+          "amountCap": "1000",
+          "flexiCutofDays": "1",
+          "ECOMAuthSystem": "MPGS"
+        },
+        "services": {
+          "enable3DS": true
+        },
+        "terminals": [
+          {
+            "terminalCategory": "",
+            "terminalModel": "",
+            "terminalBrand": "",
+            "terminalFee": "600"
+          }
+        ],
+        "address": {
+          "addressLine": "Hgdcvh",
+          "city": "Umm Al Quwain",
+          "pobox": "55654",
+          "phone": "971570068113"
+        }
+      }
+    ],
+    "tenantId": "ni"
+  }
+}

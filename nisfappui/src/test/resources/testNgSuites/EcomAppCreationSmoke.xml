@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ecom-app-creation-smoke" parallel="classes" thread-count="2">
+
+    <test name="ecom-app-creation">
+        <classes>
+            <class name="nisfappui.tests.EcomApplicationCreationTest"/>
+        </classes>
+    </test>
+</suite>

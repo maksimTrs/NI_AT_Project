@@ -44,3 +44,5 @@ bin/
 
 # Project exclude paths
 /target/
+/src/test/resources/preprod.properties
+/nisobapi/src/test/resources/preprod.properties
