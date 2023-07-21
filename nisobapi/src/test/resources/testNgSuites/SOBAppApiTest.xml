@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="sob-app-creation-smoke"  parallel="classes" thread-count="2">
+<suite name="sob-app-creation-smoke">
 
     <test name="sob-app-creation">
         <classes>
-<!--            <class name="nisobapi.tests.SOBCreationApiTest"/>-->
+            <class name="nisobapi.tests.SOBCreationApiTest"/>
             <class name="nisobapi.tests.SOBApplicationStatusTest"/>
         </classes>
     </test>

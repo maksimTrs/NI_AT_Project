@@ -5,15 +5,15 @@ import nisobapi.pojo.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static nisobapi.utils.ApiAppDataFaker.*;
 import static nisobapi.constants.TestHelper.*;
+import static nisobapi.utils.ApiAppDataFaker.*;
 
 public class SobAppDataBuilder {
 
-    private static final long TLN = getRandomTLN();
-    private static final String PASSPORT = getRandomPassport();
+    private static long TLN = getRandomTLN();
+    private static String PASSPORT = getRandomPassport();
 
-    private static final String SCREENING_RESULT_FORMAT = String.format(
+    public static String SCREENING_RESULT_FORMAT = String.format(
             SCREENING_RESULT,
             TLN, TLN, TLN,
             TLN, TLN, TLN,
@@ -53,7 +53,7 @@ public class SobAppDataBuilder {
     }
 
 
-    private static List<ContactsItem> getContactsItems() {
+    public static List<ContactsItem> getContactsItems() {
         List<ContactsItem> contactsItemList = new ArrayList<>();
 
         ContactsItem indian = ContactsItem.builder()
@@ -103,7 +103,7 @@ public class SobAppDataBuilder {
     }
 
 
-    private static List<MerchantsItem> getMerchantsItems() {
+    public static List<MerchantsItem> getMerchantsItems() {
         List<MerchantsItem> merchantsItemList = new ArrayList<>();
 
 
@@ -272,7 +272,7 @@ public class SobAppDataBuilder {
     }
 
 
-    private static List<DocumentsItem> getDocumentsItems() {
+    public static List<DocumentsItem> getDocumentsItems() {
         List<DocumentsItem> documentsItemList = new ArrayList<>();
 
 
@@ -356,7 +356,7 @@ public class SobAppDataBuilder {
     }
 
 
-    private static List<DocumentsItem> getDocumentsItems2() {
+    public static List<DocumentsItem> getDocumentsItems2() {
         List<DocumentsItem> documentsItemList = new ArrayList<>();
 
 
@@ -467,7 +467,7 @@ public class SobAppDataBuilder {
     }
 
 
-    private static List<TerminalsItem> getTerminalsItems(String merchantType) {
+    public static List<TerminalsItem> getTerminalsItems(String merchantType) {
         List<TerminalsItem> terminalsItemList = new ArrayList<>();
 
         if (merchantType.equalsIgnoreCase("PBQ")) {

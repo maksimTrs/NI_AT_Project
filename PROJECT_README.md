@@ -75,7 +75,7 @@ echo $SELENIUM_REMOTE_URL
 
 #### --->>> **_To run SOB Application creation API (POST request) and Get application info API (GET request), run:_**
 
-`./mvnw -DsuiteXmlFile="SOBAppApiCreationTest.xml"  clean test`
+`./mvnw -DsuiteXmlFile="SOBAppApiTest.xml"  clean test`
 
 =================================================================================================================
 
