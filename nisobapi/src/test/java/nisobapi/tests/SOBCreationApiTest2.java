@@ -21,50 +21,17 @@ import static nisobapi.constants.TestHelper.SOB_CREATION_URL_ENDPOINT;
 import static nisobapi.utils.ApiAppDataFaker.getRandomDateOfEstablishment;
 import static nisobapi.utils.ApiAppDataFaker.getRandomIntValue;
 import static nisobapi.utils.MethodAssertionsForAPI.*;
+import static nisobapi.utils.SobAppApiSerialization.deserializePostSonJsonAndSerializeToUniqueJson;
 import static nisobapi.utils.SobAppDataBuilder.*;
 
 
 public class SOBCreationApiTest2 extends BaseApiTest {
 
-
     @Test()
     public void createSobAppTest2()   {
 
-        String fileContent = null;
-        try {
-            File file = new File("src/test/resources/testData/SOB_Application_API_UAT_Creation2.json");
-            fileContent = FileUtils.readFileToString(file, "UTF-8");
-            //System.out.println(fileContent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        ObjectMapper mapper = new ObjectMapper();
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(String.class, new PassportNumberDeserializer());
-        module.addDeserializer(String.class, new MobileNumberDeserializer());
-        module.addDeserializer(String.class, new TradeLicenseNumberDeserializer());
-        module.addDeserializer(String.class, new ScreeningResultDeserializer());
-        module.addDeserializer(String.class, new EmailrDeserializer());
-        mapper.registerModule(module);
-
-
-        SobAppApiMain newApplicationFromBuilder;
-        try {
-            newApplicationFromBuilder = mapper.readValue(fileContent, SobAppApiMain.class);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonConvertAppResult;
-        try {
-            jsonConvertAppResult = objectMapper.writeValueAsString(newApplicationFromBuilder);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        String jsonConvertAppResult = deserializePostSonJsonAndSerializeToUniqueJson
+                ("src/test/resources/testData/SOB_Application_API_UAT_Creation2.json");
 
         loggerAPI.debug(">>>>>>>>>>>> New Application JSON Body: " + jsonConvertAppResult);
         Allure.attachment(">>>>>>>>>>>> New Application JSON Body: ", jsonConvertAppResult);

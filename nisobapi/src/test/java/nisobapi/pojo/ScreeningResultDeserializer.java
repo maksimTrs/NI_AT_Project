@@ -25,14 +25,12 @@ public class ScreeningResultDeserializer  extends JsonDeserializer<String> {
         // Replace <regex> pattern
         Matcher matcher1 = regexPattern1.matcher(fieldVal);
         while (matcher1.find()) {
-            String match = matcher1.group(1);
             fieldVal = fieldVal.replace(matcher1.group(), String.valueOf(TLN_POJO));
         }
 
         // Replace <regex2> pattern
         Matcher matcher2 = regexPattern2.matcher(fieldVal);
         while (matcher2.find()) {
-            String match = matcher2.group(1);
             fieldVal = fieldVal.replace(matcher2.group(), PASSPORT_POJO);
         }
 

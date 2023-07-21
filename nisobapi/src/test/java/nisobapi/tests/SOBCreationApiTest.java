@@ -56,15 +56,6 @@ public class SOBCreationApiTest extends BaseApiTest {
     @Test()
     public void createSobAppTest() {
 
-/*        try {
-            File file = new File("src/test/resources/testData/SOB_Application_API_UAT_Creation.json");
-            String fileContent = FileUtils.readFileToString(file, "UTF-8");
-            System.out.println(fileContent);
-        } catch (IOException e) {
-            // Handle the exception appropriately
-            e.printStackTrace();
-        }*/
-
         SobAppApiMain newApplicationFromBuilder = SobAppApiMain
                 .builder()
                 .application(buildApplication())

@@ -5,6 +5,7 @@
         <classes>
             <class name="nisobapi.tests.SOBCreationApiTest"/>
             <class name="nisobapi.tests.SOBApplicationStatusTest"/>
+            <class name="nisobapi.tests.SOBCreationApiTest2"/>
         </classes>
     </test>
 </suite>
