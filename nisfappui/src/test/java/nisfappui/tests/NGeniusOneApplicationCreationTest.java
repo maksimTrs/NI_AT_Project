@@ -4,7 +4,8 @@ package nisfappui.tests;
 import io.qameta.allure.*;
 import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
-import nisfappui.utils.TestBuilderForNg1App;
+import nisfappui.utils.TestBuilderForPosAndEcom;
+import nisfappui.utils.TestBuilderMain;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -18,6 +19,7 @@ import static nisfappui.services.NationalityTypes.NATIONALITY_UAE;
 import static nisfappui.services.NgOnlineIntegrationMethodTypes.NHR;
 import static nisfappui.services.NgOnlinePaymentTypes.MASTERCARD;
 import static nisfappui.services.NgOnlinePaymentTypes.VISA;
+import static nisfappui.services.PaymentModeTypes.FN;
 import static nisfappui.services.PaymentModeTypes.MC_777;
 import static nisfappui.services.RefundCategoryTypes.C;
 import static nisfappui.services.RentalModeTypes.BANK_TRANSFER;
@@ -28,7 +30,8 @@ import static nisfappui.utils.MethodAssertionsForPO.*;
 
 public class NGeniusOneApplicationCreationTest extends BaseTest {
 
-    private TestBuilderForNg1App testBuilderForNg1App = new TestBuilderForNg1App();
+    private TestBuilderForPosAndEcom testBuilderForPosAndEcom = new TestBuilderForPosAndEcom();
+    private TestBuilderMain testBuilderMain = new TestBuilderMain();
 
 
     @Severity(SeverityLevel.CRITICAL)
@@ -47,57 +50,38 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
 
         step(APP_TAB_STEP, () -> {
 
-            testBuilderForNg1App.openNewMerchantPopUp(mainSFAppPage, APPLICATIONS);
+            testBuilderMain.openNewMerchantPopUp(mainSFAppPage, APPLICATIONS);
         });
 
         step(NEW_APP_TAB_NG1_STEP, () -> {
 
-            testBuilderForNg1App.fillMerchantInitialCreationPagePopUp(merchantInitialCreationPage, "Car Rental");
+            testBuilderForPosAndEcom.fillMerchantInitialCreationNG1WithBase24(merchantInitialCreationPage, "Car Rental");
         });
 
 
         step(NEW_APP_TAB_MERCH_INFO_STEP, () -> {
 
-            newApplicationMerchantInformationPartitionPage
-                    .fillPhone(getRandomPhone())
-                    .fillLegalType(LLC.getDisplayName())
-                    .fillWebsiteEcomOrPos(WEBSITE_ECOM, getRandomWebURL())
-                    .fillPOBox(getRandomPOBox())
-                    .fillAddress(getRandomAddress())
-                    .fillCity(ABU_DHABI.getDisplayName())
-                    .fillCountry(UAE.getDisplayName())
-                    .fillTradeLicenceNumber(getRandomTLN())
-                    .fillDateEstablishment(getRandomDateOfEstablishment())
-                    .fillDateLicenceExpiration(getRandomLicenceExpirationDate());
+            testBuilderForPosAndEcom.fillMerchantInformationPartitionECOM(newApplicationMerchantInformationPartitionPage,
+                    LLC, WEBSITE_ECOM, ABU_DHABI, UAE);
         });
 
 
         step(NEW_APP_TAB_AUTH_SIGN_STEP, () -> {
 
-            newApplicationAuthorizedSignatoryPartitionPage
-                    .fillFirstAndLastName(getRandomFirstName(), getRandomLastName())
-                    .fillMobilPhone(getRandomPhone())
-                    .fillPassportNum(getRandomPassport())
-                    .fillNationality(NATIONALITY_UAE.getDisplayName())
-                    .fillContactBirthday(getRandomDateOfBirth())
-                    .fillPassportExpDate(getRandomLicenceExpirationDate());
+            testBuilderMain.fillApplicationAuthorizedSignatoryPartition(newApplicationAuthorizedSignatoryPartitionPage, NATIONALITY_UAE);
         });
 
 
         step(NEW_APP_TAB_SALES_OFFICER_STEP, () -> {
 
-            newApplicationSalesOfficerInspectionPartitionPage
-                    .clickOnOriginalDocumentImageVerifiedCheckBox(true);
+            testBuilderMain.fillApplicationSalesOfficerInspectionPartition(newApplicationSalesOfficerInspectionPartitionPage, true);
         });
 
 
         step(NEW_APP_TAB_PAYMENT_SETTL_STEP, () -> {
 
-            newApplicationPaymentSettlementDetailsPartitionPage
-                    .fillBankName(ENBD.getDisplayName())
-                    .fillPaymentMode(MC_777.getDisplayName())
-                    .fillRentalMode(BANK_TRANSFER.getDisplayName())
-                    .fillTaxRegNum(getRandomTLN());
+            testBuilderMain.fillApplicationPaymentSettlementDetailsPartition(newApplicationPaymentSettlementDetailsPartitionPage,
+                    ENBD, FN, BANK_TRANSFER);
         });
 
 
@@ -110,42 +94,28 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
 
         step(NEW_APP_TAB_FEES_ECOM_STEP, () -> {
 
-            newApplicationFeesChargesEcomPartitionPage
-                    .fillSettlementFreqEcomOption(DAILY.getDisplayName())
-                    .fillRefundCategory(C.getDisplayName());
+            testBuilderForPosAndEcom.fillApplicationFeesChargesEcomPartition(newApplicationFeesChargesEcomPartitionPage,
+                    DAILY, C);
         });
 
 
         step(NEW_APP_TAB_NG_ONLINE_STEP, () -> {
 
-            nGeniusOnlinePartitionPage
-                    .clickOnWebIntegrationCheckbox(true)
-                    .clickOnPayByLinkCheckbox(true)
-                    .fillNumberTransactionsAnnual(getRandomIntValue(10000, 100000))
-                    .fillNumberEcomAnnualValue(getRandomIntValue(100, 10000))
-                    .fillIntegrationMethod(NHR.getDisplayName())
-                    .selectCardPaymentType(VISA.getDisplayName())
-                    .selectCardPaymentType(MASTERCARD.getDisplayName());
+            testBuilderForPosAndEcom.fillNGeniusOnlinePartitionPage(nGeniusOnlinePartitionPage,
+                    true, true, NHR, VISA, MASTERCARD);
         });
 
 
         step(NEW_APP_TAB_BUSINESS_DETAIL_STEP, () -> {
 
-            newApplicationBusinessDetailsPartitionPage
-                    .fillBusinessLine("Truck Rental")
-                    .fillDescOfBusinessOperation(BUSINESS_OPERATION_DESC)
-                    .fillYearsInBusiness(getRandomIntValue(1, 15))
-                    .fillVolumePerYear(getRandomIntValue(10000, 50000))
-                    .fillCardPerYear(getRandomIntValue(100, 10000))
-                    .clickOnNewAppSaveBtn();
+            testBuilderMain.fillApplicationBusinessDetailsPartition(newApplicationBusinessDetailsPartitionPage,
+                    "Truck Rental", BUSINESS_OPERATION_DESC);
         });
 
 
         step(APP_TAB_IBAN_STEP, () -> {
 
-            applicationPage
-                    .openCurrentSFAppTab()
-                    .fillBusinessSensitivePartition(IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
+            testBuilderMain.fillApplicationIBAN(applicationPage, IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
         });
 
 
@@ -160,12 +130,7 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
 
         step(CONTACT_PAGE_PEP_STEP, () -> {
 
-            applicationPage
-                    .openAppContactPage()
-                    .editContact()
-                    .editPepField(false)
-                    .saveContact()
-                    .moveToAppPage();
+            testBuilderMain.openAccountPageAndFillPepContactInfo(applicationPage, false);
         });
 
 
@@ -177,14 +142,8 @@ public class NGeniusOneApplicationCreationTest extends BaseTest {
 
         step(DOC_TAB_UPLOAD_DOC_FILE_STEP, () -> {
 
-            applicationPage
-                    .openAppGenericDocument();
-
-            documentPage
-                    .clickOnUploadDocFilesBtn()
-                    //.uploadDocFileViaPopUp(DOC_FILE_UPLOAD_PATH)
-                    .uploadDocFilesViaPopUp(DOC_FILE_UPLOAD_PATH, DOC_FILE_UPLOAD_PATH2)
-                    .closeDocPartitionAndMoveToAppPage();
+            testBuilderMain.openDocPageAndUploadMultiplyFiles(applicationPage, documentPage,
+                    DOC_FILE_UPLOAD_PATH, DOC_FILE_UPLOAD_PATH2);
         });
 
 

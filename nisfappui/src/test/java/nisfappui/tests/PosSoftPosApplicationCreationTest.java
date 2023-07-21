@@ -3,6 +3,8 @@ package nisfappui.tests;
 import io.qameta.allure.*;
 import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
+import nisfappui.utils.TestBuilderForPosAndEcom;
+import nisfappui.utils.TestBuilderMain;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -15,6 +17,7 @@ import static nisfappui.services.CountryTypes.UAE;
 import static nisfappui.services.LegalTypeTypes.LLC;
 import static nisfappui.services.NationalityTypes.NATIONALITY_UAE;
 import static nisfappui.services.PaymentModeTypes.MC_777;
+import static nisfappui.services.PaymentModeTypes.MC_871;
 import static nisfappui.services.PosTypeAndGatewayTypes.POS_TYPE_SOFT;
 import static nisfappui.services.RentalModeTypes.BANK_TRANSFER;
 import static nisfappui.utils.AllureStepsTemplates.*;
@@ -28,6 +31,9 @@ import static nisfappui.utils.MethodAssertionsForPO.*;
  **/
 
 public class PosSoftPosApplicationCreationTest extends BaseTest {
+
+    private TestBuilderForPosAndEcom testBuilderForPosAndEcom = new TestBuilderForPosAndEcom();
+    private TestBuilderMain testBuilderMain = new TestBuilderMain();
 
 
     @Severity(SeverityLevel.CRITICAL)
@@ -45,91 +51,57 @@ public class PosSoftPosApplicationCreationTest extends BaseTest {
 
         step(APP_TAB_STEP, () -> {
 
-            mainSFAppPage
-                    .clickOnNavigationMenuType()
-                    .chooseOnNavigationMenuType(APPLICATIONS)
-                    .clickOnNewAppBtn();
+            testBuilderMain.openNewMerchantPopUp(mainSFAppPage, APPLICATIONS);
         });
 
         step(NEW_APP_TAB_POS_SOFTPOS_STEP, () -> {
 
-            merchantInitialCreationPage
-                    .fillTradeName(getRandomTradeName())
-                    .fillMerchantEmail(getRandomEmail())
-                    .chooseBusinessNatureType("Accounting Services")
-                    // .chooseRandomBusinessNatureType()
-                    .unselectSelectedProduct(ECOM.getDisplayName())
-                    .selectPosType(POS_TYPE_SOFT.getDisplayName())
-                    //.setNumberOfPos(getRandomIntValue(1, 13))
-                    .moveToTheSecondApplicationScreen();
+            testBuilderForPosAndEcom.fillMerchantInitialCreationPosSOFTPOS(merchantInitialCreationPage, "Accounting Services");
         });
 
 
         step(NEW_APP_TAB_MERCH_INFO_STEP, () -> {
 
-            newApplicationMerchantInformationPartitionPage
-                    .fillPhone(getRandomPhone())
-                    .fillLegalType(LLC.getDisplayName())
-                    .fillPOBox(getRandomPOBox())
-                    .fillAddress(getRandomAddress())
-                    .fillCity(DUBAI.getDisplayName())
-                    .fillCountry(UAE.getDisplayName())
-                    .fillTradeLicenceNumber(getRandomTLN())
-                    .fillDateEstablishment(getRandomDateOfEstablishment())
-                    .fillDateLicenceExpiration(getRandomLicenceExpirationDate());
+            testBuilderForPosAndEcom.fillMerchantInformationPartitionECOM(newApplicationMerchantInformationPartitionPage,
+                    LLC, WEBSITE, DUBAI, UAE);
         });
 
         step(NEW_APP_TAB_AUTH_SIGN_STEP, () -> {
 
-            newApplicationAuthorizedSignatoryPartitionPage
-                    .fillFirstAndLastName(getRandomFirstName(), getRandomLastName())
-                    .fillMobilPhone(getRandomPhone())
-                    .fillPassportNum(getRandomPassport())
-                    .fillNationality(NATIONALITY_UAE.getDisplayName())
-                    .fillContactBirthday(getRandomDateOfBirth())
-                    .fillPassportExpDate(getRandomLicenceExpirationDate());
+            testBuilderMain.fillApplicationAuthorizedSignatoryPartition(newApplicationAuthorizedSignatoryPartitionPage, NATIONALITY_UAE);
         });
+
 
         step(NEW_APP_TAB_SALES_OFFICER_STEP, () -> {
 
-            newApplicationSalesOfficerInspectionPartitionPage
-                    .clickOnOriginalDocumentImageVerifiedCheckBox(true);
+            testBuilderMain.fillApplicationSalesOfficerInspectionPartition(newApplicationSalesOfficerInspectionPartitionPage, true);
         });
 
 
         step(NEW_APP_TAB_PAYMENT_SETTL_STEP, () -> {
 
-            newApplicationPaymentSettlementDetailsPartitionPage
-                    .fillBankName(ENBD.getDisplayName())
-                    .fillPaymentMode(MC_777.getDisplayName())
-                    .fillRentalMode(BANK_TRANSFER.getDisplayName())
-                    .fillTaxRegNum(getRandomTLN());
+            testBuilderMain.fillApplicationPaymentSettlementDetailsPartition(newApplicationPaymentSettlementDetailsPartitionPage,
+                    ENBD, MC_871, BANK_TRANSFER);
         });
+
 
         step(NEW_APP_TAB_FEES_POS_STEP, () -> {
 
-            newApplicationFeesChargesPartitionPage
-                    .fillMisMonthReportFee(getRandomDoubleValue(9, 999));
+            testBuilderForPosAndEcom.fillApplicationFeesChargesPosPartition(newApplicationFeesChargesPartitionPage);
         });
+
 
 
         step(NEW_APP_TAB_BUSINESS_DETAIL_STEP, () -> {
 
-            newApplicationBusinessDetailsPartitionPage
-                    .fillBusinessLine("Insurance")
-                    .fillDescOfBusinessOperation(BUSINESS_OPERATION_DESC)
-                    .fillYearsInBusiness(getRandomIntValue(1, 15))
-                    .fillVolumePerYear(getRandomIntValue(10000, 50000))
-                    .fillCardPerYear(getRandomIntValue(100, 10000))
-                    .clickOnNewAppSaveBtn();
+            testBuilderMain.fillApplicationBusinessDetailsPartition(newApplicationBusinessDetailsPartitionPage,
+                    "Insurance", BUSINESS_OPERATION_DESC);
         });
 
 
         step(APP_TAB_IBAN_STEP, () -> {
 
-            applicationPage
-                    .openCurrentSFAppTab()
-                    .fillBusinessSensitivePartition(IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
+            testBuilderMain.fillApplicationIBAN(applicationPage, IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
         });
 
 
@@ -144,12 +116,7 @@ public class PosSoftPosApplicationCreationTest extends BaseTest {
 
         step(CONTACT_PAGE_PEP_STEP, () -> {
 
-            applicationPage
-                    .openAppContactPage()
-                    .editContact()
-                    .editPepField(false)
-                    .saveContact()
-                    .moveToAppPage();
+            testBuilderMain.openAccountPageAndFillPepContactInfo(applicationPage, false);
         });
 
 
@@ -161,13 +128,7 @@ public class PosSoftPosApplicationCreationTest extends BaseTest {
 
         step(DOC_TAB_UPLOAD_DOC_FILE_STEP, () -> {
 
-            applicationPage
-                    .openAppGenericDocument();
-
-            documentPage
-                    .clickOnUploadDocFilesBtn()
-                    .uploadDocFileViaPopUp(DOC_FILE_UPLOAD_PATH)
-                    .closeDocPartitionAndMoveToAppPage();
+            testBuilderMain.openDocPageAndUploadFile(applicationPage, documentPage, DOC_FILE_UPLOAD_PATH);
         });
 
         step(DOC_TAB_ASSERT_APP_ID_STEP, () -> {

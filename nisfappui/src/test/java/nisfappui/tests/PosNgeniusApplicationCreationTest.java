@@ -4,26 +4,33 @@ package nisfappui.tests;
 import io.qameta.allure.*;
 import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
+import nisfappui.utils.TestBuilderForPosAndEcom;
+import nisfappui.utils.TestBuilderMain;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
 import static nisfappui.pages.NavigationMenuPartitions.APPLICATIONS;
 import static nisfappui.services.ApplicationProductTypes.ECOM;
 import static nisfappui.services.BankTypes.ENBD;
+import static nisfappui.services.CityTypes.ABU_DHABI;
 import static nisfappui.services.CityTypes.DUBAI;
 import static nisfappui.services.CountryTypes.UAE;
 import static nisfappui.services.LegalTypeTypes.LLC;
 import static nisfappui.services.NationalityTypes.NATIONALITY_UAE;
 import static nisfappui.services.PaymentModeTypes.MC_777;
+import static nisfappui.services.PaymentModeTypes.NN;
 import static nisfappui.services.PosTypeAndGatewayTypes.POS_TYPE_NG;
 import static nisfappui.services.RentalModeTypes.BANK_TRANSFER;
 import static nisfappui.constants.TestHelper.*;
+import static nisfappui.services.RentalModeTypes.PAY_BY_LINK;
 import static nisfappui.utils.AllureStepsTemplates.*;
 import static nisfappui.utils.AppDataFaker.*;
 import static nisfappui.utils.MethodAssertionsForPO.*;
 
 public class PosNgeniusApplicationCreationTest extends BaseTest {
 
+    private TestBuilderForPosAndEcom testBuilderForPosAndEcom = new TestBuilderForPosAndEcom();
+    private TestBuilderMain testBuilderMain = new TestBuilderMain();
 
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Maksim T")
@@ -39,92 +46,56 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
 
         step(APP_TAB_STEP, () -> {
 
-            mainSFAppPage
-                    .clickOnNavigationMenuType()
-                    .chooseOnNavigationMenuType(APPLICATIONS)
-                    .clickOnNewAppBtn();
+            testBuilderMain.openNewMerchantPopUp(mainSFAppPage, APPLICATIONS);
         });
 
         step(NEW_APP_TAB_POS_NG_STEP, () -> {
 
-            merchantInitialCreationPage
-                    .fillTradeName(getRandomTradeName())
-                    .fillMerchantEmail(getRandomEmail())
-                    .chooseBusinessNatureType("Legal Services")
-                    // .chooseRandomBusinessNatureType()
-                    .unselectSelectedProduct(ECOM.getDisplayName())
-                    .selectPosType(POS_TYPE_NG.getDisplayName())
-                    .setNumberOfPos(getRandomIntValue(1, 13))
-                    .moveToTheSecondApplicationScreen();
+            testBuilderForPosAndEcom.fillMerchantInitialCreationPosNG(merchantInitialCreationPage, "Legal Services");
         });
 
         step(NEW_APP_TAB_MERCH_INFO_STEP, () -> {
 
-            newApplicationMerchantInformationPartitionPage
-                    .fillPhone(getRandomPhone())
-                    .fillLegalType(LLC.getDisplayName())
-                    .fillPOBox(getRandomPOBox())
-                    .fillAddress(getRandomAddress())
-                    .fillCity(DUBAI.getDisplayName())
-                    .fillCountry(UAE.getDisplayName())
-                    .fillTradeLicenceNumber(getRandomTLN())
-                    .fillDateEstablishment(getRandomDateOfEstablishment())
-                    .fillDateLicenceExpiration(getRandomLicenceExpirationDate());
+            testBuilderForPosAndEcom.fillMerchantInformationPartitionECOM(newApplicationMerchantInformationPartitionPage,
+                    LLC, WEBSITE, DUBAI, UAE);
         });
 
 
         step(NEW_APP_TAB_AUTH_SIGN_STEP, () -> {
 
-            newApplicationAuthorizedSignatoryPartitionPage
-                    .fillFirstAndLastName(getRandomFirstName(), getRandomLastName())
-                    .fillMobilPhone(getRandomPhone())
-                    .fillPassportNum(getRandomPassport())
-                    .fillNationality(NATIONALITY_UAE.getDisplayName())
-                    .fillContactBirthday(getRandomDateOfBirth())
-                    .fillPassportExpDate(getRandomLicenceExpirationDate());
+            testBuilderMain.fillApplicationAuthorizedSignatoryPartition(newApplicationAuthorizedSignatoryPartitionPage, NATIONALITY_UAE);
         });
 
 
         step(NEW_APP_TAB_SALES_OFFICER_STEP, () -> {
 
-            newApplicationSalesOfficerInspectionPartitionPage
-                    .clickOnOriginalDocumentImageVerifiedCheckBox(true);
+            testBuilderMain.fillApplicationSalesOfficerInspectionPartition(newApplicationSalesOfficerInspectionPartitionPage, true);
         });
+
 
         step(NEW_APP_TAB_PAYMENT_SETTL_STEP, () -> {
 
-            newApplicationPaymentSettlementDetailsPartitionPage
-                    .fillBankName(ENBD.getDisplayName())
-                    .fillPaymentMode(MC_777.getDisplayName())
-                    .fillRentalMode(BANK_TRANSFER.getDisplayName())
-                    .fillTaxRegNum(getRandomTLN());
+            testBuilderMain.fillApplicationPaymentSettlementDetailsPartition(newApplicationPaymentSettlementDetailsPartitionPage,
+                    ENBD, MC_777, BANK_TRANSFER);
         });
 
 
         step(NEW_APP_TAB_FEES_POS_STEP, () -> {
 
-            newApplicationFeesChargesPartitionPage
-                    .fillMisMonthReportFee(getRandomDoubleValue(10, 99));
+            testBuilderForPosAndEcom.fillApplicationFeesChargesPosPartition(newApplicationFeesChargesPartitionPage);
         });
 
 
         step(NEW_APP_TAB_BUSINESS_DETAIL_STEP, () -> {
 
-            newApplicationBusinessDetailsPartitionPage
-                    .fillBusinessLine("Fines")
-                    .fillDescOfBusinessOperation(BUSINESS_OPERATION_DESC)
-                    .fillYearsInBusiness(getRandomIntValue(1, 15))
-                    .fillVolumePerYear(getRandomIntValue(10000, 50000))
-                    .fillCardPerYear(getRandomIntValue(100, 10000))
-                    .clickOnNewAppSaveBtn();
+            testBuilderMain.fillApplicationBusinessDetailsPartition(newApplicationBusinessDetailsPartitionPage,
+                    "Fines", BUSINESS_OPERATION_DESC);
         });
 
 
         step(APP_TAB_IBAN_STEP, () -> {
 
-            applicationPage
-                    .openCurrentSFAppTab()
-                    .fillBusinessSensitivePartition(IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
+            testBuilderMain.fillApplicationIBAN(applicationPage, IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
         });
 
 
@@ -139,12 +110,7 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
 
         step(CONTACT_PAGE_PEP_STEP, () -> {
 
-            applicationPage
-                    .openAppContactPage()
-                    .editContact()
-                    .editPepField(false)
-                    .saveContact()
-                    .moveToAppPage();
+            testBuilderMain.openAccountPageAndFillPepContactInfo(applicationPage, false);
         });
 
 
@@ -156,13 +122,7 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
 
         step(DOC_TAB_UPLOAD_DOC_FILE_STEP, () -> {
 
-            applicationPage
-                    .openAppGenericDocument();
-
-            documentPage
-                    .clickOnUploadDocFilesBtn()
-                    .uploadDocFileViaPopUp(DOC_FILE_UPLOAD_PATH)
-                    .closeDocPartitionAndMoveToAppPage();
+            testBuilderMain.openDocPageAndUploadFile(applicationPage, documentPage, DOC_FILE_UPLOAD_PATH);
         });
 
 
