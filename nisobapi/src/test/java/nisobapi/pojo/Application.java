@@ -3,6 +3,7 @@ package nisobapi.pojo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
@@ -21,6 +22,9 @@ public class Application {
     private String legalType;
     private String businessDescription;
     private String paymentMode;
+
+    @JsonProperty("screeningResult")
+    @JsonDeserialize(using = ScreeningResultDeserializer.class)
     private String screeningResult;
     private String expectedCardVolume;
     private String businessNature;

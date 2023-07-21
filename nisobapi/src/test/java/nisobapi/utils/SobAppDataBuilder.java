@@ -10,8 +10,8 @@ import static nisobapi.utils.ApiAppDataFaker.*;
 
 public class SobAppDataBuilder {
 
-    private static long TLN = getRandomTLN();
-    private static String PASSPORT = getRandomPassport();
+    private static final long TLN = getRandomTLN();
+    private static final String PASSPORT = getRandomPassport();
 
     public static String SCREENING_RESULT_FORMAT = String.format(
             SCREENING_RESULT,

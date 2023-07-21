@@ -8,6 +8,13 @@ import java.util.concurrent.TimeUnit;
 
 public class ApiAppDataFaker {
 
+
+    public static final long TLN_POJO = getRandomTLN();
+    public static final String PASSPORT_POJO = getRandomPassport();
+    public static final String MOBILE_POJO = getRandomPhone();
+    public static final String EMAIL_POJO = getRandomEmail();
+
+
     public static String getRandomEmail() {
         Faker faker = new Faker();
         return faker.internet().emailAddress();

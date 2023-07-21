@@ -3,6 +3,7 @@ package nisobapi.pojo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
@@ -23,11 +24,18 @@ public class MerchantsItem {
     private String IBAN;
     private List<DocumentsItem> documents;
     private Configuration configuration;
+
+    @JsonProperty("merchantEmail")
+    @JsonDeserialize(using = EmailrDeserializer.class)
     private String merchantEmail;
     private Services services;
     private String accountNumber;
     private List<TerminalsItem> terminals;
     private String merchantName;
+
+
+    @JsonProperty("tradeLicenseNumber")
+    @JsonDeserialize(using = TradeLicenseNumberDeserializer.class)
     private String tradeLicenseNumber;
     private String tradeName;
     private String tradeLicenseExpirationDate;
