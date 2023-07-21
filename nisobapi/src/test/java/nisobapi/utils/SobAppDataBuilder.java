@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static nisobapi.utils.ApiAppDataFaker.*;
-import static nisobapi.utils.TestHelper.*;
+import static nisobapi.constants.TestHelper.*;
 
 public class SobAppDataBuilder {
 

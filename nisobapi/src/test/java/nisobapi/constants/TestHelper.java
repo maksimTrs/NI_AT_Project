@@ -1,4 +1,4 @@
-package nisobapi.utils;
+package nisobapi.constants;
 
 import static nisobapi.utils.ConfigLoader.getSingletonInstance;
 

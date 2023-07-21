@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 import static nisobapi.api.StatusCode.CODE_200;
 import static nisobapi.utils.ConfigLoader.getSingletonInstance;
 import static nisobapi.utils.MethodAssertionsForAPI.*;
-import static nisobapi.utils.TestHelper.SOB_CREATION_URL_ENDPOINT;
-import static nisobapi.utils.TestHelper.SOB_CREATION_URL_GETAPP_SF_ID;
+import static nisobapi.constants.TestHelper.SOB_CREATION_URL_ENDPOINT;
+import static nisobapi.constants.TestHelper.SOB_CREATION_URL_GETAPP_SF_ID;
 
 public class SOBApplicationStatusTest extends BaseApiTest {
 

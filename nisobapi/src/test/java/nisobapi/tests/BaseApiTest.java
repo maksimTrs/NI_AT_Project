@@ -14,7 +14,7 @@ import java.util.Map;
 
 import static nisobapi.api.AccessTokenManager.getToken;
 import static nisobapi.api.AccessTokenManager.renewToken;
-import static nisobapi.utils.TestHelper.SOB_CREATION_URL;
+import static nisobapi.constants.TestHelper.SOB_CREATION_URL;
 
 public class BaseApiTest {
 

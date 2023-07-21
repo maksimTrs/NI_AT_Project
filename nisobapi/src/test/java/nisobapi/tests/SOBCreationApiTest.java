@@ -7,19 +7,15 @@ import com.microsoft.playwright.options.RequestOptions;
 import io.qameta.allure.Allure;
 import nisobapi.pojo.SobAppApiMain;
 import nisobapi.utils.SobAppDataBuilder;
-import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.io.File;
 
 import static nisobapi.api.StatusCode.CODE_201;
 import static nisobapi.utils.ConfigLoader.getSingletonInstance;
 import static nisobapi.utils.MethodAssertionsForAPI.assertApiElementHasMatches;
 import static nisobapi.utils.MethodAssertionsForAPI.assertApiResponseStatusCode;
-import static nisobapi.utils.TestHelper.APP_ID_REGEX;
-import static nisobapi.utils.TestHelper.SOB_CREATION_URL_ENDPOINT;
+import static nisobapi.constants.TestHelper.APP_ID_REGEX;
+import static nisobapi.constants.TestHelper.SOB_CREATION_URL_ENDPOINT;
 
 
 
