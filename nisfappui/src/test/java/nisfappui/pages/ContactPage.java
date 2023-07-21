@@ -1,7 +1,10 @@
 package nisfappui.pages;
 
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.WaitForSelectorState;
 import nisfappui.utils.MethodActionsForPO;
+
+import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 
 public class ContactPage extends MethodActionsForPO {
 
@@ -22,11 +25,15 @@ public class ContactPage extends MethodActionsForPO {
 
 
     public ContactPage editContact() {
+        waitForLocatorLoadState(page, EDIT_BTN, VISIBLE);
+
         doClickOnElement(page.locator(EDIT_BTN));
         return this;
     }
 
     public ContactPage editPepField(boolean yesNo) {
+        waitForLocatorLoadState(page, SAVE_BTN, VISIBLE);
+
         String pepTypeYesOrNo = yesNo ? PEP_YES : PEP_NO;
 
         doClickOnElement(page.locator(PEP_FIELD));
@@ -35,7 +42,7 @@ public class ContactPage extends MethodActionsForPO {
     }
 
     public ContactPage saveContact() {
-        doClickOnElementWithDelay(page.locator(SAVE_BTN), 1000);
+        doClickOnElementWithDelay(page.locator(SAVE_BTN), 1500);
         return this;
     }
 

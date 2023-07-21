@@ -35,18 +35,24 @@ import static nisfappui.utils.PropertyReader.getTestDataFromBundle;
 @Listeners({TestListener.class})
 public abstract class BaseTest {
 
-    protected static final String SF_URL = getTestDataFromBundle("BASE_URL");
+
     public static Logger logger = Logger.getLogger(BaseTest.class);
-    protected static boolean isClearMode = Boolean.getBoolean("CLEAR_MODE");
-    protected static boolean isTraceEnabled = Boolean.getBoolean("TRACE_FLAG");
-    protected static boolean isHeadlessMode = Boolean.getBoolean("HEADLESS_MODE");
-    protected static String browserType = System.getProperty("BROWSER_TYPE");
+    private static ThreadLocal<Playwright> playwrightThreadLocal = new ThreadLocal<>();
+    private static ThreadLocal<Browser> browserThreadLocal = new ThreadLocal<>();
+    private static ThreadLocal<Page> pageThreadLocal = new ThreadLocal<>();
+    private static ThreadLocal<BrowserContext> browserContextThreadLocal = new ThreadLocal<>();
+    public static final String SF_URL = getTestDataFromBundle("BASE_URL");
+    public static boolean isClearMode = Boolean.getBoolean("CLEAR_MODE");
+    public static boolean isTraceEnabled = Boolean.getBoolean("TRACE_FLAG");
+    public static boolean isHeadlessMode = Boolean.getBoolean("HEADLESS_MODE");
+    public static String browserType = System.getProperty("BROWSER_TYPE");
     public User SALES_OFFICER_USER;
     public User INCORRECT_SF_USER;
     protected Playwright playwright;
     protected Page page;
     protected BrowserContext browserContext;
     protected Browser browser;
+
     @PlayWrightPage
     protected LogInPage logInPage;
     @PlayWrightPage
@@ -75,7 +81,7 @@ public abstract class BaseTest {
     NewApplicationFeesChargesEcomPartitionPage newApplicationFeesChargesEcomPartitionPage;
     @PlayWrightPage
     NGeniusOnlinePartitionPage nGeniusOnlinePartitionPage;
-    private List<Path> listOfVideoRecords;
+    private  volatile  List<Path> listOfVideoRecords;
 
     @BeforeSuite(alwaysRun = true)
     public static void executePreConditions() {
@@ -109,18 +115,26 @@ public abstract class BaseTest {
 
 
         playwright = Playwright.create();
-        browser = launchBrowser(playwright, browserType, isHeadlessMode);
+        playwrightThreadLocal.set(playwright);
 
-        browserContext = setupBrowserContext(browser, isTraceEnabled);
+        browser = launchBrowser(getTLPlaywright(), browserType, isHeadlessMode);
+        browserThreadLocal.set(browser);
+
+        browserContext = setupBrowserContext(getTLBrowser(), isTraceEnabled);
         browserContext.setDefaultTimeout(40000);
+        browserContextThreadLocal.set(browserContext);
 
 
         //page.setDefaultTimeout(40000);
-        page = browserContext.newPage();
-        initPages(this, page);
+        page = getBrowserContextTLPage().newPage();
+        pageThreadLocal.set(page);
 
-        if (isTraceEnabled) {
-            collectPlayWrightVideos();
+        initPages(this, getTLPage());
+
+        synchronized (this) {
+            if (isTraceEnabled) {
+                collectPlayWrightVideos();
+            }
         }
     }
 
@@ -135,13 +149,16 @@ public abstract class BaseTest {
         logger.info("********************************************************************************");
 
 
-        browserContext.close();
-        browser.close();
-        page.close();
-        playwright.close();
+        getBrowserContextTLPage().close();
+        getTLBrowser().close();
+        getTLPage().close();
+        getTLPlaywright().close();
 
-        if (isTraceEnabled && result.isSuccess()) {
-            deleteSuccessfulTestPlayWrightVideos(method);
+
+        synchronized (this) {
+            if (isTraceEnabled && result.isSuccess()) {
+                deleteSuccessfulTestPlayWrightVideos(method);
+            }
         }
     }
 
@@ -151,6 +168,26 @@ public abstract class BaseTest {
                 .openUrl(SFurl)
                 .fillUserNameAndPasswordFields(logInUser)
                 .doLogIn();
+    }
+
+    private static Playwright getTLPlaywright() {
+
+        return playwrightThreadLocal.get();
+    }
+
+    private static Browser getTLBrowser() {
+
+        return browserThreadLocal.get();
+    }
+
+    private static Page getTLPage() {
+
+        return pageThreadLocal.get();
+    }
+
+    private static BrowserContext getBrowserContextTLPage() {
+
+        return browserContextThreadLocal.get();
     }
 
     private void initPages(Object obj, Page page) {
@@ -188,7 +225,7 @@ public abstract class BaseTest {
         }
     }
 
-    private void collectPlayWrightVideos() {
+    public void collectPlayWrightVideos() {
         try (Stream<Path> pathStream = Files.walk(Paths.get("videos/"))) {
             listOfVideoRecords = pathStream
                     .filter(Files::isRegularFile)
@@ -199,7 +236,7 @@ public abstract class BaseTest {
         }
     }
 
-    private void deleteSuccessfulTestPlayWrightVideos(Method method) {
+    public void deleteSuccessfulTestPlayWrightVideos(Method method) {
         List<Path> fullListOfVideoRecords = new ArrayList<>();
         try (Stream<Path> pathStream = Files.walk(Paths.get("videos/"))) {
             fullListOfVideoRecords = pathStream
