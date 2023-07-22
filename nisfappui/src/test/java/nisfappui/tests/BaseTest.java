@@ -140,7 +140,7 @@ public abstract class BaseTest {
         browserThreadLocal.set(browser);
 
         browserContext = setupBrowserContext(getTLBrowser(), isTraceEnabled);
-        browserContext.setDefaultTimeout(40000);
+        //browserContext.setDefaultTimeout(40000);
         browserContextThreadLocal.set(browserContext);
 
 
