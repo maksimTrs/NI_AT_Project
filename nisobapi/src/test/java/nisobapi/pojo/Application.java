@@ -16,7 +16,8 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Application {
-    private String creator;
+    @Builder.Default
+    private String creator =  "SOB";
     private String keyMerchant;
     private String rentalMode;
     private String legalType;
@@ -39,6 +40,7 @@ public class Application {
     private List<MerchantsItem> merchants;
 
     @JsonProperty("merchantType")
-    private String merchantType;
+    @Builder.Default
+    private String merchantType = "SME";
     private List<ContactsItem> contacts;
 }
