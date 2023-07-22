@@ -47,27 +47,40 @@ public class ApplicationPage extends MethodActionsForPO {
 
 
     public void closeAllSFTabs() {
-        page.waitForTimeout(9000);
+        page.waitForTimeout(5000);
 
         Locator listEle = page.locator(ALL_APP_SF_TABS);
         logger.debug("list app tabs count: " + listEle.count());
         logger.debug("list app tabs  info: " + listEle.allInnerTexts());
-        for (int i = 0; i < listEle.count(); i++) {
-            (listEle.nth(i)).waitFor(new Locator.WaitForOptions()
-                    .setTimeout(5000));
+        for (int j = 0; j < listEle.count(); j++) {
 
-            logger.debug(listEle.nth(i).getAttribute("title"));
+            Locator listEle2 = page.locator(ALL_APP_SF_TABS);
 
-            String titleText = listEle.nth(i).getAttribute("title");
-            String appID = titleText.substring(titleText.indexOf("A-"), titleText.indexOf("|")).trim();
+            for (int i = j; i < listEle2.count(); i++) {
 
-            Locator closeLocator = page.locator(String.format(APP_SF_TAB_CLOSE_BTN, appID));
-            closeLocator.waitFor(new Locator.WaitForOptions()
-                    .setState(VISIBLE)
-                    .setTimeout(5000));
+                Locator listEle3 = page.locator((ALL_APP_SF_TABS));
 
-            listEle.nth(i).click();
-            closeLocator.click();
+                for (int k = j; k < listEle3.count(); k++) {
+                    (listEle3.nth(k)).waitFor(new Locator.WaitForOptions()
+                            .setState(VISIBLE)
+                            .setTimeout(5000));
+
+                    logger.debug(listEle3.nth(k).getAttribute("title"));
+
+                    String titleText = listEle3.nth(k).getAttribute("title");
+                    String appID = titleText.substring(titleText.indexOf("A-"), titleText.indexOf("|")).trim();
+
+                    Locator closeLocator = page.locator(String.format(APP_SF_TAB_CLOSE_BTN, appID));
+                closeLocator.waitFor(new Locator.WaitForOptions()
+                        .setState(VISIBLE)
+                        .setTimeout(5000));
+
+                    listEle3.nth(k).click();
+                    closeLocator.click();
+                }
+
+            }
+
         }
     }
 
@@ -161,7 +174,7 @@ public class ApplicationPage extends MethodActionsForPO {
     }
 
     public int getSFApplicationTabsCount() {
-        page.waitForTimeout(15000);
+        page.waitForTimeout(3000);
         return page.locator(ALL_APP_SF_TABS).count();
     }
 
