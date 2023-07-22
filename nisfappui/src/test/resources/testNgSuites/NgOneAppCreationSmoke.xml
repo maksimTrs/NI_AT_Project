@@ -1,6 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="NG1-app-creation-smoke" parallel="classes" thread-count="2">
 
+    <listeners>
+        <listener class-name="nisfappui.utils.RetryListener"/>
+    </listeners>
+
     <test name="NG1-app-creation-with-PBQ-TTP-PBL">
         <classes>
             <class name="nisfappui.tests.NGeniusOneApplicationCreationTest"/>

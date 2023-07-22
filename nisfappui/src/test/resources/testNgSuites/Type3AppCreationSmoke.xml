@@ -1,6 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Type3-app-creation-smoke" parallel="classes" thread-count="2">
 
+
+    <listeners>
+        <listener class-name="nisfappui.utils.RetryListener"/>
+    </listeners>
+
     <test name="Type3-app-creation">
         <classes>
             <class name="nisfappui.tests.Type3ApplicationCreationTest"/>
