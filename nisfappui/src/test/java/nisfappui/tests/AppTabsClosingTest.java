@@ -19,7 +19,7 @@ public class AppTabsClosingTest extends BaseTest {
 
         applicationPage.closeAllSFTabs();
 
-       // assertElementHasCount(applicationPage.getSFApplicationTabsCount(), 0);
+        assertElementHasCount(applicationPage.getSFApplicationTabsCount(), 0);
     }
 }
 
