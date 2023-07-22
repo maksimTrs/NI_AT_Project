@@ -1,7 +1,6 @@
 package nisfappui.pages;
 
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.WaitForSelectorState;
 import nisfappui.utils.MethodActionsForPO;
 
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;

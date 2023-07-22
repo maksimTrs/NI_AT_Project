@@ -10,18 +10,14 @@ import org.testng.annotations.Test;
 import static io.qameta.allure.Allure.step;
 import static nisfappui.constants.TestHelper.*;
 import static nisfappui.pages.NavigationMenuPartitions.APPLICATIONS;
-import static nisfappui.services.ApplicationProductTypes.ECOM;
 import static nisfappui.services.BankTypes.ENBD;
 import static nisfappui.services.CityTypes.DUBAI;
 import static nisfappui.services.CountryTypes.UAE;
 import static nisfappui.services.LegalTypeTypes.LLC;
 import static nisfappui.services.NationalityTypes.NATIONALITY_UAE;
-import static nisfappui.services.PaymentModeTypes.MC_777;
 import static nisfappui.services.PaymentModeTypes.MC_871;
-import static nisfappui.services.PosTypeAndGatewayTypes.POS_TYPE_SOFT;
 import static nisfappui.services.RentalModeTypes.BANK_TRANSFER;
 import static nisfappui.utils.AllureStepsTemplates.*;
-import static nisfappui.utils.AppDataFaker.*;
 import static nisfappui.utils.MethodAssertionsForPO.*;
 
 
@@ -89,7 +85,6 @@ public class PosSoftPosApplicationCreationTest extends BaseTest {
 
             testBuilderForPosAndEcom.fillApplicationFeesChargesPosPartition(newApplicationFeesChargesPartitionPage);
         });
-
 
 
         step(NEW_APP_TAB_BUSINESS_DETAIL_STEP, () -> {

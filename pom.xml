@@ -217,8 +217,8 @@
                         <API_CONF_TYPE>${API_CONF_TYPE}</API_CONF_TYPE>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
-                         <!--suppress UnresolvedMavenProperty -->
-<!--                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
+                        <!--suppress UnresolvedMavenProperty -->
+                        <!--                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
                         <!--suppress UnresolvedMavenProperty -->
                         <suiteXmlFile>${project.basedir}/src/test/resources/testNgSuites/${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>

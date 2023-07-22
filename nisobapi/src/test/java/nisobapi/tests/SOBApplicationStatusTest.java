@@ -12,13 +12,12 @@ import org.testng.annotations.Test;
 
 import static nisobapi.api.StatusCode.CODE_200;
 import static nisobapi.api.StatusCode.CODE_201;
-import static nisobapi.constants.TestHelper.*;
-import static nisobapi.utils.ConfigLoader.getSingletonInstance;
+import static nisobapi.constants.TestHelper.SOB_CREATION_URL_ENDPOINT;
 import static nisobapi.utils.MethodAssertionsForAPI.*;
 
 public class SOBApplicationStatusTest extends BaseApiTest {
 
-    private  String createSoBApp() {
+    private String createSoBApp() {
 
         SobAppApiMain newApplicationFromBuilder = SobAppApiMain.builder()
                 .application(SobAppDataBuilder.getApplicationBuilderData())
@@ -42,7 +41,7 @@ public class SOBApplicationStatusTest extends BaseApiTest {
 
         assertApiResponseElementIsNotEmptyOrNull(salesforceApplicationId);
 
-         return salesforceApplicationId;
+        return salesforceApplicationId;
     }
 
     @Test()

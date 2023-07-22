@@ -2,19 +2,14 @@ package nisfappui.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.assertions.LocatorAssertions;
 import lombok.Getter;
 import nisfappui.utils.MethodActionsForPO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
-import static nisfappui.constants.TestHelper.ACCOUNT_NUMBER_VALUE;
-import static nisfappui.constants.TestHelper.IBAN_VALUE;
 import static nisfappui.tests.BaseTest.logger;
-import static nisfappui.utils.MethodAssertionsForPO.*;
 
 public class ApplicationPage extends MethodActionsForPO {
 

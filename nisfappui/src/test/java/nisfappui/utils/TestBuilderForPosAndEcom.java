@@ -3,25 +3,16 @@ package nisfappui.utils;
 import nisfappui.pages.*;
 import nisfappui.services.*;
 
-import static nisfappui.constants.TestHelper.WEBSITE_ECOM;
 import static nisfappui.services.ApplicationProductTypes.*;
-import static nisfappui.services.CityTypes.ABU_DHABI;
-import static nisfappui.services.CountryTypes.UAE;
-import static nisfappui.services.LegalTypeTypes.LLC;
 import static nisfappui.services.Ng1AuthSystemTypes.BASE24;
 import static nisfappui.services.Ng1AuthSystemTypes.MPGS;
-import static nisfappui.services.NgOnlineIntegrationMethodTypes.NHR;
-import static nisfappui.services.NgOnlinePaymentTypes.MASTERCARD;
-import static nisfappui.services.NgOnlinePaymentTypes.VISA;
 import static nisfappui.services.PosTypeAndGatewayTypes.*;
-import static nisfappui.services.RefundCategoryTypes.C;
-import static nisfappui.services.SettlementFrequencyEcomTypes.DAILY;
 import static nisfappui.utils.AppDataFaker.*;
 
 public class TestBuilderForPosAndEcom {
 
     public void fillMerchantInitialCreationECOM(MerchantInitialCreationPage merchantInitialCreationPage,
-                                                         String bnt) {
+                                                String bnt) {
         merchantInitialCreationPage
                 .fillTradeName(getRandomTradeName())
                 .fillMerchantEmail(getRandomEmail())
@@ -33,7 +24,7 @@ public class TestBuilderForPosAndEcom {
 
 
     public void fillMerchantInitialCreationType3(MerchantInitialCreationPage merchantInitialCreationPage,
-                                                String bnt) {
+                                                 String bnt) {
         merchantInitialCreationPage
                 .fillTradeName(getRandomTradeName())
                 .fillMerchantEmail(getRandomEmail())
@@ -45,7 +36,7 @@ public class TestBuilderForPosAndEcom {
 
 
     public void fillMerchantInitialCreationPosNG(MerchantInitialCreationPage merchantInitialCreationPage,
-                                                String bnt) {
+                                                 String bnt) {
         merchantInitialCreationPage
                 .fillTradeName(getRandomTradeName())
                 .fillMerchantEmail(getRandomEmail())
@@ -57,7 +48,7 @@ public class TestBuilderForPosAndEcom {
     }
 
     public void fillMerchantInitialCreationPosSOFTPOS(MerchantInitialCreationPage merchantInitialCreationPage,
-                                                 String bnt) {
+                                                      String bnt) {
         merchantInitialCreationPage
                 .fillTradeName(getRandomTradeName())
                 .fillMerchantEmail(getRandomEmail())
@@ -83,7 +74,7 @@ public class TestBuilderForPosAndEcom {
     }
 
     public void fillMerchantInitialCreationNG1WithMPGS(MerchantInitialCreationPage merchantInitialCreationPage,
-                                                      String bnt) {
+                                                       String bnt) {
         merchantInitialCreationPage
                 .fillTradeName(getRandomTradeName())
                 .fillMerchantEmail(getRandomEmail())

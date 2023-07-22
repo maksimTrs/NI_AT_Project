@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static nisobapi.utils.ApiAppDataFaker.*;
+import static nisobapi.utils.ApiAppDataFaker.PASSPORT_POJO;
 
 public class PassportNumberDeserializer extends JsonDeserializer<String> {
 

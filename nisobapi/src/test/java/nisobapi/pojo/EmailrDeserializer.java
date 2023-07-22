@@ -10,9 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static nisobapi.utils.ApiAppDataFaker.EMAIL_POJO;
-import static nisobapi.utils.ApiAppDataFaker.MOBILE_POJO;
 
-public class EmailrDeserializer  extends JsonDeserializer<String> {
+public class EmailrDeserializer extends JsonDeserializer<String> {
 
 
     @Override

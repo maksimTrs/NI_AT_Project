@@ -1,6 +1,5 @@
 package nisobapi.pojo;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -9,9 +8,10 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static nisobapi.utils.ApiAppDataFaker.*;
+import static nisobapi.utils.ApiAppDataFaker.PASSPORT_POJO;
+import static nisobapi.utils.ApiAppDataFaker.TLN_POJO;
 
-public class ScreeningResultDeserializer  extends JsonDeserializer<String> {
+public class ScreeningResultDeserializer extends JsonDeserializer<String> {
 
 
     @Override

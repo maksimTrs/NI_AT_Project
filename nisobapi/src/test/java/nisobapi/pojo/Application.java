@@ -17,7 +17,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Application {
     @Builder.Default
-    private String creator =  "SOB";
+    private String creator = "SOB";
     private String keyMerchant;
     private String rentalMode;
     private String legalType;

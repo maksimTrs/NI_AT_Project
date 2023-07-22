@@ -10,7 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static nisobapi.utils.ApiAppDataFaker.TLN_POJO;
-import static nisobapi.utils.ApiAppDataFaker.getRandomTLN;
 
 public class TradeLicenseNumberDeserializer extends JsonDeserializer<String> {
 

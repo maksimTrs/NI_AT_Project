@@ -36,16 +36,16 @@ import static nisfappui.utils.PropertyReader.getTestDataFromBundle;
 public abstract class BaseTest {
 
 
-    public static Logger logger = Logger.getLogger(BaseTest.class);
-    private static ThreadLocal<Playwright> playwrightThreadLocal = new ThreadLocal<>();
-    private static ThreadLocal<Browser> browserThreadLocal = new ThreadLocal<>();
-    private static ThreadLocal<Page> pageThreadLocal = new ThreadLocal<>();
-    private static ThreadLocal<BrowserContext> browserContextThreadLocal = new ThreadLocal<>();
     public static final String SF_URL = getTestDataFromBundle("BASE_URL");
+    public static Logger logger = Logger.getLogger(BaseTest.class);
     public static boolean isClearMode = Boolean.getBoolean("CLEAR_MODE");
     public static boolean isTraceEnabled = Boolean.getBoolean("TRACE_FLAG");
     public static boolean isHeadlessMode = Boolean.getBoolean("HEADLESS_MODE");
     public static String browserType = System.getProperty("BROWSER_TYPE");
+    private static ThreadLocal<Playwright> playwrightThreadLocal = new ThreadLocal<>();
+    private static ThreadLocal<Browser> browserThreadLocal = new ThreadLocal<>();
+    private static ThreadLocal<Page> pageThreadLocal = new ThreadLocal<>();
+    private static ThreadLocal<BrowserContext> browserContextThreadLocal = new ThreadLocal<>();
     public User SALES_OFFICER_USER;
     public User INCORRECT_SF_USER;
     protected Playwright playwright;
@@ -81,7 +81,7 @@ public abstract class BaseTest {
     NewApplicationFeesChargesEcomPartitionPage newApplicationFeesChargesEcomPartitionPage;
     @PlayWrightPage
     NGeniusOnlinePartitionPage nGeniusOnlinePartitionPage;
-    private  volatile  List<Path> listOfVideoRecords;
+    private volatile List<Path> listOfVideoRecords;
 
     @BeforeSuite(alwaysRun = true)
     public static void executePreConditions() {
@@ -97,13 +97,32 @@ public abstract class BaseTest {
         }
     }
 
+    private static Playwright getTLPlaywright() {
+
+        return playwrightThreadLocal.get();
+    }
+
+    private static Browser getTLBrowser() {
+
+        return browserThreadLocal.get();
+    }
+
+    private static Page getTLPage() {
+
+        return pageThreadLocal.get();
+    }
+
+    private static BrowserContext getBrowserContextTLPage() {
+
+        return browserContextThreadLocal.get();
+    }
 
     @BeforeClass()
     public void setUp() {
         SALES_OFFICER_USER = withCredentialsFromPropertyFile(getTestDataFromBundle(USER_NAME),
-                        getTestDataFromBundle(USER_PASSWORD));
+                getTestDataFromBundle(USER_PASSWORD));
         INCORRECT_SF_USER = withWrongCredentialsFromPropertyFile(getTestDataFromBundle(USER_NAME),
-                        getTestDataFromBundle(USER_PASSWORD_WRONG));
+                getTestDataFromBundle(USER_PASSWORD_WRONG));
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -138,7 +157,6 @@ public abstract class BaseTest {
         }
     }
 
-
     @AfterMethod(alwaysRun = true)
     public void attachFilesToFailedTest(ITestResult result, Method method) throws IOException {
 
@@ -162,32 +180,11 @@ public abstract class BaseTest {
         }
     }
 
-
     protected void doSFLogIn(String SFurl, User logInUser) {
         logInPage
                 .openUrl(SFurl)
                 .fillUserNameAndPasswordFields(logInUser)
                 .doLogIn();
-    }
-
-    private static Playwright getTLPlaywright() {
-
-        return playwrightThreadLocal.get();
-    }
-
-    private static Browser getTLBrowser() {
-
-        return browserThreadLocal.get();
-    }
-
-    private static Page getTLPage() {
-
-        return pageThreadLocal.get();
-    }
-
-    private static BrowserContext getBrowserContextTLPage() {
-
-        return browserContextThreadLocal.get();
     }
 
     private void initPages(Object obj, Page page) {

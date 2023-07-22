@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static nisobapi.utils.ApiAppDataFaker.*;
+import static nisobapi.utils.ApiAppDataFaker.MOBILE_POJO;
 
 public class MobileNumberDeserializer extends JsonDeserializer<String> {
 

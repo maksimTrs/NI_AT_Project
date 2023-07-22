@@ -9,6 +9,7 @@ import nisfappui.utils.TestBuilderMain;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
+import static nisfappui.constants.TestHelper.*;
 import static nisfappui.pages.NavigationMenuPartitions.APPLICATIONS;
 import static nisfappui.services.BankTypes.ENBD;
 import static nisfappui.services.CityTypes.ABU_DHABI;
@@ -19,15 +20,10 @@ import static nisfappui.services.NgOnlineIntegrationMethodTypes.NHR;
 import static nisfappui.services.NgOnlinePaymentTypes.MASTERCARD;
 import static nisfappui.services.NgOnlinePaymentTypes.VISA;
 import static nisfappui.services.PaymentModeTypes.FN;
-import static nisfappui.services.PaymentModeTypes.MC_777;
-import static nisfappui.services.PosTypeAndGatewayTypes.ECON_TYPE;
-import static nisfappui.services.PosTypeAndGatewayTypes.POS_TYPE_NG;
 import static nisfappui.services.RefundCategoryTypes.C;
 import static nisfappui.services.RentalModeTypes.BANK_TRANSFER;
 import static nisfappui.services.SettlementFrequencyEcomTypes.DAILY;
-import static nisfappui.constants.TestHelper.*;
 import static nisfappui.utils.AllureStepsTemplates.*;
-import static nisfappui.utils.AppDataFaker.*;
 import static nisfappui.utils.MethodAssertionsForPO.*;
 
 public class Type3ApplicationCreationTest extends BaseTest {

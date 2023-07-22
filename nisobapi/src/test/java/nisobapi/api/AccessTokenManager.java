@@ -12,11 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static nisobapi.api.StatusCode.CODE_200;
+import static nisobapi.constants.TestHelper.TOKEN_URL;
+import static nisobapi.constants.TestHelper.TOKEN_URL_ENDPOINT;
 import static nisobapi.tests.BaseApiTest.loggerAPI;
 import static nisobapi.utils.ConfigLoader.getSingletonInstance;
 import static nisobapi.utils.MethodAssertionsForAPI.*;
-import static nisobapi.constants.TestHelper.TOKEN_URL;
-import static nisobapi.constants.TestHelper.TOKEN_URL_ENDPOINT;
 
 public class AccessTokenManager {
 

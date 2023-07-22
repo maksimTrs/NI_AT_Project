@@ -8,8 +8,6 @@ import nisfappui.utils.MethodActionsForPO;
 
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
 import static io.qameta.allure.model.Parameter.Mode.MASKED;
-import static nisfappui.utils.MethodAssertionsForPO.assertElementContainsText;
-import static nisfappui.utils.MethodAssertionsForPO.assertElementHasText;
 
 public class LogInPage extends MethodActionsForPO {
 

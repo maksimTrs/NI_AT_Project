@@ -3,7 +3,6 @@ package nisobapi.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import io.qameta.allure.Allure;
 import nisobapi.pojo.*;
 import org.apache.commons.io.FileUtils;
 

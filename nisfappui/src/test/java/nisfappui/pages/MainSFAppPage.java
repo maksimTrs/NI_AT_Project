@@ -4,8 +4,6 @@ import com.microsoft.playwright.Page;
 import nisfappui.utils.MethodActionsForPO;
 
 import static com.microsoft.playwright.options.WaitForSelectorState.VISIBLE;
-import static nisfappui.utils.MethodAssertionsForPO.assertElementHasText;
-import static nisfappui.utils.MethodAssertionsForPO.assertElementIsEnabled;
 
 public class MainSFAppPage extends MethodActionsForPO {
 
@@ -52,7 +50,7 @@ public class MainSFAppPage extends MethodActionsForPO {
     }
 
     public boolean checkLogOutBtnState() {
-        return  page.locator(LOGOUT_BTN).isEnabled();
+        return page.locator(LOGOUT_BTN).isEnabled();
     }
 
     public String getLogOutBtnName() {

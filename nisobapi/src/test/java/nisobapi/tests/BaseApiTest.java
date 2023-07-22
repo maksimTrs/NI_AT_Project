@@ -11,16 +11,14 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-
 import static nisobapi.api.AccessTokenManager.getToken;
 import static nisobapi.api.AccessTokenManager.renewToken;
 import static nisobapi.constants.TestHelper.SOB_CREATION_URL;
 
 public class BaseApiTest {
 
-    protected static boolean isClearMode = Boolean.getBoolean("CLEAR_MODE");
-
     public static Logger loggerAPI = Logger.getLogger(BaseApiTest.class);
+    protected static boolean isClearMode = Boolean.getBoolean("CLEAR_MODE");
     private static String TOKEN;
     protected RequestManager manager;
 

@@ -6,13 +6,7 @@ import nisfappui.services.NationalityTypes;
 import nisfappui.services.PaymentModeTypes;
 import nisfappui.services.RentalModeTypes;
 
-import static nisfappui.constants.TestHelper.*;
-import static nisfappui.services.BankTypes.ENBD;
-import static nisfappui.services.NationalityTypes.NATIONALITY_UAE;
-import static nisfappui.services.PaymentModeTypes.MC_777;
-import static nisfappui.services.RentalModeTypes.BANK_TRANSFER;
 import static nisfappui.utils.AppDataFaker.*;
-import static nisfappui.utils.AppDataFaker.getRandomLicenceExpirationDate;
 
 public class TestBuilderMain {
 
@@ -25,7 +19,7 @@ public class TestBuilderMain {
 
 
     public void fillApplicationAuthorizedSignatoryPartition(NewApplicationAuthorizedSignatoryPartitionPage newApplicationAuthorizedSignatoryPartitionPage,
-                                                             NationalityTypes nationalityTypes) {
+                                                            NationalityTypes nationalityTypes) {
         newApplicationAuthorizedSignatoryPartitionPage
                 .fillFirstAndLastName(getRandomFirstName(), getRandomLastName())
                 .fillMobilPhone(getRandomPhone())
@@ -83,7 +77,7 @@ public class TestBuilderMain {
                 .fillType3BusinessSensitivePartition(iBan, accNum);
     }
 
-    public void openAccountPageAndFillPepContactInfo(ApplicationPage applicationPage,boolean isPep) {
+    public void openAccountPageAndFillPepContactInfo(ApplicationPage applicationPage, boolean isPep) {
         applicationPage
                 .openAppContactPage()
                 .editContact()
@@ -107,8 +101,8 @@ public class TestBuilderMain {
     }
 
     public void openDocPageAndUploadFile(ApplicationPage applicationPage,
-                                                  DocumentPage documentPage,
-                                                  String file1) {
+                                         DocumentPage documentPage,
+                                         String file1) {
         applicationPage
                 .openAppGenericDocument();
 

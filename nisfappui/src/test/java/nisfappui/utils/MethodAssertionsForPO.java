@@ -66,7 +66,6 @@ public abstract class MethodAssertionsForPO {
     }
 
 
-
     public static void assertElementHasCount(int actualResult, int expectedResult) {
         try {
             assertThat(actualResult)

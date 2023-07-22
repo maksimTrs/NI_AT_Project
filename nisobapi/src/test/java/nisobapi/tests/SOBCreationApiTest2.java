@@ -1,34 +1,22 @@
 package nisobapi.tests;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.options.RequestOptions;
 import io.qameta.allure.Allure;
-import nisobapi.pojo.*;
-import org.apache.commons.io.*;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
 
 import static nisobapi.api.StatusCode.CODE_201;
 import static nisobapi.constants.TestHelper.APP_ID_REGEX;
 import static nisobapi.constants.TestHelper.SOB_CREATION_URL_ENDPOINT;
-import static nisobapi.utils.ApiAppDataFaker.getRandomDateOfEstablishment;
-import static nisobapi.utils.ApiAppDataFaker.getRandomIntValue;
 import static nisobapi.utils.MethodAssertionsForAPI.*;
 import static nisobapi.utils.SobAppApiSerialization.deserializePostSonJsonAndSerializeToUniqueJson;
-import static nisobapi.utils.SobAppDataBuilder.*;
 
 
 public class SOBCreationApiTest2 extends BaseApiTest {
 
     @Test()
-    public void createSobAppTest2()   {
+    public void createSobAppTest2() {
 
         String jsonConvertAppResult = deserializePostSonJsonAndSerializeToUniqueJson
                 ("src/test/resources/testData/SOB_Application_API_UAT_Creation2.json");

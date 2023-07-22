@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -18,19 +18,19 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <artifactId>maven-surefire-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    &lt;!&ndash; Define the suiteXmlFile for Module 1 &ndash;&gt;-->
-<!--                    <suiteXmlFiles>-->
-<!--                        &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;-->
-<!--&lt;!&ndash;                        <suiteXmlFile>${project.basedir}/src/test/resources/testNgSuites/${suiteXmlFile}</suiteXmlFile>&ndash;&gt;-->
-<!--                    </suiteXmlFiles>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
+    <!--    <build>-->
+    <!--        <plugins>-->
+    <!--            <plugin>-->
+    <!--                <artifactId>maven-surefire-plugin</artifactId>-->
+    <!--                <configuration>-->
+    <!--                    &lt;!&ndash; Define the suiteXmlFile for Module 1 &ndash;&gt;-->
+    <!--                    <suiteXmlFiles>-->
+    <!--                        &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;-->
+    <!--&lt;!&ndash;                        <suiteXmlFile>${project.basedir}/src/test/resources/testNgSuites/${suiteXmlFile}</suiteXmlFile>&ndash;&gt;-->
+    <!--                    </suiteXmlFiles>-->
+    <!--                </configuration>-->
+    <!--            </plugin>-->
+    <!--        </plugins>-->
+    <!--    </build>-->
 
 </project>
