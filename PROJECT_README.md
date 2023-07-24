@@ -31,6 +31,9 @@ to run report as an HTML page, with historic trends, use:
 
 1. Run tests without "clean" goal and execute the command :
 
+`mvn  test -Dtest="AppTabsClosingTest#closeAllAppUITabsTest"`
+
+
 `mvn  allure:report`
 
 2. Copy history folder from "target/site/allure-maven-plugin" to "target/allure-results":
