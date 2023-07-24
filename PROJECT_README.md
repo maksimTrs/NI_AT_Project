@@ -31,6 +31,10 @@ OR
 
 `mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="show-trace traces/createSoftPosApplicationTest.zip"`
 
+OR 
+
+Use https://trace.playwright.dev/
+
 =================================================================================================================
 
 #### --->>> **_To run tests via Docker - run commands:_**

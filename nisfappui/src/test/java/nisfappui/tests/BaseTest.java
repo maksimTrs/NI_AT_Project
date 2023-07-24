@@ -203,7 +203,7 @@ public abstract class BaseTest {
     }
 
     private void doLoggingFailedTest(ITestResult result, Method method) throws IOException {
-        if (!result.isSuccess()) {
+        if (!result.isSuccess() || result.getStatus() == 3) {
             String uuid = UUID.randomUUID().toString();
             byte[] screenshot = page.screenshot(new Page.ScreenshotOptions()
                     .setPath(Paths.get("build/allure-results/screenshot_" + uuid + "screenshot.png"))
