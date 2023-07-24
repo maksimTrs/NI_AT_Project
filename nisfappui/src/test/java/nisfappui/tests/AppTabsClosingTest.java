@@ -14,7 +14,7 @@ public class AppTabsClosingTest extends BaseTest {
     @TmsLink(value = "2057")
     @Issue(value = "2058")
     @Test(enabled = true)
-    public void closeAllAppUITabs() {
+    public void closeAllAppUITabsTest() {
         doSFLogIn(SF_URL, SALES_OFFICER_USER);
 
         applicationPage.closeAllSFTabs();

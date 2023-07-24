@@ -50,11 +50,15 @@ public class ApplicationPage extends MethodActionsForPO {
         page.waitForTimeout(5000);
 
 
-        while (page.locator(APP_ALL_SF_TAB_CLOSE_BTN).count() >= 1) {
+        while (page.locator(APP_ALL_SF_TAB_CLOSE_BTN).count() > 1) {
             Locator listEle = page.locator(APP_ALL_SF_TAB_CLOSE_BTN);
             logger.debug("list app tabs count: " + listEle.count());
             //logger.debug("list app tabs  info: " + listEle.allInnerTexts());
             page.locator(APP_ALL_SF_TAB_CLOSE_BTN + "[last()]").click();
+        }
+        Locator listEle = page.locator(APP_ALL_SF_TAB_CLOSE_BTN);
+        for (int i = 0; i < listEle.count(); i++) {
+            listEle.nth(i).click();
         }
     }
 
@@ -148,7 +152,7 @@ public class ApplicationPage extends MethodActionsForPO {
     }
 
     public int getSFApplicationTabsCount() {
-        page.waitForTimeout(5000);
+        page.waitForTimeout(3000);
         return page.locator(ALL_APP_SF_TABS).count();
     }
 
