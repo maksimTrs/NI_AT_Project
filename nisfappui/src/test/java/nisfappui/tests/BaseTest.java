@@ -86,12 +86,13 @@ public abstract class BaseTest {
     @BeforeSuite(alwaysRun = true)
     public static void executePreConditions() {
         try {
+            FileUtils.deleteDirectory(new File("traces"));
+            FileUtils.deleteDirectory(new File("videos"));
             if (isClearMode) {
-                FileUtils.deleteDirectory(new File("traces"));
-                FileUtils.deleteDirectory(new File("videos"));
                 FileUtils.deleteDirectory(new File("target/allure-results"));
-                logger.debug("Folders [videos, traces, allure-results] were deleted successfully");
+                logger.debug("Folders [allure-results] were deleted successfully");
             }
+            logger.debug("Folders [videos, traces] were deleted successfully");
         } catch (IOException e) {
             logger.debug("Failed to delete folder: " + e.getMessage());
         }

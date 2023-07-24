@@ -19,7 +19,7 @@ public class ApplicationPage extends MethodActionsForPO {
             "//ul[@role='presentation']//a[contains(@title, 'Application')])[last()]";
     private static final String TRADE_NAME = "(//p[contains(@title,'Trade name')]//..//slot//lightning-formatted-text)[last()]";
     private static final String DRAFT_STAGE_FIELD = "(//ul[@role='listbox']/li[@data-name='Draft']/a[@data-tab-name='Draft'])[last()]";
-    private static final String APP_ALL_SF_TAB_CLOSE_BTN = "//div[@aria-label=\"Workspace tabs for NI Onboarding Console\"]//ul[@role='presentation']//a[contains(@title, 'Application')]/..//button[contains(@title, 'Close')]";
+    private static final String APP_ALL_SF_TAB_CLOSE_BTN = "(//div[@aria-label=\"Workspace tabs for NI Onboarding Console\"]//ul[@role='presentation']//a[contains(@title, 'Application')]/..//button[contains(@title, 'Close')])";
     private static final String ALL_APP_SF_TABS = "//div[@aria-label=\"Workspace tabs for NI Onboarding Console\"]//a[contains(@title, 'Application')][not(contains(@href, 'javascript'))]";
 
     private static final String APP_SF_TAB_CLOSE_BTN = "//div[@aria-label=\"Workspace tabs for NI Onboarding Console\"]//ul[@role='presentation']//a[contains(@title, 'Application')]/..//button[@title=\"Close %s | Application\"]";
@@ -49,38 +49,12 @@ public class ApplicationPage extends MethodActionsForPO {
     public void closeAllSFTabs() {
         page.waitForTimeout(5000);
 
-        Locator listEle = page.locator(ALL_APP_SF_TABS);
-        logger.debug("list app tabs count: " + listEle.count());
-        logger.debug("list app tabs  info: " + listEle.allInnerTexts());
-        for (int j = 0; j < listEle.count(); j++) {
 
-            Locator listEle2 = page.locator(ALL_APP_SF_TABS);
-
-            for (int i = j; i < listEle2.count(); i++) {
-
-                Locator listEle3 = page.locator((ALL_APP_SF_TABS));
-
-                for (int k = j; k < listEle3.count(); k++) {
-                    (listEle3.nth(k)).waitFor(new Locator.WaitForOptions()
-                            .setState(VISIBLE)
-                            .setTimeout(5000));
-
-                    logger.debug(listEle3.nth(k).getAttribute("title"));
-
-                    String titleText = listEle3.nth(k).getAttribute("title");
-                    String appID = titleText.substring(titleText.indexOf("A-"), titleText.indexOf("|")).trim();
-
-                    Locator closeLocator = page.locator(String.format(APP_SF_TAB_CLOSE_BTN, appID));
-                closeLocator.waitFor(new Locator.WaitForOptions()
-                        .setState(VISIBLE)
-                        .setTimeout(5000));
-
-                    listEle3.nth(k).click();
-                    closeLocator.click();
-                }
-
-            }
-
+        while (page.locator(APP_ALL_SF_TAB_CLOSE_BTN).count() >= 1) {
+            Locator listEle = page.locator(APP_ALL_SF_TAB_CLOSE_BTN);
+            logger.debug("list app tabs count: " + listEle.count());
+            //logger.debug("list app tabs  info: " + listEle.allInnerTexts());
+            page.locator(APP_ALL_SF_TAB_CLOSE_BTN + "[last()]").click();
         }
     }
 
@@ -174,7 +148,7 @@ public class ApplicationPage extends MethodActionsForPO {
     }
 
     public int getSFApplicationTabsCount() {
-        page.waitForTimeout(3000);
+        page.waitForTimeout(5000);
         return page.locator(ALL_APP_SF_TABS).count();
     }
 

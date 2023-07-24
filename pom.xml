@@ -169,7 +169,7 @@
                 </property>
             </activation>
             <properties>
-                <CLEAR_MODE>true</CLEAR_MODE>
+                <CLEAR_MODE>false</CLEAR_MODE>
             </properties>
         </profile>
         <profile>
