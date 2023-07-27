@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -84,9 +85,9 @@ public abstract class BaseTest {
     NGeniusOnlinePartitionPage nGeniusOnlinePartitionPage;
     //private static volatile List<Path> listOfVideoRecords;
   //  private  static ThreadLocal<List<Path>> listOfVideoRecords = ThreadLocal.withInitial(ArrayList::new);
-    private static ConcurrentLinkedQueue<Path> listOfVideoRecords = new ConcurrentLinkedQueue<>();
+    private static CopyOnWriteArrayList<Path> listOfVideoRecords = new CopyOnWriteArrayList <>();
    // private  static ThreadLocal<List<Path>> fullListOfVideoRecords =  ThreadLocal.withInitial(ArrayList::new);
-    private static ConcurrentLinkedQueue<Path> fullListOfVideoRecords = new ConcurrentLinkedQueue<>();
+    private static CopyOnWriteArrayList<Path> fullListOfVideoRecords = new CopyOnWriteArrayList <>();
 
 
     @BeforeSuite(alwaysRun = true)
@@ -230,7 +231,7 @@ public abstract class BaseTest {
         }
     }
 
-    private  synchronized void collectPlayWrightVideos() {
+    private   void collectPlayWrightVideos() {
         try (Stream<Path> pathStream = Files.walk(Paths.get("videos/")).parallel()) {
             pathStream
                     .filter(Files::isRegularFile)
@@ -241,7 +242,7 @@ public abstract class BaseTest {
         }
     }
 
-    private  synchronized   void deleteSuccessfulTestPlayWrightVideos(Method method) {
+    private   void deleteSuccessfulTestPlayWrightVideos(Method method) {
         try (Stream<Path> pathStream = Files.walk(Paths.get("videos/")).parallel()) {
             pathStream
                     .filter(Files::isRegularFile)
