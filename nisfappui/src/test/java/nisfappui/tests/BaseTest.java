@@ -23,6 +23,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -81,7 +82,12 @@ public abstract class BaseTest {
     NewApplicationFeesChargesEcomPartitionPage newApplicationFeesChargesEcomPartitionPage;
     @PlayWrightPage
     NGeniusOnlinePartitionPage nGeniusOnlinePartitionPage;
-    private volatile List<Path> listOfVideoRecords;
+    //private static volatile List<Path> listOfVideoRecords;
+  //  private  static ThreadLocal<List<Path>> listOfVideoRecords = ThreadLocal.withInitial(ArrayList::new);
+    private static ConcurrentLinkedQueue<Path> listOfVideoRecords = new ConcurrentLinkedQueue<>();
+   // private  static ThreadLocal<List<Path>> fullListOfVideoRecords =  ThreadLocal.withInitial(ArrayList::new);
+    private static ConcurrentLinkedQueue<Path> fullListOfVideoRecords = new ConcurrentLinkedQueue<>();
+
 
     @BeforeSuite(alwaysRun = true)
     public static void executePreConditions() {
@@ -151,11 +157,11 @@ public abstract class BaseTest {
 
         initPages(this, getTLPage());
 
-        synchronized (this) {
+
             if (isTraceEnabled) {
                 collectPlayWrightVideos();
-            }
-        }
+
+       }
     }
 
     @AfterMethod(alwaysRun = true)
@@ -168,17 +174,18 @@ public abstract class BaseTest {
         logger.info("********************************************************************************");
 
 
+        getTLPage().close();
         getBrowserContextTLPage().close();
         getTLBrowser().close();
-        getTLPage().close();
         getTLPlaywright().close();
 
 
-        synchronized (this) {
+
             if (isTraceEnabled && result.isSuccess()) {
-                deleteSuccessfulTestPlayWrightVideos(method);
+                    deleteSuccessfulTestPlayWrightVideos(method);
+
             }
-        }
+
     }
 
     protected void doSFLogIn(String SFurl, User logInUser) {
@@ -223,24 +230,23 @@ public abstract class BaseTest {
         }
     }
 
-    public void collectPlayWrightVideos() {
-        try (Stream<Path> pathStream = Files.walk(Paths.get("videos/"))) {
-            listOfVideoRecords = pathStream
+    private  synchronized void collectPlayWrightVideos() {
+        try (Stream<Path> pathStream = Files.walk(Paths.get("videos/")).parallel()) {
+            pathStream
                     .filter(Files::isRegularFile)
-                    .collect(Collectors.toList());
+                    .forEach(listOfVideoRecords::add);
             // Process the list of video records
         } catch (IOException e) {
             logger.error("Failed to walk through the directory: " + e.getMessage());
         }
     }
 
-    public void deleteSuccessfulTestPlayWrightVideos(Method method) {
-        List<Path> fullListOfVideoRecords = new ArrayList<>();
-        try (Stream<Path> pathStream = Files.walk(Paths.get("videos/"))) {
-            fullListOfVideoRecords = pathStream
+    private  synchronized   void deleteSuccessfulTestPlayWrightVideos(Method method) {
+        try (Stream<Path> pathStream = Files.walk(Paths.get("videos/")).parallel()) {
+            pathStream
                     .filter(Files::isRegularFile)
                     .filter(s1 -> !listOfVideoRecords.contains(s1))
-                    .collect(Collectors.toList());
+                    .forEach(fullListOfVideoRecords::add);
 
             for (Path path : fullListOfVideoRecords) {
                 Files.deleteIfExists(path);
