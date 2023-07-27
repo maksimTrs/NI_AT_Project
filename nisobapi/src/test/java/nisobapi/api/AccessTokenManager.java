@@ -8,6 +8,7 @@ import nisobapi.pojo.TokenApi;
 import org.json.JSONObject;
 
 import java.time.Instant;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,9 +77,9 @@ public class AccessTokenManager {
         loggerAPI.debug(">>>>>>>>>>>> tokenValue = " + tokenValue);
 
         access_token = tokenValue;
-        expires_time = Instant.now().plusSeconds(3600);
+        expires_time = Instant.now().plusSeconds(3000);
 
-        loggerAPI.debug(">>>>>>>>>>>> INSTANT millis expires_time = " + expires_time);
+        loggerAPI.debug(">>>>>>>>>>>> INSTANT millis expires_time = " + expires_time.atZone(ZoneId.systemDefault()));
 
         return access_token;
     }
