@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>nisfappui</artifactId>
+    <name>nisfappui</name>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -19,19 +20,23 @@
     </properties>
 
 
-    <!--    <build>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-                        &lt;!&ndash; Define the suiteXmlFile for Module 1 &ndash;&gt;
-                        <suiteXmlFiles>
-                            &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;
-    &lt;!&ndash;                        <suiteXmlFile>${project.basedir}/src/test/resources/testNgSuites/${suiteXmlFile}</suiteXmlFile>&ndash;&gt;
-                        </suiteXmlFiles>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>-->
+    <build>
+        <finalName>nisfappui</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                          <!--  execute < mvn package > command and upload jar to the project module structure -->
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
