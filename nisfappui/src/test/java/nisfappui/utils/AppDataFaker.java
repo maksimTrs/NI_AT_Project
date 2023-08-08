@@ -57,23 +57,21 @@ public class AppDataFaker {
 
     public static String getRandomDateOfEstablishment() {
         Faker faker = new Faker();
-
-        String randomDate1 = null;
-        String initialDateStr = "25/01/2018";
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
-            Date initialDate = dateFormatter.parse(initialDateStr);
+            Date initialDate = dateFormatter.parse("25/01/2018");
             Date currentDate = new Date();
             Date endDate = new Date(currentDate.getTime() - TimeUnit.DAYS.toMillis(4));
 
-            randomDate1 = dateFormatter.format(faker.date().between(initialDate, endDate));
-
+            return dateFormatter.format(faker.date().between(initialDate, endDate));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return String.valueOf(randomDate1);
+        return String.valueOf(new Date(new Date().getTime() - TimeUnit.DAYS.toMillis(7)));
     }
+
+
 
     public static String getRandomDateOfBirth() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -81,10 +79,9 @@ public class AppDataFaker {
         return sdf.format(faker.date().birthday(18, 79));
     }
 
+
     public static String getRandomLicenceExpirationDate() {
         Faker faker = new Faker();
-
-        String randomDate1 = null;
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
@@ -92,13 +89,15 @@ public class AppDataFaker {
             Date initDate = new Date(currentDate.getTime() + TimeUnit.DAYS.toMillis(4));
             Date endDate = new Date(currentDate.getTime() + TimeUnit.DAYS.toMillis(2520));
 
-            randomDate1 = dateFormatter.format(faker.date().between(initDate, endDate));
-
+            return dateFormatter.format(faker.date().between(initDate, endDate));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return String.valueOf(randomDate1);
+        return String.valueOf(new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(900)));
     }
+
+
+
 
     public static String getRandomFirstName() {
         Faker faker = new Faker();
