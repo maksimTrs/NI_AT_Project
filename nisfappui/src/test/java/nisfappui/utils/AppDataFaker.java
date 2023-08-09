@@ -67,8 +67,8 @@ public class AppDataFaker {
             return dateFormatter.format(faker.date().between(initialDate, endDate));
         } catch (Exception e) {
             e.printStackTrace();
+            return String.valueOf(new Date(new Date().getTime() - TimeUnit.DAYS.toMillis(7)));
         }
-        return String.valueOf(new Date(new Date().getTime() - TimeUnit.DAYS.toMillis(7)));
     }
 
 
@@ -92,8 +92,8 @@ public class AppDataFaker {
             return dateFormatter.format(faker.date().between(initDate, endDate));
         } catch (Exception e) {
             e.printStackTrace();
+            return String.valueOf(new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(900)));
         }
-        return String.valueOf(new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(900)));
     }
 
 
