@@ -8,7 +8,7 @@ import nisfappui.services.RentalModeTypes;
 
 import static nisfappui.utils.AppDataFaker.*;
 
-public class TestBuilderMain {
+public class MainAppFacade {
 
     public void openNewMerchantPopUp(MainSFAppPage mainSFAppPage, NavigationMenuPartitions navigationMenuPartitions) {
         mainSFAppPage

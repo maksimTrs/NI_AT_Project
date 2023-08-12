@@ -4,8 +4,8 @@ package nisfappui.tests;
 import io.qameta.allure.*;
 import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
-import nisfappui.utils.TestBuilderForPosAndEcom;
-import nisfappui.utils.TestBuilderMain;
+import nisfappui.utils.MainAppFacade;
+import nisfappui.utils.PosAndEcomAppFacade;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -28,8 +28,8 @@ import static nisfappui.utils.MethodAssertionsForPO.*;
 
 public class Type3ApplicationCreationTest extends BaseTest {
 
-    private TestBuilderForPosAndEcom testBuilderForPosAndEcom = new TestBuilderForPosAndEcom();
-    private TestBuilderMain testBuilderMain = new TestBuilderMain();
+    private PosAndEcomAppFacade posAndEcomAppFacade = new PosAndEcomAppFacade();
+    private MainAppFacade mainAppFacade = new MainAppFacade();
 
     @Severity(SeverityLevel.NORMAL)
     @Owner("Maksim T")
@@ -45,72 +45,72 @@ public class Type3ApplicationCreationTest extends BaseTest {
 
         step(APP_TAB_STEP, () -> {
 
-            testBuilderMain.openNewMerchantPopUp(mainSFAppPage, APPLICATIONS);
+            mainAppFacade.openNewMerchantPopUp(mainSFAppPage, APPLICATIONS);
         });
 
 
         step(NEW_APP_TAB_TYPE3_STEP, () -> {
 
-            testBuilderForPosAndEcom.fillMerchantInitialCreationType3(merchantInitialCreationPage, "Mail Order");
+            posAndEcomAppFacade.fillMerchantInitialCreationType3(merchantInitialCreationPage, "Mail Order");
         });
 
 
         step(NEW_APP_TAB_MERCH_INFO_STEP, () -> {
 
-            testBuilderForPosAndEcom.fillMerchantInformationPartitionECOM(newApplicationMerchantInformationPartitionPage,
+            posAndEcomAppFacade.fillMerchantInformationPartitionECOM(newApplicationMerchantInformationPartitionPage,
                     LLC, WEBSITE_ECOM, ABU_DHABI, UAE);
         });
 
 
         step(NEW_APP_TAB_AUTH_SIGN_STEP, () -> {
 
-            testBuilderMain.fillApplicationAuthorizedSignatoryPartition(newApplicationAuthorizedSignatoryPartitionPage, NATIONALITY_UAE);
+            mainAppFacade.fillApplicationAuthorizedSignatoryPartition(newApplicationAuthorizedSignatoryPartitionPage, NATIONALITY_UAE);
         });
 
 
         step(NEW_APP_TAB_SALES_OFFICER_STEP, () -> {
 
-            testBuilderMain.fillApplicationSalesOfficerInspectionPartition(newApplicationSalesOfficerInspectionPartitionPage, true);
+            mainAppFacade.fillApplicationSalesOfficerInspectionPartition(newApplicationSalesOfficerInspectionPartitionPage, true);
         });
 
 
         step(NEW_APP_TAB_PAYMENT_SETTL_STEP, () -> {
 
-            testBuilderMain.fillApplicationPaymentSettlementDetailsPartition(newApplicationPaymentSettlementDetailsPartitionPage,
+            mainAppFacade.fillApplicationPaymentSettlementDetailsPartition(newApplicationPaymentSettlementDetailsPartitionPage,
                     ENBD, FN, BANK_TRANSFER);
         });
 
 
         step(NEW_APP_TAB_FEES_POS_STEP, () -> {
 
-            testBuilderForPosAndEcom.fillApplicationFeesChargesPosPartition(newApplicationFeesChargesPartitionPage);
+            posAndEcomAppFacade.fillApplicationFeesChargesPosPartition(newApplicationFeesChargesPartitionPage);
         });
 
 
         step(NEW_APP_TAB_FEES_ECOM_STEP, () -> {
 
-            testBuilderForPosAndEcom.fillApplicationFeesChargesEcomPartition(newApplicationFeesChargesEcomPartitionPage,
+            posAndEcomAppFacade.fillApplicationFeesChargesEcomPartition(newApplicationFeesChargesEcomPartitionPage,
                     DAILY, C);
         });
 
 
         step(NEW_APP_TAB_NG_ONLINE_STEP, () -> {
 
-            testBuilderForPosAndEcom.fillNGeniusOnlinePartitionPage(nGeniusOnlinePartitionPage,
+            posAndEcomAppFacade.fillNGeniusOnlinePartitionPage(nGeniusOnlinePartitionPage,
                     true, true, NHR, VISA, MASTERCARD);
         });
 
 
         step(NEW_APP_TAB_BUSINESS_DETAIL_STEP, () -> {
 
-            testBuilderMain.fillApplicationBusinessDetailsPartition(newApplicationBusinessDetailsPartitionPage,
+            mainAppFacade.fillApplicationBusinessDetailsPartition(newApplicationBusinessDetailsPartitionPage,
                     "Door-to-Door Sales", BUSINESS_OPERATION_DESC);
         });
 
 
         step(APP_TAB_IBAN_STEP, () -> {
 
-            testBuilderMain.fillApplicationType3IBAN(applicationPage, IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
+            mainAppFacade.fillApplicationType3IBAN(applicationPage, IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
         });
 
 
@@ -125,7 +125,7 @@ public class Type3ApplicationCreationTest extends BaseTest {
 
         step(CONTACT_PAGE_PEP_STEP, () -> {
 
-            testBuilderMain.openAccountPageAndFillPepContactInfo(applicationPage, false);
+            mainAppFacade.openAccountPageAndFillPepContactInfo(applicationPage, false);
         });
 
 
@@ -137,7 +137,7 @@ public class Type3ApplicationCreationTest extends BaseTest {
 
         step(DOC_TAB_UPLOAD_DOC_FILE_STEP, () -> {
 
-            testBuilderMain.openDocPageAndUploadFile(applicationPage, documentPage, DOC_FILE_UPLOAD_PATH);
+            mainAppFacade.openDocPageAndUploadFile(applicationPage, documentPage, DOC_FILE_UPLOAD_PATH);
         });
 
 

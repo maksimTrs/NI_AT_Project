@@ -30,7 +30,7 @@
                 <executions>
                     <execution>
                         <goals>
-                          <!--  execute < mvn package > command and upload jar to the project module structure -->
+                            <!--  execute < mvn package > command and upload jar to the project module structure -->
                             <goal>test-jar</goal>
                         </goals>
                     </execution>

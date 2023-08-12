@@ -9,7 +9,7 @@ import static nisfappui.services.Ng1AuthSystemTypes.MPGS;
 import static nisfappui.services.PosTypeAndGatewayTypes.*;
 import static nisfappui.utils.AppDataFaker.*;
 
-public class TestBuilderForPosAndEcom {
+public class PosAndEcomAppFacade {
 
     public void fillMerchantInitialCreationECOM(MerchantInitialCreationPage merchantInitialCreationPage,
                                                 String bnt) {

@@ -20,12 +20,8 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static nisfappui.services.UserCreator.*;
@@ -48,13 +44,17 @@ public abstract class BaseTest {
     private static ThreadLocal<Browser> browserThreadLocal = new ThreadLocal<>();
     private static ThreadLocal<Page> pageThreadLocal = new ThreadLocal<>();
     private static ThreadLocal<BrowserContext> browserContextThreadLocal = new ThreadLocal<>();
+    //private static volatile List<Path> listOfVideoRecords;
+    //  private  static ThreadLocal<List<Path>> listOfVideoRecords = ThreadLocal.withInitial(ArrayList::new);
+    private static CopyOnWriteArrayList<Path> listOfVideoRecords = new CopyOnWriteArrayList<>();
+    // private  static ThreadLocal<List<Path>> fullListOfVideoRecords =  ThreadLocal.withInitial(ArrayList::new);
+    private static CopyOnWriteArrayList<Path> fullListOfVideoRecords = new CopyOnWriteArrayList<>();
     public User SALES_OFFICER_USER;
     public User INCORRECT_SF_USER;
     protected Playwright playwright;
     protected Page page;
     protected BrowserContext browserContext;
     protected Browser browser;
-
     @PlayWrightPage
     protected LogInPage logInPage;
     @PlayWrightPage
@@ -83,12 +83,6 @@ public abstract class BaseTest {
     NewApplicationFeesChargesEcomPartitionPage newApplicationFeesChargesEcomPartitionPage;
     @PlayWrightPage
     NGeniusOnlinePartitionPage nGeniusOnlinePartitionPage;
-    //private static volatile List<Path> listOfVideoRecords;
-  //  private  static ThreadLocal<List<Path>> listOfVideoRecords = ThreadLocal.withInitial(ArrayList::new);
-    private static CopyOnWriteArrayList<Path> listOfVideoRecords = new CopyOnWriteArrayList <>();
-   // private  static ThreadLocal<List<Path>> fullListOfVideoRecords =  ThreadLocal.withInitial(ArrayList::new);
-    private static CopyOnWriteArrayList<Path> fullListOfVideoRecords = new CopyOnWriteArrayList <>();
-
 
     @BeforeSuite(alwaysRun = true)
     public static void executePreConditions() {
@@ -159,10 +153,10 @@ public abstract class BaseTest {
         initPages(this, getTLPage());
 
 
-            if (isTraceEnabled) {
-                collectPlayWrightVideos();
+        if (isTraceEnabled) {
+            collectPlayWrightVideos();
 
-       }
+        }
     }
 
     @AfterMethod(alwaysRun = true)
@@ -181,11 +175,10 @@ public abstract class BaseTest {
         getTLPlaywright().close();
 
 
+        if (isTraceEnabled && result.isSuccess()) {
+            deleteSuccessfulTestPlayWrightVideos(method);
 
-            if (isTraceEnabled && result.isSuccess()) {
-                    deleteSuccessfulTestPlayWrightVideos(method);
-
-            }
+        }
 
     }
 
@@ -231,7 +224,7 @@ public abstract class BaseTest {
         }
     }
 
-    private   void collectPlayWrightVideos() {
+    private void collectPlayWrightVideos() {
         try (Stream<Path> pathStream = Files.walk(Paths.get("videos/")).parallel()) {
             pathStream
                     .filter(Files::isRegularFile)
@@ -242,7 +235,7 @@ public abstract class BaseTest {
         }
     }
 
-    private   void deleteSuccessfulTestPlayWrightVideos(Method method) {
+    private void deleteSuccessfulTestPlayWrightVideos(Method method) {
         try (Stream<Path> pathStream = Files.walk(Paths.get("videos/")).parallel()) {
             pathStream
                     .filter(Files::isRegularFile)

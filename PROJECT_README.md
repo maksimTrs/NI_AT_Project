@@ -25,14 +25,13 @@ OR
 
 `mvn allure:serve`
 
-OR 
+OR
 
-to run report as an HTML page, with historic trends, use: 
+to run report as an HTML page, with historic trends, use:
 
 1. Run tests without "clean" goal and execute the command :
 
 `mvn  test -Dtest="AppTabsClosingTest#closeAllAppUITabsTest"`
-
 
 `mvn  allure:report`
 
@@ -40,7 +39,7 @@ to run report as an HTML page, with historic trends, use:
 
 `.\copy_history.bat`
 
-3. Run again 
+3. Run again
 
 `mvn  allure:report`
 
@@ -48,14 +47,13 @@ to run report as an HTML page, with historic trends, use:
 
 target/site/allure-maven-plugin/index.html
 
-
 =================================================================================================================
 
 #### --->>> **_To run PlayWright trace report zip archive (change .zip archive name) - run command:_**
 
 `mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="show-trace traces/createSoftPosApplicationTest.zip"`
 
-OR 
+OR
 
 Use https://trace.playwright.dev/
 

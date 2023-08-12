@@ -85,7 +85,6 @@ public class ApplicationPage extends MethodActionsForPO {
     }
 
 
-
     public ApplicationPage openCurrentSFAppTab() {
         waitForLocatorLoadState(page, CURRENT_APP_SF_TAB, VISIBLE);
         doClickOnElement(page.locator(CURRENT_APP_SF_TAB));

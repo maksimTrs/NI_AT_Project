@@ -4,8 +4,8 @@ package nisfappui.tests;
 import io.qameta.allure.*;
 import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
-import nisfappui.utils.TestBuilderForPosAndEcom;
-import nisfappui.utils.TestBuilderMain;
+import nisfappui.utils.MainAppFacade;
+import nisfappui.utils.PosAndEcomAppFacade;
 import org.testng.annotations.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -23,8 +23,8 @@ import static nisfappui.utils.MethodAssertionsForPO.*;
 
 public class PosNgeniusApplicationCreationTest extends BaseTest {
 
-    private TestBuilderForPosAndEcom testBuilderForPosAndEcom = new TestBuilderForPosAndEcom();
-    private TestBuilderMain testBuilderMain = new TestBuilderMain();
+    private PosAndEcomAppFacade posAndEcomAppFacade = new PosAndEcomAppFacade();
+    private MainAppFacade mainAppFacade = new MainAppFacade();
 
     @Severity(SeverityLevel.CRITICAL)
     @Owner("Maksim T")
@@ -40,56 +40,56 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
 
         step(APP_TAB_STEP, () -> {
 
-            testBuilderMain.openNewMerchantPopUp(mainSFAppPage, APPLICATIONS);
+            mainAppFacade.openNewMerchantPopUp(mainSFAppPage, APPLICATIONS);
         });
 
         step(NEW_APP_TAB_POS_NG_STEP, () -> {
 
-            testBuilderForPosAndEcom.fillMerchantInitialCreationPosNG(merchantInitialCreationPage, "Legal Services");
+            posAndEcomAppFacade.fillMerchantInitialCreationPosNG(merchantInitialCreationPage, "Legal Services");
         });
 
         step(NEW_APP_TAB_MERCH_INFO_STEP, () -> {
 
-            testBuilderForPosAndEcom.fillMerchantInformationPartitionECOM(newApplicationMerchantInformationPartitionPage,
+            posAndEcomAppFacade.fillMerchantInformationPartitionECOM(newApplicationMerchantInformationPartitionPage,
                     LLC, WEBSITE, DUBAI, UAE);
         });
 
 
         step(NEW_APP_TAB_AUTH_SIGN_STEP, () -> {
 
-            testBuilderMain.fillApplicationAuthorizedSignatoryPartition(newApplicationAuthorizedSignatoryPartitionPage, NATIONALITY_UAE);
+            mainAppFacade.fillApplicationAuthorizedSignatoryPartition(newApplicationAuthorizedSignatoryPartitionPage, NATIONALITY_UAE);
         });
 
 
         step(NEW_APP_TAB_SALES_OFFICER_STEP, () -> {
 
-            testBuilderMain.fillApplicationSalesOfficerInspectionPartition(newApplicationSalesOfficerInspectionPartitionPage, true);
+            mainAppFacade.fillApplicationSalesOfficerInspectionPartition(newApplicationSalesOfficerInspectionPartitionPage, true);
         });
 
 
         step(NEW_APP_TAB_PAYMENT_SETTL_STEP, () -> {
 
-            testBuilderMain.fillApplicationPaymentSettlementDetailsPartition(newApplicationPaymentSettlementDetailsPartitionPage,
+            mainAppFacade.fillApplicationPaymentSettlementDetailsPartition(newApplicationPaymentSettlementDetailsPartitionPage,
                     ENBD, MC_777, BANK_TRANSFER);
         });
 
 
         step(NEW_APP_TAB_FEES_POS_STEP, () -> {
 
-            testBuilderForPosAndEcom.fillApplicationFeesChargesPosPartition(newApplicationFeesChargesPartitionPage);
+            posAndEcomAppFacade.fillApplicationFeesChargesPosPartition(newApplicationFeesChargesPartitionPage);
         });
 
 
         step(NEW_APP_TAB_BUSINESS_DETAIL_STEP, () -> {
 
-            testBuilderMain.fillApplicationBusinessDetailsPartition(newApplicationBusinessDetailsPartitionPage,
+            mainAppFacade.fillApplicationBusinessDetailsPartition(newApplicationBusinessDetailsPartitionPage,
                     "Fines", BUSINESS_OPERATION_DESC);
         });
 
 
         step(APP_TAB_IBAN_STEP, () -> {
 
-            testBuilderMain.fillApplicationIBAN(applicationPage, IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
+            mainAppFacade.fillApplicationIBAN(applicationPage, IBAN_VALUE, ACCOUNT_NUMBER_VALUE);
         });
 
 
@@ -104,7 +104,7 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
 
         step(CONTACT_PAGE_PEP_STEP, () -> {
 
-            testBuilderMain.openAccountPageAndFillPepContactInfo(applicationPage, false);
+            mainAppFacade.openAccountPageAndFillPepContactInfo(applicationPage, false);
         });
 
 
@@ -116,7 +116,7 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
 
         step(DOC_TAB_UPLOAD_DOC_FILE_STEP, () -> {
 
-            testBuilderMain.openDocPageAndUploadFile(applicationPage, documentPage, DOC_FILE_UPLOAD_PATH);
+            mainAppFacade.openDocPageAndUploadFile(applicationPage, documentPage, DOC_FILE_UPLOAD_PATH);
         });
 
 

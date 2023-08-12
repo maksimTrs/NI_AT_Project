@@ -72,7 +72,6 @@ public class AppDataFaker {
     }
 
 
-
     public static String getRandomDateOfBirth() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Faker faker = new Faker();
@@ -95,8 +94,6 @@ public class AppDataFaker {
             return String.valueOf(new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(900)));
         }
     }
-
-
 
 
     public static String getRandomFirstName() {
