@@ -36,6 +36,7 @@ public class PosNgeniusApplicationCreationTest extends BaseTest {
     @Test(groups = {"SmokeTest"})
     public void createNgeniusPosApplicationTest() {
 
+       // doSFLogIn(SF_URL, SALES_OFFICER_USER);
         doSFLogIn(SF_URL, SALES_OFFICER_USER);
 
         step(APP_TAB_STEP, () -> {

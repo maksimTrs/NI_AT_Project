@@ -142,7 +142,7 @@ public abstract class BaseTest {
         browserThreadLocal.set(browser);
 
         browserContext = setupBrowserContext(getTLBrowser(), isTraceEnabled);
-        //browserContext.setDefaultTimeout(40000);
+        browserContext.setDefaultTimeout(50000);
         browserContextThreadLocal.set(browserContext);
 
 
@@ -183,19 +183,27 @@ public abstract class BaseTest {
     }
 
     protected void doSFLogIn(String SFurl, User logInUser) {
-        logInPage
-                .openUrl(SFurl)
-                .fillUserNameAndPasswordFields(logInUser)
-                .doLogIn();
+        File authFile = new File("auth.json");
+
+        if (authFile.exists() && authFile.isFile()) {
+            logInPage
+                    .openUrl(SF_URL + "lightning/o/Application__c/list?filterName=Recent");
+        } else {
+            logInPage
+                    .openUrl(SFurl)
+                    .fillUserNameAndPasswordFields(logInUser)
+                    .doLogIn();
+            saveCookieLoginData();
+        }
     }
 
     private void initPages(Object obj, Page page) {
         Class<?> superclass = obj.getClass().getSuperclass();
         for (Field field : superclass.getDeclaredFields()) {
             if (field.isAnnotationPresent(PlayWrightPage.class)) {
-                Class<?>[] pageClass = {Page.class};
+                //Class<?>[] pageClass = {Page.class};
                 try {
-                    field.set(this, field.getType().getConstructor(pageClass).newInstance(page));
+                    field.set(this, field.getType().getConstructor(Page.class).newInstance(page));
                 } catch (IllegalAccessException | InstantiationException | InvocationTargetException |
                          NoSuchMethodException e) {
                     throw new RuntimeException("!!! +++ Constructor for PO objects wasn't created for field: " + field.getName() + " +++ !!!\n" + e);
@@ -250,4 +258,12 @@ public abstract class BaseTest {
             logger.error("Failed to walk through the directory2: " + e.getMessage());
         }
     }
+
+    protected static void saveCookieLoginData() {
+        BaseTest.getBrowserContextTLPage()
+                .storageState(new BrowserContext.StorageStateOptions()
+                        .setPath(Paths.get("auth.json")));
+        logger.debug("<<< LogIn Cookie was saved! >>>");
+    }
+
 }

@@ -12,6 +12,25 @@ import static nisfappui.utils.MethodAssertionsForPO.*;
 public class LogInTest extends BaseTest {
 
 
+/*    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Maksim T")
+    @Tags({@Tag("UI_TEST"), @Tag("SMOKE_TEST")})
+    @Description("Test logIn with wrong credentials")
+    @Epic("SF Application Testing")
+    @Feature("Create POS Application in SF UI")
+    @Story("POS Ngenius Application Creation Test")
+    //@Test(groups = {"SmokeTest"}, priority = 1)
+    @Test(groups = {"SmokeTest"})
+    public void signUpWithErrorTest() {
+        logInPage
+                .openUrl(SF_URL)
+                .fillUserNameAndPasswordFields(INCORRECT_SF_USER)
+                .doLogIn();
+
+        assertElementHasText(logInPage.getLogInPageTitle(), "Login | Salesforce");
+        assertElementContainsText(logInPage.getLogInErrorMsg(), "Please check your username and password");
+    }*/
+
     @Severity(SeverityLevel.BLOCKER)
     @Owner("Maksim T")
     @Tags({@Tag("UI_TEST"), @Tag("SMOKE_TEST")})
@@ -19,6 +38,7 @@ public class LogInTest extends BaseTest {
     @Epic("SF Application Testing")
     @Feature("Create POS Application in SF UI")
     @Story("POS Ngenius Application Creation Test")
+    //@Test(groups = {"SmokeTest"}, priority = 2)
     @Test(groups = {"SmokeTest"})
     public void signUpTest() {
         logInPage
@@ -31,24 +51,11 @@ public class LogInTest extends BaseTest {
 
         assertElementIsEnabled(mainSFAppPage.checkLogOutBtnState());
         assertElementHasText(mainSFAppPage.getLogOutBtnName(), "Log Out");
+
+
+        BaseTest.saveCookieLoginData();
     }
 
 
-    @Severity(SeverityLevel.BLOCKER)
-    @Owner("Maksim T")
-    @Tags({@Tag("UI_TEST"), @Tag("SMOKE_TEST")})
-    @Description("Test logIn with wrong credentials")
-    @Epic("SF Application Testing")
-    @Feature("Create POS Application in SF UI")
-    @Story("POS Ngenius Application Creation Test")
-    @Test(groups = {"SmokeTest"})
-    public void signUpWithErrorTest() {
-        logInPage
-                .openUrl(SF_URL)
-                .fillUserNameAndPasswordFields(INCORRECT_SF_USER)
-                .doLogIn();
 
-        assertElementHasText(logInPage.getLogInPageTitle(), "Login | Salesforce");
-        assertElementContainsText(logInPage.getLogInErrorMsg(), "Please check your username and password");
-    }
 }
